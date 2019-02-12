@@ -27,7 +27,7 @@ class Connection(object):
         return data
 
     def post(self, data: Optional[dict] = None) -> Any:
-        url = self._make_url_with_data(data=data)
+        url = self._make_url_with_data(data=data, method='POST')
         response_data = self._request_http(url)
         data = {}
         if response_data:
@@ -37,8 +37,8 @@ class Connection(object):
                 return {}
         return data
 
-    def put(self, id: str, data: Optional[dict] = None) -> Any:
-        url = self._make_url_with_data(id=id, data=data)
+    def put(self, data: dict) -> Any:
+        url = self._make_url_with_data(data=data, method='PUT')
         response_data = self._request_http(url)
         if response_data:
             try:
@@ -48,7 +48,7 @@ class Connection(object):
         return data
 
     def delete(self, data: dict) -> Any:
-        url = self._make_url_with_data(data=data)
+        url = self._make_url_with_data(data=data, method='DELETE')
         response_data = self._request_http(url)
         if response_data:
             try:
@@ -58,19 +58,13 @@ class Connection(object):
         return data
 
     def _make_url(self, query) -> urllib.request.Request:
-        return urllib.request.Request('{}{}'.format(self.url, query))
+        return urllib.request.Request('{}{}'.format(self.url, query), headers=self.headers)
 
-    def _make_url_with_data(self, id: Optional[str] = None, data: Optional[dict] = None) -> urllib.request.Request:
-        req_data = json.dumps(data).encode('utf8')
-
-        if not id and data and ('id' not in data.keys()):
-            url = urllib.request.Request(self.url, data=req_data, headers=self.headers, method='POST')
-        elif id and data:
-            url = urllib.request.Request(self.url, data=req_data, headers=self.headers, method='PUT')
-        else:
-            url = urllib.request.Request(self.url, data=req_data, headers=self.headers, method='DELETE')
-
-        return url
+    def _make_url_with_data(self, method: str, data: Optional[dict] = None) -> urllib.request.Request:
+        req_data = None
+        if data:
+            req_data = json.dumps(data).encode('utf8')
+        return urllib.request.Request(self.url, data=req_data, headers=self.headers, method=method)
 
     def _set_headers(self) -> dict:
         headers = {'Content-Type': 'application/json'}

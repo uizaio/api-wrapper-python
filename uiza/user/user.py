@@ -10,26 +10,11 @@ from mappers.users import (
 from settings.config import settings
 from uiza.base.connections import Connection
 from uiza.base.decorators import validate_schema
+from uiza.base.uiza import UizaBase
 from utility.utility import set_url
 
 
-class Service(object):
-    def __init__(self, connection: Connection, **kwargs):
-        self.connection = connection
-
-    def get_detail(self, id: str) -> Any:
-        query = '?{}'.format(parse.urlencode({'id': id}))
-        data = self.connection.get(query=query)
-
-        return data
-
-    def remove(self, id: str) -> Any:
-        data = self.connection.delete(dict(id=id))
-
-        return data
-
-
-class User(Service):
+class User(UizaBase):
 
     def __init__(self, connection: Connection, **kwargs):
         super(User, self).__init__(connection, **kwargs)
@@ -56,16 +41,15 @@ class User(Service):
         return result
 
     @validate_schema(schema=UpdateUserSchema())
-    def update(self, id: str, data: Optional[dict] = None) -> Any:
-        data = self.connection.put(id=id, data=data)
+    def update(self, data: Optional[dict]) -> Any:
+        data = self.connection.put(data=data)
 
         return data
 
     @validate_schema(schema=UpdatePasswordUserSchema())
-    def update_password(self, id: str, data):
+    def update_password(self, data: dict):
         self.connection.url = '{}/changepassword'.format(self.connection.url)
-        data['id'] = id
-        data = self.connection.put(id=id, data=data)
+        data = self.connection.post(data=data)
 
         return data
 

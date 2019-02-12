@@ -3,7 +3,7 @@ from marshmallow import ValidationError
 PASSWORD_MIN_LENGTH = 6
 PASSWORD_MAX_LENGTH = 25
 
-API_CONCEPT = 'http://{workspace_api_domain}/{api_type}/{api_version}/{api_sub_url}'
+API_CONCEPT = 'https://{workspace_api_domain}/{api_type}/{api_version}/{api_sub_url}'
 
 
 def validate_password(password: str) -> bool or None:
