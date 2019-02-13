@@ -1,72 +1,115 @@
 import json
-import urllib.request
-import urllib.error
-from typing import Optional
 
-from typing import Any
+try:
+    from urllib.request import Request, urlopen
+    from urllib.error import HTTPError
+except ImportError:
+    from urllib2 import Request, urlopen
+    from urllib2 import HTTPError
 
 
 class Connection(object):
+
     url = None
 
-    def __init__(self, workspace_api_domain: str,
-                 api_key: str, **kwargs):
+    def __init__(self, workspace_api_domain, api_key, **kwargs):
+        """
+
+        :param workspace_api_domain:
+        :param api_key:
+        :param kwargs:
+        """
         self.auth_code = api_key
         self.headers = self._set_headers()
         self.workspace_api_domain = workspace_api_domain
 
-    def get(self, query: str = '') -> Any:
+    def get(self, query=''):
+        """
+
+        :param query:
+        :return:
+        """
         url = self._make_url(query)
-        response_data = self._request_http(url)
+        response_data, status_code = self._request_http(url)
         data = {}
         if response_data:
             try:
                 data = json.loads(response_data)
-            except json.decoder.JSONDecodeError:
+            except Exception:
                 return {}
-        return data
+        return data, status_code
 
-    def post(self, data: Optional[dict] = None) -> Any:
+    def post(self, data=None):
+        """
+
+        :param data:
+        :return:
+        """
         url = self._make_url_with_data(data=data, method='POST')
-        response_data = self._request_http(url)
+        response_data, status_code = self._request_http(url)
         data = {}
         if response_data:
             try:
                 data = json.loads(response_data)
-            except json.decoder.JSONDecodeError:
+            except Exception:
                 return {}
-        return data
+        return data, status_code
 
-    def put(self, data: dict) -> Any:
+    def put(self, data):
+        """
+
+        :param data:
+        :return:
+        """
         url = self._make_url_with_data(data=data, method='PUT')
-        response_data = self._request_http(url)
+        response_data, status_code = self._request_http(url)
         if response_data:
             try:
                 data = json.loads(response_data)
-            except json.decoder.JSONDecodeError:
+            except Exception:
                 return {}
-        return data
+        return data, status_code
 
-    def delete(self, data: dict) -> Any:
+    def delete(self, data):
+        """
+
+        :param data:
+        :return:
+        """
         url = self._make_url_with_data(data=data, method='DELETE')
-        response_data = self._request_http(url)
+        response_data, status_code = self._request_http(url)
         if response_data:
             try:
                 data = json.loads(response_data)
-            except json.decoder.JSONDecodeError:
+            except Exception:
                 return {}
-        return data
+        return data, status_code
 
-    def _make_url(self, query) -> urllib.request.Request:
-        return urllib.request.Request('{}{}'.format(self.url, query), headers=self.headers)
+    def _make_url(self, query):
+        """
 
-    def _make_url_with_data(self, method: str, data: Optional[dict] = None) -> urllib.request.Request:
+        :param query:
+        :return:
+        """
+        return Request('{}{}'.format(self.url, query), headers=self.headers)
+
+    def _make_url_with_data(self, method, data=None):
         req_data = None
         if data:
             req_data = json.dumps(data).encode('utf8')
-        return urllib.request.Request(self.url, data=req_data, headers=self.headers, method=method)
+        try:
+            request = Request(self.url, data=req_data, headers=self.headers, method=method)
+        except TypeError:
+            request = Request(self.url, data=req_data, headers=self.headers)
+            request.get_method = lambda: method
 
-    def _set_headers(self) -> dict:
+        return request
+
+    def _set_headers(self):
+        """
+
+        :return:
+        """
         headers = {'Content-Type': 'application/json'}
         if self.auth_code:
             auth = {'Authorization': self.auth_code}
@@ -74,27 +117,26 @@ class Connection(object):
 
         return headers
 
-    def _request_http(self, url: urllib.request.Request) -> Any:
+    def _request_http(self, url):
+        """
+
+        :param url:
+        :return:
+        """
         try:
-            response = urllib.request.urlopen(url)
-            if response.status == 200:
-                pass
-            elif response.status == 400:
-                raise ValueError('Bad Request')
-            elif response.status == 401:
-                raise ValueError('Unauthorized')
-            elif response.status == 404:
-                raise ValueError('Not found')
-            elif response.status == 422:
-                raise ValueError('Unprocessable')
-            elif response.status == 500:
-                raise ValueError('Internal Server Error')
-            elif response.status == 503:
-                raise ValueError('Service Unavailable')
+            response = urlopen(url)
+            try:
+                status_code = response.status
+            except AttributeError:
+                status_code = response.code
 
             response_data = response.read().decode('utf-8')
+        except HTTPError as e:
+            try:
+                status_code = e.status
+            except AttributeError:
+                status_code = e.code
 
-            return response_data
+            response_data = e.read().decode('utf-8')
 
-        except urllib.error.URLError as e:
-            raise e
+        return response_data, status_code
