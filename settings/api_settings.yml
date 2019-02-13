@@ -3,3 +3,8 @@ uiza_api:
     type: api/public
     version: v3
     sub_url: admin/user
+  entity:
+    type: api/public
+    version: v3
+    sub_url: media/entity
+

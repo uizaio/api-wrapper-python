@@ -16,7 +16,7 @@ class UizaBase(object):
         """
         self.connection = connection
 
-    def create(self, data):
+    def create(self, **data):
         """
 
         :param data:
@@ -26,17 +26,17 @@ class UizaBase(object):
 
         return result
 
-    def update(self, data):
+    def update(self, **kwargs):
         """
 
-        :param data:
+        :param kwargs:
         :return:
         """
-        data = self.connection.put(data=data)
+        data = self.connection.put(data=kwargs)
 
         return data
 
-    def get_list(self, params=None):
+    def list(self, **params):
         """
 
         :param params:
