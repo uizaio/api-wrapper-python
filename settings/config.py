@@ -1,6 +1,17 @@
-import os
-
-import yaml
+api_config = {
+    "uiza_api": {
+        "user": {
+            "type": "api/public",
+            "version": "v3",
+            "sub_url": "admin/user"
+        },
+        "entity": {
+            "type": "api/public",
+            "version": "v3",
+            "sub_url": "media/entity"
+        }
+    }
+}
 
 
 class Settings(object):
@@ -15,6 +26,4 @@ class Settings(object):
                 setattr(self, a, Settings(b) if isinstance(b, dict) else b)
 
 
-BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-with open(os.path.join(BASE_DIR, 'settings/api_settings.yml'), 'r') as f:
-    settings = Settings(yaml.load(f))
+settings = Settings(api_config)

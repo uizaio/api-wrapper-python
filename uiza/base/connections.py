@@ -8,7 +8,17 @@ except ImportError:
     from urllib2 import Request, urlopen
     from urllib2 import HTTPError
 
-# from uiza.base.handle_errors import ServerException
+from uiza.base.handle_errors import (
+    BadRequestError,
+    UnauthorizedError,
+    NotFoundError,
+    UnprocessableError,
+    InternalServerError,
+    ServiceUnavailableError,
+    ClientError,
+    ServerError,
+    ServerBaseErrors
+)
 
 
 class Connection(object):
@@ -142,21 +152,21 @@ class Connection(object):
 
             response_data = e.read().decode('utf-8')
 
-        # if status_code == 400:
-        #     raise ServerException(ServerBaseErrors.ERR_UIZA_BAD_REQUEST)
-        # elif status_code == 401:
-        #     raise ServerException(ServerBaseErrors.ERR_UIZA_UNAUTHORIZED)
-        # elif status_code == 404:
-        #     raise ServerException(ServerBaseErrors.ERR_UIZA_NOT_FOUND)
-        # elif status_code == 422:
-        #     raise ServerException(ServerBaseErrors.ERR_UIZA_UNPROCESSABLE)
-        # elif status_code == 500:
-        #     raise ServerException(ServerBaseErrors.ERR_UIZA_INTERNAL_SERVER_ERROR)
-        # elif status_code == 503:
-        #     raise ServerException(ServerBaseErrors.ERR_UIZA_SERVICE_UNAVAILABLE)
-        # elif re.match(r'^4[0-9]{2}$', str(status_code)):
-        #     raise ServerException(ServerBaseErrors.ERR_UIZA_CLIENT_ERROR)
-        # elif re.match(r'^5[0-9]{2}$', str(status_code)):
-        #     raise ServerException(ServerBaseErrors.ERR_UIZA_SERVER_ERROR)
+        if status_code == 400:
+            raise BadRequestError(ServerBaseErrors.ERR_UIZA_BAD_REQUEST)
+        elif status_code == 401:
+            raise UnauthorizedError(ServerBaseErrors.ERR_UIZA_UNAUTHORIZED)
+        elif status_code == 404:
+            raise NotFoundError(ServerBaseErrors.ERR_UIZA_NOT_FOUND)
+        elif status_code == 422:
+            raise UnprocessableError(ServerBaseErrors.ERR_UIZA_UNPROCESSABLE)
+        elif status_code == 500:
+            raise InternalServerError(ServerBaseErrors.ERR_UIZA_INTERNAL_SERVER_ERROR)
+        elif status_code == 503:
+            raise ServiceUnavailableError(ServerBaseErrors.ERR_UIZA_SERVICE_UNAVAILABLE)
+        elif re.match(r'^4[0-9]{2}$', str(status_code)):
+            raise ClientError(ServerBaseErrors.ERR_UIZA_CLIENT_ERROR)
+        elif re.match(r'^5[0-9]{2}$', str(status_code)):
+            raise ServerError(ServerBaseErrors.ERR_UIZA_SERVER_ERROR)
 
         return response_data, status_code

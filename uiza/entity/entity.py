@@ -6,7 +6,6 @@ except ImportError:
 from uiza.base.base import UizaBase
 from settings.config import settings
 from utility.utility import set_url
-from uiza.entity.handle_errors import EntitiesErrors
 
 
 class Entity(UizaBase):
