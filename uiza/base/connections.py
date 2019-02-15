@@ -8,7 +8,7 @@ except ImportError:
     from urllib2 import Request, urlopen
     from urllib2 import HTTPError
 
-from uiza.base.handle_errors import (
+from uiza.exceptions import (
     BadRequestError,
     UnauthorizedError,
     NotFoundError,

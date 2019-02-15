@@ -1,0 +1,4 @@
+include *.py *.json
+include README.md LICENSE
+global-exclude *.py[co]
+global-exclude __pycache__
