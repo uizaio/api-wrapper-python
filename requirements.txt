@@ -1,2 +1,0 @@
-marshmallow==2.18.0
-PyYAML==3.13

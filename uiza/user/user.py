@@ -24,7 +24,7 @@ class User(UizaBase):
             api_sub_url=settings.uiza_api.user.sub_url
         )
 
-    def update_password(self, data):
+    def update_password(self, **data):
         """
 
         :param data:

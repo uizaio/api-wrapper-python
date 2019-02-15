@@ -1,5 +1,0 @@
-uiza_api:
-  user:
-    type: api/public
-    version: v3
-    sub_url: admin/user
