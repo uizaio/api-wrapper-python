@@ -3,9 +3,9 @@ try:
 except ImportError:
     from urllib import urlencode
 
-from uiza.base.base import UizaBase
-from settings.config import settings
-from utility.utility import set_url
+from uiza.api_resources.base.base import UizaBase
+from uiza.settings.config import settings
+from uiza.utility.utility import set_url
 
 
 class Entity(UizaBase):
@@ -38,14 +38,14 @@ class Entity(UizaBase):
 
         return data
 
-    def publish(self, **kwargs):
+    def publish(self, id):
         """
 
-        :param kwargs:
+        :param id:
         :return:
         """
         self.connection.url = '{}/publish'.format(self.connection.url)
-        data = self.connection.post(data=kwargs)
+        data = self.connection.post(data={'id': id})
 
         return data
 

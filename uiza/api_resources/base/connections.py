@@ -21,8 +21,19 @@ from uiza.exceptions import (
 )
 
 
-class Connection(object):
+class ResponseObject(object):
+    dict = None  # type: dict
 
+    def __init__(self, d):
+        self.dict = d
+        for a, b in d.items():
+            if isinstance(b, (list, tuple)):
+                setattr(self, a, [ResponseObject(x) if isinstance(x, dict) else x for x in b])
+            else:
+                setattr(self, a, ResponseObject(b) if isinstance(b, dict) else b)
+
+
+class Connection(object):
     url = None
 
     def __init__(self, workspace_api_domain, api_key, **kwargs):
@@ -46,10 +57,7 @@ class Connection(object):
         response_data, status_code = self._request_http(url)
         data = {}
         if response_data:
-            try:
-                data = json.loads(response_data)
-            except Exception:
-                return {}, status_code
+            data = self._get_response_obj(response_data=response_data)
         return data, status_code
 
     def post(self, data=None):
@@ -62,10 +70,7 @@ class Connection(object):
         response_data, status_code = self._request_http(url)
         data = {}
         if response_data:
-            try:
-                data = json.loads(response_data)
-            except Exception:
-                return {}, status_code
+            data = self._get_response_obj(response_data=response_data)
         return data, status_code
 
     def put(self, data):
@@ -77,10 +82,7 @@ class Connection(object):
         url = self._make_url_with_data(data=data, method='PUT')
         response_data, status_code = self._request_http(url)
         if response_data:
-            try:
-                data = json.loads(response_data)
-            except Exception:
-                return {}, status_code
+            data = self._get_response_obj(response_data=response_data)
         return data, status_code
 
     def delete(self, data):
@@ -91,11 +93,9 @@ class Connection(object):
         """
         url = self._make_url_with_data(data=data, method='DELETE')
         response_data, status_code = self._request_http(url)
+        data = {}
         if response_data:
-            try:
-                data = json.loads(response_data)
-            except Exception:
-                return {}, status_code
+            data = self._get_response_obj(response_data=response_data)
         return data, status_code
 
     def _make_url(self, query):
@@ -170,3 +170,18 @@ class Connection(object):
             raise ServerError(ServerBaseErrors.ERR_UIZA_SERVER_ERROR)
 
         return response_data, status_code
+
+    def _get_response_obj(self, response_data):
+        try:
+            response_dict = json.loads(response_data)
+            data = response_dict.get('data')
+            if not data:
+                return {}
+
+            if isinstance(data, dict):
+                return ResponseObject(response_dict.get('data'))
+
+            if isinstance(data, list):
+                return [ResponseObject(item) for item in data]
+        except Exception:
+            return {}

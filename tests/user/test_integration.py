@@ -2,7 +2,7 @@ import unittest
 import mock
 
 from uiza.base.connections import Connection
-from uiza.user.user import User
+from uiza.api_resources.user.user import User
 
 
 class TestIntegration(unittest.TestCase):

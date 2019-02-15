@@ -3,9 +3,9 @@ try:
 except ImportError:
     from urllib import urlencode
 
-from uiza.base.base import UizaBase
-from settings.config import settings
-from utility.utility import set_url
+from uiza.api_resources.base.base import UizaBase
+from uiza.settings.config import settings
+from uiza.utility.utility import set_url
 
 
 class User(UizaBase):
