@@ -6,11 +6,12 @@ The Uiza API is organized around RESTful standard. Our API has predictable, reso
 
 ## Documentation
 
-See the [.NET API docs](https://docs.uiza.io/).
+See the [.Uiza API docs](https://docs.uiza.io/).
 
 ## Installation
 
 ### Supported Python Versions
+
 - Python 2.7.x. Python 2.7 support will be removed on January 1, 2020.
 - Python 3.x
 - Tested with Python 2.7.11, 3.4, 3.6.8
@@ -18,10 +19,12 @@ See the [.NET API docs](https://docs.uiza.io/).
 ### Install uiza package via pip
 
 Suggestion install this library using pip with [virtualenv](https://virtualenv.pypa.io/en/latest/). Because with virtualenv, it is possible to install this library without:
+
 - Needing system install permission.
 - Clashing with the installed system dependencies.
 
 On Mac/Linux
+
 ```bash
 pip install virtualenv
 virtualenv <your-env>
@@ -30,6 +33,7 @@ source <your-env>/bin/activate
 ```
 
 On Windows
+
 ```bash
 pip install virtualenv
 virtualenv <your-env>
@@ -67,7 +71,6 @@ except ServerException as e:
     raise e
 except Exception as e:
     raise e
-    
 user = User()
 ...
 
@@ -75,9 +78,13 @@ user = User()
 
 Next steps, reading the [Client Library Documentation]() to see other available methods on the client.
 
+- [Entity](https://github.com/uizaio/api-wrapper-python/blob/master/docs/entity.md)
+- [Category](https://github.com/uizaio/api-wrapper-python/blob/master/docs/category.md)
+
 ## Contributing
+
 Bug reports and pull requests are welcome on GitHub at [https://github.com/uizaio/api-wrapper-python](https://github.com/uizaio/api-wrapper-python).
 
 ## License
-The gem is available as open source under the terms of the [MIT License](https://choosealicense.com/licenses/mit/).
 
+The gem is available as open source under the terms of the [MIT License](https://choosealicense.com/licenses/mit/).

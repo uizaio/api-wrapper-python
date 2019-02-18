@@ -9,6 +9,11 @@ api_config = {
             "type": "api/public",
             "version": "v3",
             "sub_url": "media/entity"
+        },
+        "category": {
+            "type": "api/public",
+            "version": "v3",
+            "sub_url": "media/metadata"
         }
     }
 }
