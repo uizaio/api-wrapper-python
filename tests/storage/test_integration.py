@@ -3,6 +3,7 @@ import mock
 
 from uiza import Connection
 from uiza.api_resources.storage import Storage
+from uiza.exceptions import ClientException
 
 
 class TestIntegration(unittest.TestCase):
@@ -57,3 +58,10 @@ class TestIntegration(unittest.TestCase):
         with self.assertRaises(TypeError) as context:
             self.storage.delete()
         self.assertTrue(context.exception.__class__.__name__, 'TypeError')
+
+    @mock.patch('uiza.Connection._request_http')
+    def test_list_storage_invalid(self, mock_request_http):
+        mock_request_http.return_value = True, 200
+        with self.assertRaises(ClientException) as context:
+            self.storage.list()
+        self.assertTrue(context.exception.__class__.__name__, 'ClientException')

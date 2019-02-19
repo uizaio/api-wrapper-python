@@ -26,4 +26,9 @@ class Storage(UizaBase):
         )
 
     def list(self, **params):
+        """
+
+        :param params:
+        :return:
+        """
         raise ClientException('Storage list method not found')

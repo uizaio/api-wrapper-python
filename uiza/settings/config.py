@@ -19,6 +19,11 @@ api_config = {
             "type": "api/public",
             "version": "v3",
             "sub_url": "media/storage"
+        },
+        "livestreaming": {
+            "type": "api/public",
+            "version": "v3",
+            "sub_url": "live/entity"
         }
     }
 }
