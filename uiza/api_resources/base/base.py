@@ -23,6 +23,11 @@ class UizaBase(object):
         :return:
         """
         result = self.connection.post(data=data)
+        try:
+            query = '?{}'.format(urlencode({'id': result[0].id}))
+            result = self.connection.get(query=query)
+        except Exception:
+            pass
 
         return result
 
@@ -32,9 +37,14 @@ class UizaBase(object):
         :param kwargs:
         :return:
         """
-        data = self.connection.put(data=kwargs)
+        result = self.connection.put(data=kwargs)
+        try:
+            query = '?{}'.format(urlencode({'id': result[0].id}))
+            result = self.connection.get(query=query)
+        except Exception:
+            pass
 
-        return data
+        return result
 
     def list(self, **params):
         """
@@ -45,9 +55,9 @@ class UizaBase(object):
         query = ''
         if params:
             query = '?{}'.format(urlencode(params))
-        data = self.connection.get(query=query)
+        result = self.connection.get(query=query)
 
-        return data
+        return result
 
     def retrieve(self, id):
         """
@@ -56,15 +66,15 @@ class UizaBase(object):
         :return:
         """
         query = '?{}'.format(urlencode({'id': id}))
-        data = self.connection.get(query=query)
+        result = self.connection.get(query=query)
 
-        return data
+        return result
 
     def delete(self, id):
         """
 
         :return:
         """
-        data = self.connection.delete(dict(id=id))
+        result = self.connection.delete(dict(id=id))
 
-        return data
+        return result

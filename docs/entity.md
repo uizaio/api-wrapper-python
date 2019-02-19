@@ -107,10 +107,6 @@ Function to get list of entities including all detail.
 For example:
 
 ```python
-from uiza import Connection
-from uiza.api_resources.entity import Entity
-
-connection = Connection(workspace_api_domain=<your-workspace-api-domain.uiza.co>, api_key=<your-api-key>)
 entity = Entity(connection)
 
 res, status_code = entity.list(name='Title')

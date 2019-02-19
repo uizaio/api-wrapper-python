@@ -1,8 +1,8 @@
 import unittest
 import mock
 
-from uiza.api_resources.base.connections import Connection
-from uiza.api_resources.entity.entity import Entity
+from uiza import Connection
+from uiza.api_resources.entity import Entity
 
 
 class TestIntegration(unittest.TestCase):
@@ -33,77 +33,77 @@ class TestIntegration(unittest.TestCase):
         connection = Connection(workspace_api_domain='example.com', api_key='abcd1234')
         self.entity = Entity(connection=connection)
 
-    @mock.patch('uiza.base.connections.Connection._request_http')
+    @mock.patch('uiza.Connection._request_http')
     def test_create_entity_valid(self, mock_request_http):
         mock_request_http.return_value = True, 200
         data = self.entity.create(**self.entity_data)
         self.assertEqual(data[1], 200)
 
-    @mock.patch('uiza.base.connections.Connection._request_http')
+    @mock.patch('uiza.Connection._request_http')
     def test_retrieve_entity_valid(self, mock_request_http):
         mock_request_http.return_value = True, 200
         data = self.entity.retrieve(id=self.entity_id)
         self.assertEqual(data[1], 200)
 
-    @mock.patch('uiza.base.connections.Connection._request_http')
+    @mock.patch('uiza.Connection._request_http')
     def test_retrieve_entity_invalid(self, mock_request_http):
         mock_request_http.return_value = True, 200
         with self.assertRaises(Exception) as context:
             self.entity.retrieve()
         self.assertTrue(context.exception.__class__.__name__, 'TypeError')
 
-    @mock.patch('uiza.base.connections.Connection._request_http')
+    @mock.patch('uiza.Connection._request_http')
     def test_list_entity_valid(self, mock_request_http):
         mock_request_http.return_value = True, 200
         data = self.entity.list()
         self.assertEqual(data[1], 200)
 
-    @mock.patch('uiza.base.connections.Connection._request_http')
+    @mock.patch('uiza.Connection._request_http')
     def test_update_entity_valid(self, mock_request_http):
         mock_request_http.return_value = True, 200
         data_update = dict(id=self.entity_id, name='Test update')
         data = self.entity.update(**data_update)
         self.assertEqual(data[1], 200)
 
-    @mock.patch('uiza.base.connections.Connection._request_http')
+    @mock.patch('uiza.Connection._request_http')
     def test_delete_entity_valid(self, mock_request_http):
         mock_request_http.return_value = True, 200
         data = self.entity.delete(id=self.entity_id)
         self.assertEqual(data[1], 200)
 
-    @mock.patch('uiza.base.connections.Connection._request_http')
+    @mock.patch('uiza.Connection._request_http')
     def test_delete_entity_invalid(self, mock_request_http):
         mock_request_http.return_value = True, 200
         with self.assertRaises(TypeError) as context:
             self.entity.delete()
         self.assertTrue(context.exception.__class__.__name__, 'TypeError')
 
-    @mock.patch('uiza.base.connections.Connection._request_http')
+    @mock.patch('uiza.Connection._request_http')
     def test_search_entity_valid(self, mock_request_http):
         mock_request_http.return_value = True, 200
         data = self.entity.search(keyword='test_keyword')
         self.assertEqual(data[1], 200)
 
-    @mock.patch('uiza.base.connections.Connection._request_http')
+    @mock.patch('uiza.Connection._request_http')
     def test_publish_entity_valid(self, mock_request_http):
         mock_request_http.return_value = True, 200
         data = self.entity.publish(id=self.entity_id)
         self.assertEqual(data[1], 200)
 
-    @mock.patch('uiza.base.connections.Connection._request_http')
+    @mock.patch('uiza.Connection._request_http')
     def test_get_publish_status_entity_valid(self, mock_request_http):
         mock_request_http.return_value = True, 200
         data = self.entity.get_status_publish_entity(id=self.entity_id)
         self.assertEqual(data[1], 200)
 
-    @mock.patch('uiza.base.connections.Connection._request_http')
+    @mock.patch('uiza.Connection._request_http')
     def test_get_publish_status_entity_invalid(self, mock_request_http):
         mock_request_http.return_value = True, 200
         with self.assertRaises(TypeError) as context:
             self.entity.get_status_publish_entity()
         self.assertTrue(context.exception.__class__.__name__, 'TypeError')
 
-    @mock.patch('uiza.base.connections.Connection._request_http')
+    @mock.patch('uiza.Connection._request_http')
     def test_get_aws_upload_key_entity_valid(self, mock_request_http):
         mock_request_http.return_value = True, 200
         data = self.entity.get_aws_upload_key()
