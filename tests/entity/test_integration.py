@@ -1,8 +1,8 @@
 import unittest
 import mock
 
-from uiza.api_resources.base.connections import Connection
-from uiza.api_resources.entity.entity import Entity
+from uiza import Connection
+from uiza.api_resources.entity import Entity
 
 
 class TestIntegration(unittest.TestCase):

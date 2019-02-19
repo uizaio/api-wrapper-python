@@ -1,8 +1,8 @@
 import unittest
 import mock
 
-from uiza.api_resources.base.connections import Connection
-from uiza.api_resources.category.category import Category
+from uiza import Connection
+from uiza.api_resources.category import Category
 
 
 class TestIntegration(unittest.TestCase):

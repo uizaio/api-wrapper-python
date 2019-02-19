@@ -14,6 +14,11 @@ api_config = {
             "type": "api/public",
             "version": "v3",
             "sub_url": "media/metadata"
+        },
+        "storage": {
+            "type": "api/public",
+            "version": "v3",
+            "sub_url": "media/storage"
         }
     }
 }

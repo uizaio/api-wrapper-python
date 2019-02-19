@@ -38,6 +38,11 @@ class UizaBase(object):
         :return:
         """
         result = self.connection.put(data=kwargs)
+        try:
+            query = '?{}'.format(urlencode({'id': result[0].id}))
+            result = self.connection.get(query=query)
+        except Exception:
+            pass
 
         return result
 
