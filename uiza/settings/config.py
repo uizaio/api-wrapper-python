@@ -24,6 +24,16 @@ api_config = {
             "type": "api/public",
             "version": "v3",
             "sub_url": "live/entity"
+        },
+        "callback": {
+            "type": "api/public",
+            "version": "v3",
+            "sub_url": "media/entity/callback"
+        },
+        "analytic": {
+            "type": "api/public",
+            "version": "v3",
+            "sub_url": "analytic/entity/video-quality"
         }
     }
 }
