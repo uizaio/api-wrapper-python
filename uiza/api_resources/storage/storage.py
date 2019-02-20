@@ -27,8 +27,8 @@ class Storage(UizaBase):
 
     def list(self, **params):
         """
-
+        Override method list of Uizabase
         :param params:
-        :return:
+        :return: Raise error when get method list
         """
         raise ClientException('Storage list method not found')

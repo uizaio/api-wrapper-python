@@ -22,13 +22,14 @@ For example:
 
 ```python
 
-category = Category(connection)
+from uiza.api_resources.category import Category
+
 category_data = {
         "name": "Test name 1",
         "type": "folder",
     }
 
-res, status_code = category.create(**category_data)
+res, status_code = Category(connection).create(**category_data)
 
 print("id: ", res.id)
 print("status_code", status_code)
@@ -59,10 +60,9 @@ Function to get detail of category.
 For example:
 
 ```python
-category = Category(connection)
 category_id = '33a86c18-f502-41a4-9c4c-d4e14efca238'
 
-res, status_code = category.retrieve(category_id)
+res, status_code = Category(connection).retrieve(category_id)
 
 print("status_code", status_code)
 ```
@@ -88,9 +88,7 @@ Function to get list of categories including all detail.
 For example:
 
 ```python
-category = Category(connection)
-
-res, status_code = category.list()
+res, status_code = Category(connection).list()
 
 print("status_code", status_code)
 ```
@@ -116,9 +114,7 @@ Function to update category's information.
 For example:
 
 ```python
-category = Category(connection)
-
-res, status_code = category.update(id='33a86c18-f502-41a4-9c4c-d4e14efca238', name='Update title')
+res, status_code = Category(connection).update(id='33a86c18-f502-41a4-9c4c-d4e14efca238', name='Update title')
 
 print("id: ", res.id)
 print("status_code", status_code)
@@ -150,9 +146,7 @@ Function to delete category.
 For example:
 
 ```python
-category = Category(connection)
-
-res, status_code = category.delete('ddf09dd0-b7a8-4f29-92df-14dafb97b2aa')
+res, status_code = Category(connection).delete('ddf09dd0-b7a8-4f29-92df-14dafb97b2aa')
 
 print("id: ", res.id)
 print("status_code", status_code)
@@ -179,13 +173,10 @@ Function to add relation for entity and category.
 For example:
 
 ```python
-category = Category(connection)
-data = {
-    "entityId":"16ab25d3-fd0f-4568-8aa0-0339bbfd674f",
-    "metadataIds":["095778fa-7e42-45cc-8a0e-6118e540b61d","e00586b9-032a-46a3-af71-d275f01b03cf"]
-}
-
-res, status_code = category.create_relation(**data)
+res, status_code = Category(connection).create_relation(
+    entity_id="16ab25d3-fd0f-4568-8aa0-0339bbfd674f",
+    metadata_ids=["095778fa-7e42-45cc-8a0e-6118e540b61d","e00586b9-032a-46a3-af71-d275f01b03cf"]
+)
 
 print("status_code", status_code)
 ```
@@ -212,13 +203,10 @@ Function to delete relation for entity and category.
 For example:
 
 ```python
-category = Category(connection)
-data = {
-    "entityId":"16ab25d3-fd0f-4568-8aa0-0339bbfd674f",
-    "metadataIds":["095778fa-7e42-45cc-8a0e-6118e540b61d","e00586b9-032a-46a3-af71-d275f01b03cf"]
-}
-
-res, status_code = category.delete_relation(**data)
+res, status_code = Category(connection).delete_relation(
+    entity_id="16ab25d3-fd0f-4568-8aa0-0339bbfd674f",
+    metadata_ids=["095778fa-7e42-45cc-8a0e-6118e540b61d","e00586b9-032a-46a3-af71-d275f01b03cf"]
+)
 
 print("status_code", status_code)
 ```

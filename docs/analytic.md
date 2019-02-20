@@ -18,8 +18,9 @@ For example:
 
 ```python
 
-analytic = Analytic(connection)
-res, status_code = analytic.get_total_line(
+from uiza.api_resources.analytic import Analytic
+
+res, status_code = Analytic(connection).get_total_line(
     start_date='2018-11-01 20:00',
     end_date='2019-11-02 20:00',
     metric='rebuffer_count'
@@ -51,8 +52,7 @@ Function to get data base on 4 type of filter: country, device, title, player.
 For example:
 
 ```python
-analytic = Analytic(connection)
-res, status_code = analytic.get_type(
+res, status_code = Analytic(connection).get_type(
     start_date='2018-11-01 20:00',
     end_date='2019-11-02 20:00',
     type_filter='country'
@@ -84,8 +84,7 @@ Function to get data grouped by hour. Get total view in time range. This help yo
 For example:
 
 ```python
-analytic = Analytic(connection)
-res, status_code = analytic.get_line(
+res, status_code = Analytic(connection).get_line(
     start_date='2018-11-01 20:00',
     end_date='2019-11-02 20:00'
 )

@@ -25,8 +25,8 @@ Function to create an user account for workspace.
 For example:
 
 ```python
+from uiza.api_resources.user import User
 
-user = User(connection)
 user_data = {
     "status": 1,
     "username": "test_admin_pythonvn",
@@ -39,7 +39,7 @@ user_data = {
     "isAdmin": 1
 }
 
-res, status_code = user.create(**user_data)
+res, status_code = User(connection).create(**user_data)
 
 print("id: ", res.id)
 print("status_code", status_code)
@@ -74,10 +74,9 @@ Function to retrieves the details of an existing user. You need only supply the 
 For example:
 
 ```python
-user = User(connection)
 user_id = '33a86c18-f502-41a4-9c4c-d4e14efca238'
 
-res, status_code = user.retrieve(user_id)
+res, status_code = User(connection).retrieve(user_id)
 
 print("id: ", res.id)
 print("status_code", status_code)
@@ -104,9 +103,7 @@ Function to updates the specified user by setting the values of the parameters p
 For example:
 
 ```python
-user = User(connection)
-
-res, status_code = user.update(id='33a86c18-f502-41a4-9c4c-d4e14efca238', status=1)
+res, status_code = User(connection).update(id='33a86c18-f502-41a4-9c4c-d4e14efca238', status=1)
 
 print("id: ", res.id)
 print("status_code", status_code)
@@ -142,9 +139,7 @@ Function to delete an user. It cannot be undone. Also immediately cancels all to
 For example:
 
 ```python
-user = User(connection)
-
-res, status_code = user.delete('ddf09dd0-b7a8-4f29-92df-14dafb97b2aa')
+res, status_code = User(connection).delete('ddf09dd0-b7a8-4f29-92df-14dafb97b2aa')
 
 print("id: ", res.id)
 print("status_code", status_code)
@@ -173,9 +168,7 @@ If you use Admin token, you will get all the user. If you use User token, you ca
 For example:
 
 ```python
-user = User(connection)
-
-res, status_code = user.list()
+res, status_code = User(connection).list()
 
 print("status_code", status_code)
 ```
@@ -201,13 +194,11 @@ Function to update password allows Admin or User update their current password.
 For example:
 
 ```python
-user = User(connection)
-data_pw = {
-    'id': "9f1cd871-9244-48a1-a233-846a3b540741",
-    "oldPassword": "S57Eb{:aMZhW=)G$",
-    "newPassword": "FMpsr<4[dGPu?B#u"
-}
-res, status_code = user.update_password(**data_pw)
+res, status_code = User(connection).update_password(
+    id="9f1cd871-9244-48a1-a233-846a3b540741",
+    old_password="S57Eb{:aMZhW=)G$",
+    new_password="FMpsr<4[dGPu?B#u"
+)
 
 print("id", res.id)
 print("status_code", status_code)
@@ -236,8 +227,7 @@ Function to log out an user. After logged out, token will be removed.
 For example:
 
 ```python
-user = User(connection)
-res, status_code = user.logout()
+res, status_code = User(connection).logout()
 
 print("status_code", status_code)
 ```

@@ -1,4 +1,4 @@
-api_config = {
+API_CONFIG = {
     "uiza_api": {
         "user": {
             "type": "api/public",
@@ -51,4 +51,4 @@ class Settings(object):
                 setattr(self, a, Settings(b) if isinstance(b, dict) else b)
 
 
-settings = Settings(api_config)
+settings = Settings(API_CONFIG)

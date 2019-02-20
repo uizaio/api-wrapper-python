@@ -27,25 +27,25 @@ class LiveStreaming(UizaBase):
 
     def list(self, **params):
         """
-
+        Override method list of Uizabase
         :param params:
-        :return:
+        :return: Raise error when get method list
         """
         raise ClientException('Livestreaming list method not found')
 
     def delete(self, id):
         """
-
+        Override method delete of Uizabase
         :param id:
-        :return:
+        :return: Raise error when get method delete
         """
         raise ClientException('Livestreaming delete method not found')
 
     def start_feed(self, id):
         """
-
-        :param id:
-        :return:
+        Start a live event
+        :param id: identifier of event.
+        :return: tuple of id event and status code
         """
         self.connection.url = '{}/feed'.format(self.connection.url)
         result = self.connection.post(dict(id=id))
@@ -54,9 +54,9 @@ class LiveStreaming(UizaBase):
 
     def stop_feed(self, id):
         """
-
-        :param id:
-        :return:
+        Stop a live event
+        :param id: identifier of event.
+        :return: tuple of id event and status code
         """
         self.connection.url = '{}/feed'.format(self.connection.url)
         result = self.connection.put(dict(id=id))
@@ -65,9 +65,9 @@ class LiveStreaming(UizaBase):
 
     def get_view_feed(self,  id):
         """
-
-        :param id:
-        :return:
+        Get a live view status
+        :param id: event id has been created
+        :return: tuple of response and status code
         """
         self.connection.url = '{}/tracking/current-view'.format(self.connection.url)
         query = '?{}'.format(urlencode({'id': id}))
@@ -77,8 +77,8 @@ class LiveStreaming(UizaBase):
 
     def list_recorded(self):
         """
-
-        :return:
+        List of recorded file after streamed
+        :return: tuple of response and status code
         """
         self.connection.url = '{}/dvr'.format(self.connection.url)
         result = self.connection.get()
@@ -87,9 +87,9 @@ class LiveStreaming(UizaBase):
 
     def convert_into_vod(self, id):
         """
-
-        :param id:
-        :return:
+        Convert recorded file into VOD entity
+        :param id: identifier of record (get from list record)
+        :return: tuple of response and status code
         """
         self.connection.url = '{}/dvr/convert-to-vod'.format(self.connection.url)
         result = self.connection.post(dict(id=id))
@@ -98,9 +98,9 @@ class LiveStreaming(UizaBase):
 
     def delete_recorded(self, id):
         """
-
-        :param id:
-        :return:
+        Delete a recorded file
+        :param id: identifier of record (get from list record)
+        :return: tuple of id record has been deleted and status code
         """
         self.connection.url = '{}/dvr'.format(self.connection.url)
         result = self.connection.delete(dict(id=id))

@@ -24,21 +24,28 @@ class User(UizaBase):
             api_sub_url=settings.uiza_api.user.sub_url
         )
 
-    def update_password(self, **data):
+    def update_password(self, id, old_password, new_password):
         """
-
-        :param data:
-        :return:
+        Update password allows Admin or User update their current password.
+        :param id: identifier of user need reset password
+        :param old_password: current password
+        :param new_password: new password (from a to Z, 6 to 25 characters)
+        :return: tuple of id of user and status code
         """
         self.connection.url = '{}/changepassword'.format(self.connection.url)
-        data = self.connection.post(data=data)
+        data_body = dict(
+            id=id,
+            oldPassword=old_password,
+            newPassword=new_password
+        )
+        data = self.connection.post(data=data_body)
 
         return data
 
     def logout(self):
         """
-
-        :return:
+        Log out an user
+        :return: message
         """
         self.connection.url = '{}/logout'.format(self.connection.url)
         data = self.connection.post()
