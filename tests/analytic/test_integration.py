@@ -17,28 +17,28 @@ class TestIntegration(unittest.TestCase):
     def test_create_analytic_invalid(self, mock_request_http):
         mock_request_http.return_value = True, 200
         with self.assertRaises(ClientException) as context:
-            self.analytic.list()
+            self.analytic.create()
         self.assertTrue(context.exception.__class__.__name__, 'ClientException')
 
     @mock.patch('uiza.Connection._request_http')
     def test_retrieve_analytic_invalid(self, mock_request_http):
         mock_request_http.return_value = True, 200
         with self.assertRaises(ClientException) as context:
-            self.analytic.list()
+            self.analytic.retrieve(id='test id')
         self.assertTrue(context.exception.__class__.__name__, 'ClientException')
 
     @mock.patch('uiza.Connection._request_http')
     def test_update_analytic_invalid(self, mock_request_http):
         mock_request_http.return_value = True, 200
         with self.assertRaises(ClientException) as context:
-            self.analytic.list()
+            self.analytic.update()
         self.assertTrue(context.exception.__class__.__name__, 'ClientException')
 
     @mock.patch('uiza.Connection._request_http')
     def test_delete_analytic_invalid(self, mock_request_http):
         mock_request_http.return_value = True, 200
         with self.assertRaises(ClientException) as context:
-            self.analytic.list()
+            self.analytic.delete(id='test id')
         self.assertTrue(context.exception.__class__.__name__, 'ClientException')
 
     @mock.patch('uiza.Connection._request_http')

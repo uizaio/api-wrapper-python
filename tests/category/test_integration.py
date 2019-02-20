@@ -20,8 +20,8 @@ class TestIntegration(unittest.TestCase):
         connection = Connection(workspace_api_domain='example.com', api_key='abcd1234')
         self.category = Category(connection=connection)
         self.category_relation_data = {
-            "entityId": 'eb578480-6311-4534-b00e-7c7ffbce8283',
-            "metadataIds": ["29f7b6ba-e2a7-4d4b-8026-30828d0a1bb0"]
+            "entity_id": 'eb578480-6311-4534-b00e-7c7ffbce8283',
+            "metadata_ids": ["29f7b6ba-e2a7-4d4b-8026-30828d0a1bb0"]
         }
 
     @mock.patch('uiza.Connection._request_http')

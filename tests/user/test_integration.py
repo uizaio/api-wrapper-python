@@ -72,7 +72,7 @@ class TestIntegration(unittest.TestCase):
     @mock.patch('uiza.Connection._request_http')
     def test_update_password_user_valid(self, mock_request_http):
         mock_request_http.return_value = True, 200
-        data_update = dict(id=self.user_id, newPassword='New password', oldPassword='Old password')
+        data_update = dict(id=self.user_id, new_password='New password', old_password='Old password')
         data = self.user.update_password(**data_update)
         self.assertEqual(data[1], 200)
 

@@ -19,13 +19,14 @@ For example:
 
 ```python
 
-callback = Callback(connection)
+from uiza.api_resources.callback import Callback
+
 callback_data = {
         "url":"https://callback-url-python.uiza.co",
         "method":"GET"
     }
 
-res, status_code = callback.create(**callback_data)
+res, status_code = Callback(connection).create(**callback_data)
 
 print("id: ", res.id)
 print("status_code", status_code)
@@ -55,10 +56,9 @@ Function to retrieves the details of an existing callback.
 For example:
 
 ```python
-callback = Callback(connection)
 callback_id = '33a86c18-f502-41a4-9c4c-d4e14efca238'
 
-res, status_code = callback.retrieve(callback_id)
+res, status_code = Callback(connection).retrieve(callback_id)
 
 print("id: ", res.id)
 print("status_code", status_code)
@@ -85,9 +85,7 @@ Function to update callback's information.
 For example:
 
 ```python
-callback = Callback(connection)
-
-res, status_code = callback.update(id='33a86c18-f502-41a4-9c4c-d4e14efca238', method='POST')
+res, status_code = Callback(connection).update(id='33a86c18-f502-41a4-9c4c-d4e14efca238', method='POST')
 
 print("id: ", res.id)
 print("status_code", status_code)
@@ -118,9 +116,7 @@ Function to delete an existing callback.
 For example:
 
 ```python
-callback = Callback(connection)
-
-res, status_code = callback.delete('ddf09dd0-b7a8-4f29-92df-14dafb97b2aa')
+res, status_code = Callback(connection).delete('ddf09dd0-b7a8-4f29-92df-14dafb97b2aa')
 
 print("id: ", res.id)
 print("status_code", status_code)

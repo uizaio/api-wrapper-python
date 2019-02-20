@@ -27,49 +27,49 @@ class Analytic(UizaBase):
 
     def list(self, **params):
         """
-
+        Override method list of Uizabase
         :param params:
-        :return:
+        :return: Raise error when get method list
         """
         raise ClientException('Callback list method not found')
 
     def create(self, **data):
         """
-
+        Override method create of Uizabase
         :param data:
-        :return:
+        :return: Raise error when get method create
         """
         raise ClientException('Callback create method not found')
 
     def update(self, **kwargs):
         """
-
+        Override method update of Uizabase
         :param kwargs:
-        :return:
+        :return: Raise error when get method update
         """
         raise ClientException('Callback update method not found')
 
     def retrieve(self, id):
         """
-
+        Override method retrieve of Uizabase
         :param id:
-        :return:
+        :return: Raise error when get method retrieve
         """
         raise ClientException('Callback retrieve method not found')
 
     def delete(self, id):
         """
-
-        :return:
+        Override method delete of Uizabase
+        :return: Raise error when get method delete
         """
         raise ClientException('Callback delete method not found')
 
     def get_total_line(self, start_date, end_date, metric):
         """
-
-        :param start_date:
-        :param end_date:
-        :param metric:
+        Get total line
+        :param start_date: start date
+        :param end_date: end date
+        :param metric: get metric from https://docs.uiza.io/#analytic-metrics
         :return:
         """
         params = dict(
@@ -85,10 +85,10 @@ class Analytic(UizaBase):
 
     def get_type(self, start_date, end_date, type_filter):
         """
-
-        :param start_date:
-        :param end_date:
-        :param type_filter:
+        Get data base on 4 type of filter: country, device, title, player
+        :param start_date: start date
+        :param end_date: end date
+        :param type_filter: filter are country, device, title, player
         :return:
         """
         params = dict(
@@ -104,9 +104,9 @@ class Analytic(UizaBase):
 
     def get_line(self, start_date, end_date):
         """
-
-        :param start_date:
-        :param end_date:
+        Get data grouped by hour
+        :param start_date: start date
+        :param end_date: end date
         :return:
         """
         params = dict(

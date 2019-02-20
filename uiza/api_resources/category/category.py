@@ -30,24 +30,34 @@ class Category(UizaBase):
             api_sub_url='media/entity/related/metadata'
         )
 
-    def create_relation(self, **data):
+    def create_relation(self, entity_id, metadata_ids):
         """
-
-        :param data:
-        :return:
+        Create relation for entity and category
+        :param entity_id: identifier of entity
+        :param metadata_ids: identifier of category
+        :return: tuple of response data and status code
         """
         self.connection.url = self.category_relation_url
-        result = self.connection.post(data)
+        data_body = dict(
+            entityId=entity_id,
+            metadataIds=metadata_ids
+        )
+        result = self.connection.post(data_body)
 
         return result
 
-    def delete_relation(self, **data):
+    def delete_relation(self, entity_id, metadata_ids):
         """
-
-        :param data:
-        :return:
+        Delete relation for entity and category
+        :param entity_id: identifier of entity
+        :param metadata_ids: identifier of category
+        :return: tuple of response data and status code
         """
         self.connection.url = self.category_relation_url
-        result = self.connection.delete(data)
+        data_body = dict(
+            entityId=entity_id,
+            metadataIds=metadata_ids
+        )
+        result = self.connection.post(data_body)
 
         return result

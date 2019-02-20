@@ -24,25 +24,24 @@ class Entity(UizaBase):
             api_sub_url=settings.uiza_api.entity.sub_url
         )
 
-    def search(self, **kwargs):
+    def search(self, keyword):
         """
-
-        :param kwargs:
-        :return:
+        Search entity base on keyword entered
+        :param keyword: keyword for search entity
+        :return: tuple of list detail entity and status code
         """
         self.connection.url = '{}/search'.format(self.connection.url)
-        query = ''
-        if kwargs:
-            query = '?{}'.format(urlencode(kwargs))
+        params = dict(keyword=keyword)
+        query = '?{}'.format(urlencode(params))
         data = self.connection.get(query=query)
 
         return data
 
     def publish(self, id):
         """
-
-        :param id:
-        :return:
+        Publish entity to CDN, use for streaming
+        :param id: identifier of entity
+        :return: tuple of response and status code
         """
         self.connection.url = '{}/publish'.format(self.connection.url)
         data = self.connection.post(data={'id': id})
@@ -51,9 +50,9 @@ class Entity(UizaBase):
 
     def get_status_publish_entity(self, id):
         """
-
-        :param kwargs:
-        :return:
+        Get status publish entity
+        :param id: identifier of entity
+        :return: tuple of status publish entity and status code
         """
         self.connection.url = '{}/publish/status'.format(self.connection.url)
         query = '?{}'.format(urlencode({'id': id}))
@@ -63,7 +62,7 @@ class Entity(UizaBase):
 
     def get_aws_upload_key(self):
         """
-
+        Return the bucket temporary upload storage & key for upload
         :return:
         """
         aws_sub_url = 'admin/app/config/aws'

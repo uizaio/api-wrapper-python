@@ -10,17 +10,17 @@ class UizaBase(object):
 
     def __init__(self, connection, **kwargs):
         """
-
-        :param connection:
+        Base controller
+        :param connection: Uiza connection
         :param kwargs:
         """
         self.connection = connection
 
     def create(self, **data):
         """
-
-        :param data:
-        :return:
+        Create data
+        :param data: data body will be created
+        :return: tuple of data created and status code
         """
         result = self.connection.post(data=data)
         try:
@@ -33,9 +33,9 @@ class UizaBase(object):
 
     def update(self, **kwargs):
         """
-
-        :param kwargs:
-        :return:
+        Update data
+        :param kwargs: data body will be updated
+        :return: tuple of data updated and status code
         """
         result = self.connection.put(data=kwargs)
         try:
@@ -48,9 +48,9 @@ class UizaBase(object):
 
     def list(self, **params):
         """
-
-        :param params:
-        :return:
+        List data
+        :param params: params
+        :return: tuple of data exist and status code
         """
         query = ''
         if params:
@@ -61,9 +61,9 @@ class UizaBase(object):
 
     def retrieve(self, id):
         """
-
-        :param id:
-        :return:
+        Get detail
+        :param id: id of object
+        :return: tuple of data and status code
         """
         query = '?{}'.format(urlencode({'id': id}))
         result = self.connection.get(query=query)
@@ -71,9 +71,9 @@ class UizaBase(object):
         return result
 
     def delete(self, id):
-        """
-
-        :return:
+        """ata
+        Delete data
+        :return: tuple of id removed and status code
         """
         result = self.connection.delete(dict(id=id))
 

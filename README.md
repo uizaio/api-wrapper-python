@@ -63,15 +63,13 @@ from uiza.user import User
 from uiza.exceptions import ServerException
 
 connection = Connection(workspace_api_domain=<your-workspace-api-domain.uiza.co>, api_key=<your-api-key>)
-entity = Entity(connection)
-
 try:
-    entity_data, _ = entity.search()
+    entity_data, _ = Entity(connection).search()
 except ServerException as e:
     raise e
 except Exception as e:
     raise e
-user = User()
+
 ...
 
 ```
@@ -80,6 +78,11 @@ Next steps, reading the [Client Library Documentation]() to see other available 
 
 - [Entity](https://github.com/uizaio/api-wrapper-python/blob/master/docs/entity.md)
 - [Category](https://github.com/uizaio/api-wrapper-python/blob/master/docs/category.md)
+- [Storage](https://github.com/uizaio/api-wrapper-python/blob/master/docs/storage.md)
+- [Live Streaming](https://github.com/uizaio/api-wrapper-python/blob/master/docs/callback.md)
+- [Callback](https://github.com/uizaio/api-wrapper-python/blob/master/docs/category.md)
+- [User](https://github.com/uizaio/api-wrapper-python/blob/master/docs/user.md)
+- [Analytic](https://github.com/uizaio/api-wrapper-python/blob/master/docs/analytic.md)
 
 ## Contributing
 
@@ -87,4 +90,4 @@ Bug reports and pull requests are welcome on GitHub at [https://github.com/uizai
 
 ## License
 
-The gem is available as open source under the terms of the [MIT License](https://choosealicense.com/licenses/mit/).
+The package is available as open source under the terms of the [MIT License](https://choosealicense.com/licenses/mit/).
