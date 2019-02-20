@@ -21,8 +21,7 @@ class TestIntegration(unittest.TestCase):
             ],
             "resourceMode":"single"
         }
-        connection = Connection(workspace_api_domain='example.com', api_key='abcd1234')
-        self.livestream = LiveStreaming(connection=connection)
+        self.livestream = LiveStreaming()
 
     @mock.patch('uiza.Connection._request_http')
     def test_create_livestream_valid(self, mock_request_http):

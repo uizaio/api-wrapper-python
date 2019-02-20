@@ -40,7 +40,7 @@ live_data = {
         "resourceMode":"single"
     }
 
-res, status_code = LiveStreaming(connection).create(**live_data)
+res, status_code = LiveStreaming().create(**live_data)
 
 print("id: ", res.id)
 print("status_code", status_code)
@@ -77,7 +77,7 @@ For example:
 ```python
 live_id = '33a86c18-f502-41a4-9c4c-d4e14efca238'
 
-res, status_code = LiveStreaming(connection).retrieve(live_id)
+res, status_code = LiveStreaming().retrieve(live_id)
 
 print("id: ", res.id)
 print("status_code", status_code)
@@ -104,7 +104,7 @@ Function to update the specific Live event by edit values of parameter.
 For example:
 
 ```python
-res, status_code = LiveStreaming(connection).update(id='33a86c18-f502-41a4-9c4c-d4e14efca238', name='Update title')
+res, status_code = LiveStreaming().update(id='33a86c18-f502-41a4-9c4c-d4e14efca238', name='Update title')
 
 print("id: ", res.id)
 print("status_code", status_code)
@@ -136,7 +136,7 @@ Function to start a live event that has been create success. The Live channel mi
 For example:
 
 ```python
-res, status_code = LiveStreaming(connection).start_feed('ddf09dd0-b7a8-4f29-92df-14dafb97b2aa')
+res, status_code = LiveStreaming().start_feed('ddf09dd0-b7a8-4f29-92df-14dafb97b2aa')
 
 print("id: ", res.id)
 print("status_code", status_code)
@@ -163,7 +163,7 @@ Function to stop live event.
 For example:
 
 ```python
-res, status_code = LiveStreaming(connection).stop_feed('ddf09dd0-b7a8-4f29-92df-14dafb97b2aa')
+res, status_code = LiveStreaming().stop_feed('ddf09dd0-b7a8-4f29-92df-14dafb97b2aa')
 
 print("id: ", res.id)
 print("status_code", status_code)
@@ -190,7 +190,7 @@ Function to get a live view status . This view only show when event has been sta
 For example:
 
 ```python
-res, status_code = LiveStreaming(connection).get_view_feed('ddf09dd0-b7a8-4f29-92df-14dafb97b2aa')
+res, status_code = LiveStreaming().get_view_feed('ddf09dd0-b7a8-4f29-92df-14dafb97b2aa')
 
 print("status_code", status_code)
 ```
@@ -216,7 +216,7 @@ Function to retrieves list of recorded file after streamed (only available when 
 For example:
 
 ```python
-res, status_code = LiveStreaming(connection).list_recorded()
+res, status_code = LiveStreaming().list_recorded()
 
 print("status_code", status_code)
 ```
@@ -242,7 +242,7 @@ Function to delete a recorded file.
 For example:
 
 ```python
-res, status_code = LiveStreaming(connection).delete_recorded('ddf09dd0-b7a8-4f29-92df-14dafb97b2aa')
+res, status_code = LiveStreaming().delete_recorded('ddf09dd0-b7a8-4f29-92df-14dafb97b2aa')
 
 print("status_code", status_code)
 ```
@@ -268,7 +268,7 @@ Function to delete a recorded file.
 For example:
 
 ```python
-res, status_code = LiveStreaming(connection).convert_into_vod('ddf09dd0-b7a8-4f29-92df-14dafb97b2aa')
+res, status_code = LiveStreaming().convert_into_vod('ddf09dd0-b7a8-4f29-92df-14dafb97b2aa')
 
 print("status_code", status_code)
 ```

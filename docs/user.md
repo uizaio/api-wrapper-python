@@ -39,7 +39,7 @@ user_data = {
     "isAdmin": 1
 }
 
-res, status_code = User(connection).create(**user_data)
+res, status_code = User().create(**user_data)
 
 print("id: ", res.id)
 print("status_code", status_code)
@@ -76,7 +76,7 @@ For example:
 ```python
 user_id = '33a86c18-f502-41a4-9c4c-d4e14efca238'
 
-res, status_code = User(connection).retrieve(user_id)
+res, status_code = User().retrieve(user_id)
 
 print("id: ", res.id)
 print("status_code", status_code)
@@ -103,7 +103,7 @@ Function to updates the specified user by setting the values of the parameters p
 For example:
 
 ```python
-res, status_code = User(connection).update(id='33a86c18-f502-41a4-9c4c-d4e14efca238', status=1)
+res, status_code = User().update(id='33a86c18-f502-41a4-9c4c-d4e14efca238', status=1)
 
 print("id: ", res.id)
 print("status_code", status_code)
@@ -139,7 +139,7 @@ Function to delete an user. It cannot be undone. Also immediately cancels all to
 For example:
 
 ```python
-res, status_code = User(connection).delete('ddf09dd0-b7a8-4f29-92df-14dafb97b2aa')
+res, status_code = User().delete('ddf09dd0-b7a8-4f29-92df-14dafb97b2aa')
 
 print("id: ", res.id)
 print("status_code", status_code)
@@ -168,7 +168,7 @@ If you use Admin token, you will get all the user. If you use User token, you ca
 For example:
 
 ```python
-res, status_code = User(connection).list()
+res, status_code = User().list()
 
 print("status_code", status_code)
 ```
@@ -194,7 +194,7 @@ Function to update password allows Admin or User update their current password.
 For example:
 
 ```python
-res, status_code = User(connection).update_password(
+res, status_code = User().update_password(
     id="9f1cd871-9244-48a1-a233-846a3b540741",
     old_password="S57Eb{:aMZhW=)G$",
     new_password="FMpsr<4[dGPu?B#u"
@@ -227,7 +227,7 @@ Function to log out an user. After logged out, token will be removed.
 For example:
 
 ```python
-res, status_code = User(connection).logout()
+res, status_code = User().logout()
 
 print("status_code", status_code)
 ```

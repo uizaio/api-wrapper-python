@@ -30,8 +30,7 @@ class TestIntegration(unittest.TestCase):
             },
             "metadataIds": ["16a9e425-efb0-4360-bd92-8d49da111e88"]
         }
-        connection = Connection(workspace_api_domain='example.com', api_key='abcd1234')
-        self.entity = Entity(connection=connection)
+        self.entity = Entity()
 
     @mock.patch('uiza.Connection._request_http')
     def test_create_entity_valid(self, mock_request_http):

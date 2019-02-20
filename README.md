@@ -49,22 +49,25 @@ See details [here](https://docs.uiza.io/#authentication).
 The first, needing create Uiza connection using `workspace_api_domain` and `api_key`:
 
 ```python
-from uiza import Connection
+import uiza
 
-connection = Connection(workspace_api_domain=<your-workspace-api-domain.uiza.co>, api_key=<your-api-key>)
+uiza.workspace_api_domain = <your-workspace-api-domain.uiza.co>
+uiza.api_key = <your-api-key>
+
 ``` 
 
 After connection created, this is example search Entity:
 
 ```python
-from uiza import Connection
-from uiza.entity import Entity
-from uiza.user import User
+import uiza
+from uiza.api_resources.entity import Entity
 from uiza.exceptions import ServerException
 
-connection = Connection(workspace_api_domain=<your-workspace-api-domain.uiza.co>, api_key=<your-api-key>)
+uiza.workspace_api_domain = "<your-workspace-api-domain.uiza.co>"
+uiza.api_key = "<your-api-key>"
+
 try:
-    entity_data, _ = Entity(connection).search()
+    entity_data, _ = Entity().search()
 except ServerException as e:
     raise e
 except Exception as e:

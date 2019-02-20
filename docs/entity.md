@@ -31,7 +31,7 @@ entity_data = {
         "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry'\''s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum."
     }
 
-res, status_code = Entity(connection).create(**entity_data)
+res, status_code = Entity().create(**entity_data)
 
 # or 
 # res, status_code = entity.create(
@@ -78,7 +78,7 @@ For example:
 ```python
 entity_id = '33a86c18-f502-41a4-9c4c-d4e14efca238'
 
-res, status_code = Entity(connection).retrieve(entity_id)
+res, status_code = Entity().retrieve(entity_id)
 
 print("id: ", res.id)
 print("status_code", status_code)
@@ -105,7 +105,7 @@ Function to get list of entities including all detail.
 For example:
 
 ```python
-res, status_code = Entity(connection).list(name='Title')
+res, status_code = Entity().list(name='Title')
 
 print("id: ", res.id)
 print("status_code", status_code)
@@ -145,7 +145,7 @@ Function to update entity's information.
 For example:
 
 ```python
-res, status_code = Entity(connection).update(id='33a86c18-f502-41a4-9c4c-d4e14efca238', name='Update title')
+res, status_code = Entity().update(id='33a86c18-f502-41a4-9c4c-d4e14efca238', name='Update title')
 
 print("id: ", res.id)
 print("status_code", status_code)
@@ -178,7 +178,7 @@ Function to delete entity.
 For example:
 
 ```python
-res, status_code = Entity(connection).delete('ddf09dd0-b7a8-4f29-92df-14dafb97b2aa')
+res, status_code = Entity().delete('ddf09dd0-b7a8-4f29-92df-14dafb97b2aa')
 
 print("id: ", res.id)
 print("status_code", status_code)
@@ -205,7 +205,7 @@ Function to search entity base on keyword entered.
 For example:
 
 ```python
-res, status_code = Entity(connection).search(keyword="Title")
+res, status_code = Entity().search(keyword="Title")
 
 print("id: ", res.id)
 print("status_code", status_code)
@@ -232,7 +232,7 @@ Function to publish entity to CDN, use for streaming.
 For example:
 
 ```python
-res, status_code = Entity(connection).publish('ddf09dd0-b7a8-4f29-92df-14dafb97b2aa')
+res, status_code = Entity().publish('ddf09dd0-b7a8-4f29-92df-14dafb97b2aa')
 
 print("id: ", res.id)
 print("status_code", status_code)
@@ -259,7 +259,7 @@ Function to get status publish.
 For example:
 
 ```python
-res, status_code = Entity(connection).get_status_publish_entity('33a86c18-f502-41a4-9c4c-d4e14efca238')
+res, status_code = Entity().get_status_publish_entity('33a86c18-f502-41a4-9c4c-d4e14efca238')
 
 print("status_code", status_code)
 ```
@@ -285,7 +285,7 @@ Function to get AWS upload key.
 For example:
 
 ```python
-res, status_code = Entity(connection).get_aws_upload_key()
+res, status_code = Entity().get_aws_upload_key()
 
 print("status_code", status_code)
 ```
