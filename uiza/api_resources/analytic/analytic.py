@@ -1,8 +1,3 @@
-try:
-    from urllib.parse import urlencode
-except ImportError:
-    from urllib import urlencode
-
 import uiza
 from uiza import Connection
 from uiza.api_resources.base.base import UizaBase
@@ -75,7 +70,7 @@ class Analytic(UizaBase):
             metric=metric
         )
         self.connection.url = '{}/total-line-v2'.format(self.connection.url)
-        query = '?{}'.format(urlencode(params))
+        query = self.url_encode(params=params)
         result = self.connection.get(query=query)
 
         return result
@@ -94,7 +89,7 @@ class Analytic(UizaBase):
             type_filter=type_filter
         )
         self.connection.url = '{}/type'.format(self.connection.url)
-        query = '?{}'.format(urlencode(params))
+        query = self.url_encode(params=params)
         result = self.connection.get(query=query)
 
         return result
@@ -111,7 +106,7 @@ class Analytic(UizaBase):
             end_date=end_date
         )
         self.connection.url = '{}/line'.format(self.connection.url)
-        query = '?{}'.format(urlencode(params))
+        query = self.url_encode(params=params)
         result = self.connection.get(query=query)
 
         return result

@@ -55,6 +55,7 @@ class Connection(object):
         """
         url = self._make_url(query)
         response_data, status_code = self._request_http(url)
+        status_code = self._filter_error_status_code(status_code=status_code, response_data=response_data)
         data = {}
         if response_data:
             data = self._get_response_obj(response_data=response_data)
@@ -68,6 +69,7 @@ class Connection(object):
         """
         url = self._make_url_with_data(data=data, method='POST')
         response_data, status_code = self._request_http(url)
+        status_code = self._filter_error_status_code(status_code=status_code, response_data=response_data)
         data = {}
         if response_data:
             data = self._get_response_obj(response_data=response_data)
@@ -81,6 +83,7 @@ class Connection(object):
         """
         url = self._make_url_with_data(data=data, method='PUT')
         response_data, status_code = self._request_http(url)
+        status_code = self._filter_error_status_code(status_code=status_code, response_data=response_data)
         if response_data:
             data = self._get_response_obj(response_data=response_data)
         return data, status_code
@@ -93,6 +96,7 @@ class Connection(object):
         """
         url = self._make_url_with_data(data=data, method='DELETE')
         response_data, status_code = self._request_http(url)
+        status_code = self._filter_error_status_code(status_code=status_code, response_data=response_data)
         data = {}
         if response_data:
             data = self._get_response_obj(response_data=response_data)
@@ -158,9 +162,23 @@ class Connection(object):
                 status_code = e.code
 
             response_data = e.read().decode('utf-8')
-            response_obj = self._get_message_error(response_data)
-            if response_obj:
-                message_error = response_obj.get('message')
+
+        return response_data, status_code
+
+    def _filter_error_status_code(self, status_code, response_data):
+        """
+        Filter error code if status code in [400, 401, 404, 422, 500, 503, 4xx, 5xx]
+        :param status_code: status code
+        :param response_data: response
+        :return:
+        """
+        if status_code == 200:
+            return status_code
+
+        message_error = None
+        response_obj = self._get_message_error(response_data)
+        if response_obj:
+            message_error = response_obj.get('message')
 
         if status_code == 400:
             if not message_error:
@@ -191,7 +209,7 @@ class Connection(object):
         elif re.match(r'^5[0-9]{2}$', str(status_code)):
             raise ServerError(ServerBaseErrors.ERR_UIZA_SERVER_ERROR)
 
-        return response_data, status_code
+        return status_code
 
     def _get_response_obj(self, response_data):
         """

@@ -252,14 +252,14 @@ print("status_code", status_code)
 
 ### Get status publish
 
-`get_status_publish_entity(id)`
+`get_status_publish(id)`
 
 Function to get status publish.
 
 For example:
 
 ```python
-res, status_code = Entity().get_status_publish_entity('33a86c18-f502-41a4-9c4c-d4e14efca238')
+res, status_code = Entity().get_status_publish('33a86c18-f502-41a4-9c4c-d4e14efca238')
 
 print("status_code", status_code)
 ```
