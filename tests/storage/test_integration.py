@@ -17,8 +17,7 @@ class TestIntegration(unittest.TestCase):
             "storageType":"ftp",
             "host":"ftp-example.uiza.io"
         }
-        connection = Connection(workspace_api_domain='example.com', api_key='abcd1234')
-        self.storage = Storage(connection=connection)
+        self.storage = Storage()
 
     @mock.patch('uiza.Connection._request_http')
     def test_create_storage_valid(self, mock_request_http):

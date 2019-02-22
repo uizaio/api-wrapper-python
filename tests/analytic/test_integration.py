@@ -11,7 +11,7 @@ class TestIntegration(unittest.TestCase):
     def __init__(self, *args, **kwargs):
         super(TestIntegration, self).__init__(*args, **kwargs)
         connection = Connection(workspace_api_domain='example.com', api_key='abcd1234')
-        self.analytic = Analytic(connection=connection)
+        self.analytic = Analytic()
 
     @mock.patch('uiza.Connection._request_http')
     def test_create_analytic_invalid(self, mock_request_http):

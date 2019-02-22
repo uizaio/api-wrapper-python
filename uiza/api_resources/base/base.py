@@ -7,14 +7,7 @@ except ImportError:
 class UizaBase(object):
 
     data_validated = None
-
-    def __init__(self, connection, **kwargs):
-        """
-        Base controller
-        :param connection: Uiza connection
-        :param kwargs:
-        """
-        self.connection = connection
+    connection = None
 
     def create(self, **data):
         """

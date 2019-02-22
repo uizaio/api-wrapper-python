@@ -15,8 +15,7 @@ class TestIntegration(unittest.TestCase):
             "url":"https://callback-url-python.uiza.co",
             "method":"GET"
         }
-        connection = Connection(workspace_api_domain='example.com', api_key='abcd1234')
-        self.callback = Callback(connection=connection)
+        self.callback = Callback()
 
     @mock.patch('uiza.Connection._request_http')
     def test_create_callback_valid(self, mock_request_http):

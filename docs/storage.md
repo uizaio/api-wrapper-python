@@ -27,7 +27,7 @@ storage_data = {
         "host":"ftp-example.uiza.io"
     }
 
-res, status_code = Storage(connection).create(**storage_data)
+res, status_code = Storage().create(**storage_data)
 
 print("id: ", res.id)
 print("status_code", status_code)
@@ -62,7 +62,7 @@ For example:
 ```python
 storage_id = '33a86c18-f502-41a4-9c4c-d4e14efca238'
 
-res, status_code = Storage(connection).retrieve(storage_id)
+res, status_code = Storage().retrieve(storage_id)
 
 print("id: ", res.id)
 print("status_code", status_code)
@@ -89,7 +89,7 @@ Function to update storage's information.
 For example:
 
 ```python
-res, status_code = Storage(connection).update(id='33a86c18-f502-41a4-9c4c-d4e14efca238', name='Update title')
+res, status_code = Storage().update(id='33a86c18-f502-41a4-9c4c-d4e14efca238', name='Update title')
 
 print("id: ", res.id)
 print("status_code", status_code)
@@ -126,7 +126,7 @@ Function to delete storage.
 For example:
 
 ```python
-res, status_code = Storage(connection).delete('ddf09dd0-b7a8-4f29-92df-14dafb97b2aa')
+res, status_code = Storage().delete('ddf09dd0-b7a8-4f29-92df-14dafb97b2aa')
 
 print("id: ", res.id)
 print("status_code", status_code)

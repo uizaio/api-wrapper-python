@@ -21,8 +21,7 @@ class TestIntegration(unittest.TestCase):
             "password":"FMpsr<4[dGPu?B#u",
             "isAdmin":1
         }
-        connection = Connection(workspace_api_domain='example.com', api_key='abcd1234')
-        self.user = User(connection=connection)
+        self.user = User()
 
     @mock.patch('uiza.Connection._request_http')
     def test_create_user_valid(self, mock_request_http):
