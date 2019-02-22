@@ -1,3 +1,4 @@
-from uiza.user import *
-from uiza.entity import *
-from uiza.base import *
+from uiza.api_resources import *
+
+workspace_api_domain = None
+api_key = None
