@@ -87,6 +87,28 @@ Next steps, reading the [Client Library Documentation]() to see other available 
 - [User](https://github.com/uizaio/api-wrapper-python/blob/master/docs/user.md)
 - [Analytic](https://github.com/uizaio/api-wrapper-python/blob/master/docs/analytic.md)
 
+## Unittest
+
+The first, you need install dependencies:
+
+```bash
+pip install -r requirements.txt
+```
+
+Run unittest:
+
+```bash
+python -m unittest discover tests
+```
+
+Coverage code:
+
+```bash
+coverage run -m unittest discover tests
+coverage report
+``` 
+
+
 ## Contributing
 
 Bug reports and pull requests are welcome on GitHub at [https://github.com/uizaio/api-wrapper-python](https://github.com/uizaio/api-wrapper-python).

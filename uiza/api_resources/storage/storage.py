@@ -1,8 +1,3 @@
-try:
-    from urllib.parse import urlencode
-except ImportError:
-    from urllib import urlencode
-
 import uiza
 from uiza import Connection
 from uiza.api_resources.base.base import UizaBase

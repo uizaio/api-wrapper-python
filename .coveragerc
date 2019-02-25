@@ -1,0 +1,3 @@
+[report]
+omit = uiza/api_resources/base/*
+include = uiza/*
