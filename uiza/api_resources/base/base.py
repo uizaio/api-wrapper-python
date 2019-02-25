@@ -17,7 +17,7 @@ class UizaBase(object):
         """
         result = self.connection.post(data=data)
         try:
-            query = '?{}'.format(urlencode({'id': result[0].id}))
+            query = self.url_encode(params={'id': result[0].id})
             result = self.connection.get(query=query)
         except Exception:
             pass
@@ -32,7 +32,7 @@ class UizaBase(object):
         """
         result = self.connection.put(data=kwargs)
         try:
-            query = '?{}'.format(urlencode({'id': result[0].id}))
+            query = self.url_encode(params={'id': result[0].id})
             result = self.connection.get(query=query)
         except Exception:
             pass
@@ -47,7 +47,7 @@ class UizaBase(object):
         """
         query = ''
         if params:
-            query = '?{}'.format(urlencode(params))
+            query = self.url_encode(params=params)
         result = self.connection.get(query=query)
 
         return result
@@ -58,7 +58,7 @@ class UizaBase(object):
         :param id: id of object
         :return: tuple of data and status code
         """
-        query = '?{}'.format(urlencode({'id': id}))
+        query = self.url_encode(params={'id': id})
         result = self.connection.get(query=query)
 
         return result
@@ -71,3 +71,6 @@ class UizaBase(object):
         result = self.connection.delete(dict(id=id))
 
         return result
+
+    def url_encode(self, params):
+        return '?{}'.format(urlencode(params))

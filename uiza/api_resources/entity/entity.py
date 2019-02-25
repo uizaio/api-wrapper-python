@@ -1,8 +1,3 @@
-try:
-    from urllib.parse import urlencode
-except ImportError:
-    from urllib import urlencode
-
 import uiza
 from uiza import Connection
 from uiza.api_resources.base.base import UizaBase
@@ -29,7 +24,7 @@ class Entity(UizaBase):
         """
         self.connection.url = '{}/search'.format(self.connection.url)
         params = dict(keyword=keyword)
-        query = '?{}'.format(urlencode(params))
+        query = self.url_encode(params=params)
         data = self.connection.get(query=query)
 
         return data
@@ -45,14 +40,14 @@ class Entity(UizaBase):
 
         return data
 
-    def get_status_publish_entity(self, id):
+    def get_status_publish(self, id):
         """
         Get status publish entity
         :param id: identifier of entity
         :return: tuple of status publish entity and status code
         """
         self.connection.url = '{}/publish/status'.format(self.connection.url)
-        query = '?{}'.format(urlencode({'id': id}))
+        query = self.url_encode(params={'id': id})
         data = self.connection.get(query=query)
 
         return data

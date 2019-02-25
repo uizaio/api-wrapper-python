@@ -8,7 +8,13 @@
 ## 1.0.0
 
 ### New Feature
-- Wrap entity service. ([#3](https://github.com/uizaio/api-wrapper-python/pull/3))
+- Wrap user service.
+- Wrap entity service.
+- Wrap category service.
+- Wrap storage service.
+- Wrap live streaming service.
+- Wrap callback service.
+- Wrap analytic service.
 
 ### Documentation
 - N/A
