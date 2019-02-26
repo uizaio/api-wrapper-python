@@ -11,7 +11,7 @@ We can use a `Entity` to:
 - **delete()**
 - **search()**
 - **publish()**
-- **get_status_publish_entity()**
+- **get_status_publish()**
 - **get_aws_upload_key()**
 
 ### Create entity
