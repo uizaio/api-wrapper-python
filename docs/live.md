@@ -12,7 +12,7 @@ We can use a `Live Streaming` to:
 - **update()**
 - **start_feed()**
 - **stop_feed()**
-- **get_view_feed()**
+- **get_view()**
 - **list_recorded()**
 - **convert_into_vod()**
 - **delete_recorded()**
@@ -27,7 +27,7 @@ For example:
 
 ```python
 
-from uiza.api_resources.livestreaming import LiveStreaming
+from uiza.api_resources.live import Live
 
 live_data = {
         "name":"test event python 1",
@@ -40,7 +40,7 @@ live_data = {
         "resourceMode":"single"
     }
 
-res, status_code = LiveStreaming().create(**live_data)
+res, status_code = Live().create(**live_data)
 
 print("id: ", res.id)
 print("status_code", status_code)
@@ -77,7 +77,7 @@ For example:
 ```python
 live_id = '33a86c18-f502-41a4-9c4c-d4e14efca238'
 
-res, status_code = LiveStreaming().retrieve(live_id)
+res, status_code = Live().retrieve(live_id)
 
 print("id: ", res.id)
 print("status_code", status_code)
@@ -104,7 +104,7 @@ Function to update the specific Live event by edit values of parameter.
 For example:
 
 ```python
-res, status_code = LiveStreaming().update(id='33a86c18-f502-41a4-9c4c-d4e14efca238', name='Update title')
+res, status_code = Live().update(id='33a86c18-f502-41a4-9c4c-d4e14efca238', name='Update title')
 
 print("id: ", res.id)
 print("status_code", status_code)
@@ -136,7 +136,7 @@ Function to start a live event that has been create success. The Live channel mi
 For example:
 
 ```python
-res, status_code = LiveStreaming().start_feed('ddf09dd0-b7a8-4f29-92df-14dafb97b2aa')
+res, status_code = Live().start_feed('ddf09dd0-b7a8-4f29-92df-14dafb97b2aa')
 
 print("id: ", res.id)
 print("status_code", status_code)
@@ -163,7 +163,7 @@ Function to stop live event.
 For example:
 
 ```python
-res, status_code = LiveStreaming().stop_feed('ddf09dd0-b7a8-4f29-92df-14dafb97b2aa')
+res, status_code = Live().stop_feed('ddf09dd0-b7a8-4f29-92df-14dafb97b2aa')
 
 print("id: ", res.id)
 print("status_code", status_code)
@@ -183,14 +183,14 @@ print("status_code", status_code)
 
 ### Get view of live feed
 
-`get_view_feed(id)`
+`get_view(id)`
 
 Function to get a live view status . This view only show when event has been started and being processing.
 
 For example:
 
 ```python
-res, status_code = LiveStreaming().get_view_feed('ddf09dd0-b7a8-4f29-92df-14dafb97b2aa')
+res, status_code = Live().get_view('ddf09dd0-b7a8-4f29-92df-14dafb97b2aa')
 
 print("status_code", status_code)
 ```
@@ -216,7 +216,7 @@ Function to retrieves list of recorded file after streamed (only available when 
 For example:
 
 ```python
-res, status_code = LiveStreaming().list_recorded()
+res, status_code = Live().list_recorded()
 
 print("status_code", status_code)
 ```
@@ -242,7 +242,7 @@ Function to delete a recorded file.
 For example:
 
 ```python
-res, status_code = LiveStreaming().delete_recorded('ddf09dd0-b7a8-4f29-92df-14dafb97b2aa')
+res, status_code = Live().delete_recorded('ddf09dd0-b7a8-4f29-92df-14dafb97b2aa')
 
 print("status_code", status_code)
 ```
@@ -268,7 +268,7 @@ Function to delete a recorded file.
 For example:
 
 ```python
-res, status_code = LiveStreaming().convert_into_vod('ddf09dd0-b7a8-4f29-92df-14dafb97b2aa')
+res, status_code = Live().convert_into_vod('ddf09dd0-b7a8-4f29-92df-14dafb97b2aa')
 
 print("status_code", status_code)
 ```

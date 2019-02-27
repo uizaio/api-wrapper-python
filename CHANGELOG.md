@@ -18,3 +18,18 @@
 
 ### Documentation
 - N/A
+
+
+## 1.0.1
+
+### Changed
+- In live streaming service:
+
+    - Instead function `get_view_feed` to `get_view`.
+    - Instead Object `LiveStreaming` to `Live`.
+- In storage service:
+    - Instead function `create` to `add`.
+    - Instead function `delete` to `remove`.
+
+### Documentation
+- N/A

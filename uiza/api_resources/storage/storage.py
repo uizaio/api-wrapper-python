@@ -24,3 +24,43 @@ class Storage(UizaBase):
         :return: Raise error when get method list
         """
         raise ClientException('Storage list method not found')
+
+    def create(self, **data):
+        """
+        Override method create of Uizabase
+        :param params:
+        :return: Raise error when get method list
+        """
+        raise ClientException('Storage create method not found')
+
+    def delete(self, id):
+        """
+        Override method create of Uizabase
+        :param params:
+        :return: Raise error when get method list
+        """
+        raise ClientException('Storage delete method not found')
+
+    def add(self, **data):
+        """
+        Add storage
+        :param data: data body will be created
+        :return: tuple of data created and status code
+        """
+        result = self.connection.post(data=data)
+        try:
+            query = self.url_encode(params={'id': result[0].id})
+            result = self.connection.get(query=query)
+        except Exception:
+            pass
+
+        return result
+
+    def remove(self, id):
+        """
+        Remove storage
+        :return: tuple of id removed and status code
+        """
+        result = self.connection.delete(dict(id=id))
+
+        return result
