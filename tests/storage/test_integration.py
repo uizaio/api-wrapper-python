@@ -39,68 +39,68 @@ class TestStorageBaseTestCase(unittest.TestCase):
         }
 
 
-class TestCreateStorage(TestStorageBaseTestCase):
+class TestAddStorage(TestStorageBaseTestCase):
 
     @mock.patch('uiza.Connection._request_http')
-    def test_create_storage_valid(self, mock_request_http):
+    def test_add_storage_valid(self, mock_request_http):
         mock_request_http.return_value = True, 200
-        data = Storage().create(**self.storage_data_create)
+        data = Storage().add(**self.storage_data_create)
         self.assertEqual(data[1], 200)
 
     @mock.patch('uiza.Connection._request_http')
-    def test_create_storage_invalid_with_status_code_400(self, mock_request_http):
+    def test_add_storage_invalid_with_status_code_400(self, mock_request_http):
         mock_request_http.return_value = True, 400
         with self.assertRaises(BadRequestError) as context:
-            Storage().create(**self.storage_data_create)
+            Storage().add(**self.storage_data_create)
         self.assertTrue(context.exception.__class__.__name__, 'BadRequestError')
 
     @mock.patch('uiza.Connection._request_http')
-    def test_create_storage_invalid_with_status_code_401(self, mock_request_http):
+    def test_add_storage_invalid_with_status_code_401(self, mock_request_http):
         mock_request_http.return_value = True, 401
         with self.assertRaises(UnauthorizedError) as context:
-            Storage().create(**self.storage_data_create)
+            Storage().add(**self.storage_data_create)
         self.assertTrue(context.exception.__class__.__name__, 'UnauthorizedError')
 
     @mock.patch('uiza.Connection._request_http')
-    def test_create_storage_invalid_with_status_code_404(self, mock_request_http):
+    def test_add_storage_invalid_with_status_code_404(self, mock_request_http):
         mock_request_http.return_value = True, 404
         with self.assertRaises(NotFoundError) as context:
-            Storage().create(**self.storage_data_create)
+            Storage().add(**self.storage_data_create)
         self.assertTrue(context.exception.__class__.__name__, 'NotFoundError')
 
     @mock.patch('uiza.Connection._request_http')
-    def test_create_storage_invalid_with_status_code_422(self, mock_request_http):
+    def test_add_storage_invalid_with_status_code_422(self, mock_request_http):
         mock_request_http.return_value = True, 422
         with self.assertRaises(UnprocessableError) as context:
-            Storage().create(**self.storage_data_create)
+            Storage().add(**self.storage_data_create)
         self.assertTrue(context.exception.__class__.__name__, 'UnprocessableError')
 
     @mock.patch('uiza.Connection._request_http')
-    def test_create_storage_invalid_with_status_code_500(self, mock_request_http):
+    def test_add_storage_invalid_with_status_code_500(self, mock_request_http):
         mock_request_http.return_value = True, 500
         with self.assertRaises(InternalServerError) as context:
-            Storage().create(**self.storage_data_create)
+            Storage().add(**self.storage_data_create)
         self.assertTrue(context.exception.__class__.__name__, 'InternalServerError')
 
     @mock.patch('uiza.Connection._request_http')
-    def test_create_storage_invalid_with_status_code_503(self, mock_request_http):
+    def test_add_storage_invalid_with_status_code_503(self, mock_request_http):
         mock_request_http.return_value = True, 503
         with self.assertRaises(ServiceUnavailableError) as context:
-            Storage().create(**self.storage_data_create)
+            Storage().add(**self.storage_data_create)
         self.assertTrue(context.exception.__class__.__name__, 'ServiceUnavailableError')
 
     @mock.patch('uiza.Connection._request_http')
-    def test_create_storage_invalid_with_status_code_4xx(self, mock_request_http):
+    def test_add_storage_invalid_with_status_code_4xx(self, mock_request_http):
         mock_request_http.return_value = True, 412
         with self.assertRaises(ClientError) as context:
-            Storage().create(**self.storage_data_create)
+            Storage().add(**self.storage_data_create)
         self.assertTrue(context.exception.__class__.__name__, 'ClientError')
 
     @mock.patch('uiza.Connection._request_http')
-    def test_create_storage_invalid_with_status_code_5xx(self, mock_request_http):
+    def test_add_storage_invalid_with_status_code_5xx(self, mock_request_http):
         mock_request_http.return_value = True, 512
         with self.assertRaises(ServerError) as context:
-            Storage().create(**self.storage_data_create)
+            Storage().add(**self.storage_data_create)
         self.assertTrue(context.exception.__class__.__name__, 'ServerError')
 
 
@@ -241,75 +241,75 @@ class TestUpdateStorage(TestStorageBaseTestCase):
         self.assertTrue(context.exception.__class__.__name__, 'ServerError')
 
 
-class TestDeleteStorage(TestStorageBaseTestCase):
+class TestRemoveStorage(TestStorageBaseTestCase):
 
     @mock.patch('uiza.Connection._request_http')
-    def test_delete_storage_valid(self, mock_request_http):
+    def test_remove_storage_valid(self, mock_request_http):
         mock_request_http.return_value = True, 200
-        data = Storage().delete(id=self.storage_id)
+        data = Storage().remove(id=self.storage_id)
         self.assertEqual(data[1], 200)
 
     @mock.patch('uiza.Connection._request_http')
-    def test_delete_storage_invalid_with_status_code_400(self, mock_request_http):
+    def test_remove_storage_invalid_with_status_code_400(self, mock_request_http):
         mock_request_http.return_value = True, 400
         with self.assertRaises(BadRequestError) as context:
-            Storage().delete(id=self.storage_id)
+            Storage().remove(id=self.storage_id)
         self.assertTrue(context.exception.__class__.__name__, 'BadRequestError')
 
     @mock.patch('uiza.Connection._request_http')
-    def test_delete_storage_invalid_with_status_code_401(self, mock_request_http):
+    def test_remove_storage_invalid_with_status_code_401(self, mock_request_http):
         mock_request_http.return_value = True, 401
         with self.assertRaises(UnauthorizedError) as context:
-            Storage().delete(id=self.storage_id)
+            Storage().remove(id=self.storage_id)
         self.assertTrue(context.exception.__class__.__name__, 'UnauthorizedError')
 
     @mock.patch('uiza.Connection._request_http')
-    def test_delete_storage_invalid_with_status_code_404(self, mock_request_http):
+    def test_remove_storage_invalid_with_status_code_404(self, mock_request_http):
         mock_request_http.return_value = True, 404
         with self.assertRaises(NotFoundError) as context:
-            Storage().delete(id=self.storage_id)
+            Storage().remove(id=self.storage_id)
         self.assertTrue(context.exception.__class__.__name__, 'NotFoundError')
 
     @mock.patch('uiza.Connection._request_http')
-    def test_delete_storage_invalid_with_status_code_422(self, mock_request_http):
+    def test_remove_storage_invalid_with_status_code_422(self, mock_request_http):
         mock_request_http.return_value = True, 422
         with self.assertRaises(UnprocessableError) as context:
-            Storage().delete(id=self.storage_id)
+            Storage().remove(id=self.storage_id)
         self.assertTrue(context.exception.__class__.__name__, 'UnprocessableError')
 
     @mock.patch('uiza.Connection._request_http')
-    def test_delete_storage_invalid_with_status_code_500(self, mock_request_http):
+    def test_remove_storage_invalid_with_status_code_500(self, mock_request_http):
         mock_request_http.return_value = True, 500
         with self.assertRaises(InternalServerError) as context:
-            Storage().delete(id=self.storage_id)
+            Storage().remove(id=self.storage_id)
         self.assertTrue(context.exception.__class__.__name__, 'InternalServerError')
 
     @mock.patch('uiza.Connection._request_http')
-    def test_delete_storage_invalid_with_status_code_503(self, mock_request_http):
+    def test_remove_storage_invalid_with_status_code_503(self, mock_request_http):
         mock_request_http.return_value = True, 503
         with self.assertRaises(ServiceUnavailableError) as context:
-            Storage().delete(id=self.storage_id)
+            Storage().remove(id=self.storage_id)
         self.assertTrue(context.exception.__class__.__name__, 'ServiceUnavailableError')
 
     @mock.patch('uiza.Connection._request_http')
-    def test_delete_storage_invalid_with_status_code_4xx(self, mock_request_http):
+    def test_remove_storage_invalid_with_status_code_4xx(self, mock_request_http):
         mock_request_http.return_value = True, 412
         with self.assertRaises(ClientError) as context:
-            Storage().delete(id=self.storage_id)
+            Storage().remove(id=self.storage_id)
         self.assertTrue(context.exception.__class__.__name__, 'ClientError')
 
     @mock.patch('uiza.Connection._request_http')
-    def test_delete_storage_invalid_with_status_code_5xx(self, mock_request_http):
+    def test_remove_storage_invalid_with_status_code_5xx(self, mock_request_http):
         mock_request_http.return_value = True, 512
         with self.assertRaises(ServerError) as context:
-            Storage().delete(id=self.storage_id)
+            Storage().remove(id=self.storage_id)
         self.assertTrue(context.exception.__class__.__name__, 'ServerError')
 
     @mock.patch('uiza.Connection._request_http')
-    def test_delete_storage_invalid(self, mock_request_http):
+    def test_remove_storage_invalid(self, mock_request_http):
         mock_request_http.return_value = True, 200
         with self.assertRaises(TypeError) as context:
-            Storage().delete()
+            Storage().remove()
         self.assertTrue(context.exception.__class__.__name__, 'TypeError')
 
 
@@ -320,4 +320,23 @@ class TestListStorage(TestStorageBaseTestCase):
         mock_request_http.return_value = True, 200
         with self.assertRaises(ClientException) as context:
             Storage().list()
+        self.assertTrue(context.exception.__class__.__name__, 'ClientException')
+
+
+class TestCreateStorage(TestStorageBaseTestCase):
+
+    @mock.patch('uiza.Connection._request_http')
+    def test_create_storage_invalid(self, mock_request_http):
+        mock_request_http.return_value = True, 200
+        with self.assertRaises(ClientException) as context:
+            Storage().create(**self.storage_data_create)
+        self.assertTrue(context.exception.__class__.__name__, 'ClientException')
+
+class TestDeleteStorage(TestStorageBaseTestCase):
+
+    @mock.patch('uiza.Connection._request_http')
+    def test_delete_storage_invalid(self, mock_request_http):
+        mock_request_http.return_value = True, 200
+        with self.assertRaises(ClientException) as context:
+            Storage().delete(id=self.storage_id)
         self.assertTrue(context.exception.__class__.__name__, 'ClientException')

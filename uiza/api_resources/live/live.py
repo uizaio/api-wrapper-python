@@ -6,7 +6,7 @@ from uiza.utility.utility import set_url
 from uiza.exceptions import ClientException
 
 
-class LiveStreaming(UizaBase):
+class Live(UizaBase):
 
     def __init__(self):
         self.connection = Connection(workspace_api_domain=uiza.workspace_api_domain, api_key=uiza.api_key)
@@ -55,7 +55,7 @@ class LiveStreaming(UizaBase):
 
         return result
 
-    def get_view_feed(self,  id):
+    def get_view(self,  id):
         """
         Get a live view status
         :param id: event id has been created
