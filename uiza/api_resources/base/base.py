@@ -7,64 +7,70 @@ except ImportError:
 class UizaBase(object):
 
     data_validated = None
-
-    def __init__(self, connection, **kwargs):
-        """
-
-        :param connection:
-        :param kwargs:
-        """
-        self.connection = connection
+    connection = None
 
     def create(self, **data):
         """
-
-        :param data:
-        :return:
+        Create data
+        :param data: data body will be created
+        :return: tuple of data created and status code
         """
         result = self.connection.post(data=data)
+        try:
+            query = self.url_encode(params={'id': result[0].id})
+            result = self.connection.get(query=query)
+        except Exception:
+            pass
 
         return result
 
     def update(self, **kwargs):
         """
-
-        :param kwargs:
-        :return:
+        Update data
+        :param kwargs: data body will be updated
+        :return: tuple of data updated and status code
         """
-        data = self.connection.put(data=kwargs)
+        result = self.connection.put(data=kwargs)
+        try:
+            query = self.url_encode(params={'id': result[0].id})
+            result = self.connection.get(query=query)
+        except Exception:
+            pass
 
-        return data
+        return result
 
     def list(self, **params):
         """
-
-        :param params:
-        :return:
+        List data
+        :param params: params
+        :return: tuple of data exist and status code
         """
         query = ''
         if params:
-            query = '?{}'.format(urlencode(params))
-        data = self.connection.get(query=query)
+            query = self.url_encode(params=params)
+        result = self.connection.get(query=query)
 
-        return data
+        return result
 
     def retrieve(self, id):
         """
-
-        :param id:
-        :return:
+        Get detail
+        :param id: id of object
+        :return: tuple of data and status code
         """
-        query = '?{}'.format(urlencode({'id': id}))
-        data = self.connection.get(query=query)
+        query = self.url_encode(params={'id': id})
+        result = self.connection.get(query=query)
 
-        return data
+        return result
 
     def delete(self, id):
+        """ata
+        Delete data
+        :return: tuple of id removed and status code
         """
+        result = self.connection.delete(dict(id=id))
 
-        :return:
-        """
-        data = self.connection.delete(dict(id=id))
+        return result
 
-        return data
+    def url_encode(self, params):
+        return '?{}'.format(urlencode(params))

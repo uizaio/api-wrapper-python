@@ -1,4 +1,4 @@
-api_config = {
+API_CONFIG = {
     "uiza_api": {
         "user": {
             "type": "api/public",
@@ -9,6 +9,31 @@ api_config = {
             "type": "api/public",
             "version": "v3",
             "sub_url": "media/entity"
+        },
+        "category": {
+            "type": "api/public",
+            "version": "v3",
+            "sub_url": "media/metadata"
+        },
+        "storage": {
+            "type": "api/public",
+            "version": "v3",
+            "sub_url": "media/storage"
+        },
+        "livestreaming": {
+            "type": "api/public",
+            "version": "v3",
+            "sub_url": "live/entity"
+        },
+        "callback": {
+            "type": "api/public",
+            "version": "v3",
+            "sub_url": "media/entity/callback"
+        },
+        "analytic": {
+            "type": "api/public",
+            "version": "v3",
+            "sub_url": "analytic/entity/video-quality"
         }
     }
 }
@@ -20,10 +45,7 @@ class Settings(object):
     def __init__(self, d):
         self.dict = d
         for a, b in d.items():
-            if isinstance(b, (list, tuple)):
-                setattr(self, a, [Settings(x) if isinstance(x, dict) else x for x in b])
-            else:
-                setattr(self, a, Settings(b) if isinstance(b, dict) else b)
+            setattr(self, a, Settings(b) if isinstance(b, dict) else b)
 
 
-settings = Settings(api_config)
+settings = Settings(API_CONFIG)

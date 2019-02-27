@@ -11,7 +11,7 @@ We can use a `Entity` to:
 - **delete()**
 - **search()**
 - **publish()**
-- **get_status_publish_entity()**
+- **get_status_publish()**
 - **get_aws_upload_key()**
 
 ### Create entity
@@ -23,8 +23,7 @@ Function to create entity using full URL. Direct HTTP, FTP or AWS S3 link are ac
 For example:
 
 ```python
-
-entity = Entity(connection)
+from uiza.api_resources.entity import Entity
 entity_data = {
         "name": "Sample Video Python1",
         "url": "https://example.com/video.mp4",
@@ -32,7 +31,7 @@ entity_data = {
         "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry'\''s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum."
     }
 
-res, status_code = entity.create(**entity_data)
+res, status_code = Entity().create(**entity_data)
 
 # or 
 # res, status_code = entity.create(
@@ -77,10 +76,9 @@ Function to get detail of entity including all information of entity.
 For example:
 
 ```python
-entity = Entity(connection)
 entity_id = '33a86c18-f502-41a4-9c4c-d4e14efca238'
 
-res, status_code = entity.retrieve(entity_id)
+res, status_code = Entity().retrieve(entity_id)
 
 print("id: ", res.id)
 print("status_code", status_code)
@@ -107,13 +105,7 @@ Function to get list of entities including all detail.
 For example:
 
 ```python
-from uiza import Connection
-from uiza.api_resources.entity import Entity
-
-connection = Connection(workspace_api_domain=<your-workspace-api-domain.uiza.co>, api_key=<your-api-key>)
-entity = Entity(connection)
-
-res, status_code = entity.list(name='Title')
+res, status_code = Entity().list(name='Title')
 
 print("id: ", res.id)
 print("status_code", status_code)
@@ -153,9 +145,7 @@ Function to update entity's information.
 For example:
 
 ```python
-entity = Entity(connection)
-
-res, status_code = entity.update(id='33a86c18-f502-41a4-9c4c-d4e14efca238', name='Update title')
+res, status_code = Entity().update(id='33a86c18-f502-41a4-9c4c-d4e14efca238', name='Update title')
 
 print("id: ", res.id)
 print("status_code", status_code)
@@ -188,9 +178,7 @@ Function to delete entity.
 For example:
 
 ```python
-entity = Entity(connection)
-
-res, status_code = entity.delete('ddf09dd0-b7a8-4f29-92df-14dafb97b2aa')
+res, status_code = Entity().delete('ddf09dd0-b7a8-4f29-92df-14dafb97b2aa')
 
 print("id: ", res.id)
 print("status_code", status_code)
@@ -217,9 +205,7 @@ Function to search entity base on keyword entered.
 For example:
 
 ```python
-entity = Entity(connection)
-
-res, status_code = entity.search(keyword="Title")
+res, status_code = Entity().search(keyword="Title")
 
 print("id: ", res.id)
 print("status_code", status_code)
@@ -246,9 +232,7 @@ Function to publish entity to CDN, use for streaming.
 For example:
 
 ```python
-entity = Entity(connection)
-
-res, status_code = entity.publish('ddf09dd0-b7a8-4f29-92df-14dafb97b2aa')
+res, status_code = Entity().publish('ddf09dd0-b7a8-4f29-92df-14dafb97b2aa')
 
 print("id: ", res.id)
 print("status_code", status_code)
@@ -268,16 +252,14 @@ print("status_code", status_code)
 
 ### Get status publish
 
-`get_status_publish_entity(id)`
+`get_status_publish(id)`
 
 Function to get status publish.
 
 For example:
 
 ```python
-entity = Entity(connection)
-
-res, status_code = entity.get_status_publish_entity('33a86c18-f502-41a4-9c4c-d4e14efca238')
+res, status_code = Entity().get_status_publish('33a86c18-f502-41a4-9c4c-d4e14efca238')
 
 print("status_code", status_code)
 ```
@@ -303,9 +285,7 @@ Function to get AWS upload key.
 For example:
 
 ```python
-entity = Entity(connection)
-
-res, status_code = entity.get_aws_upload_key()
+res, status_code = Entity().get_aws_upload_key()
 
 print("status_code", status_code)
 ```
