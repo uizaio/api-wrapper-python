@@ -4,16 +4,16 @@ This is client for calling to API storage. You can add your storage (FTP, AWS S3
 
 We can use a `Storage` to:
 
-- **create()**
+- **add()**
 - **retrieve()**
 - **update()**
-- **delete()**
+- **remove()**
 
 ### Create storage
 
-`create(**kwang)`
+`add(**kwang)`
 
-Function to create storage.
+Function to add storage.
 
 For example:
 
@@ -27,7 +27,7 @@ storage_data = {
         "host":"ftp-example.uiza.io"
     }
 
-res, status_code = Storage().create(**storage_data)
+res, status_code = Storage().add(**storage_data)
 
 print("id: ", res.id)
 print("status_code", status_code)
@@ -119,14 +119,14 @@ print("status_code", status_code)
 
 ### Delete an storage
 
-`delete(id)`
+`remove(id)`
 
-Function to delete storage.
+Function to remove storage.
 
 For example:
 
 ```python
-res, status_code = Storage().delete('ddf09dd0-b7a8-4f29-92df-14dafb97b2aa')
+res, status_code = Storage().remove('ddf09dd0-b7a8-4f29-92df-14dafb97b2aa')
 
 print("id: ", res.id)
 print("status_code", status_code)
