@@ -94,16 +94,18 @@ class Analytic(UizaBase):
 
         return result
 
-    def get_line(self, start_date, end_date):
+    def get_line(self, start_date, end_date, type):
         """
         Get data grouped by hour
         :param start_date: start date
         :param end_date: end date
+        :param type: type
         :return:
         """
         params = dict(
             start_date=start_date,
-            end_date=end_date
+            end_date=end_date,
+            type=type
         )
         self.connection.url = '{}/line'.format(self.connection.url)
         query = self.url_encode(params=params)

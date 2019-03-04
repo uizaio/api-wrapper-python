@@ -380,7 +380,7 @@ class TestUpdatePasswordUser(TestUserBaseTestCase):
     @mock.patch('uiza.Connection._request_http')
     def test_update_password_user_valid(self, mock_request_http):
         mock_request_http.return_value = True, 200
-        data = User().update_password(
+        data = User().change_password(
             id = self.user_id,
             new_password='New password',
             old_password='Old password'
@@ -391,7 +391,7 @@ class TestUpdatePasswordUser(TestUserBaseTestCase):
     def test_update_password_user_invalid_with_status_code_400(self, mock_request_http):
         mock_request_http.return_value = True, 400
         with self.assertRaises(BadRequestError) as context:
-            User().update_password(
+            User().change_password(
                 id=self.user_id,
                 new_password='New password',
                 old_password='Old password'
@@ -402,7 +402,7 @@ class TestUpdatePasswordUser(TestUserBaseTestCase):
     def test_update_password_user_invalid_with_status_code_401(self, mock_request_http):
         mock_request_http.return_value = True, 401
         with self.assertRaises(UnauthorizedError) as context:
-            User().update_password(
+            User().change_password(
                 id=self.user_id,
                 new_password='New password',
                 old_password='Old password'
@@ -413,7 +413,7 @@ class TestUpdatePasswordUser(TestUserBaseTestCase):
     def test_update_password_user_invalid_with_status_code_404(self, mock_request_http):
         mock_request_http.return_value = True, 404
         with self.assertRaises(NotFoundError) as context:
-            User().update_password(
+            User().change_password(
                 id=self.user_id,
                 new_password='New password',
                 old_password='Old password'
@@ -424,7 +424,7 @@ class TestUpdatePasswordUser(TestUserBaseTestCase):
     def test_update_password_user_invalid_with_status_code_422(self, mock_request_http):
         mock_request_http.return_value = True, 422
         with self.assertRaises(UnprocessableError) as context:
-            User().update_password(
+            User().change_password(
                 id=self.user_id,
                 new_password='New password',
                 old_password='Old password'
@@ -435,7 +435,7 @@ class TestUpdatePasswordUser(TestUserBaseTestCase):
     def test_update_password_user_invalid_with_status_code_500(self, mock_request_http):
         mock_request_http.return_value = True, 500
         with self.assertRaises(InternalServerError) as context:
-            User().update_password(
+            User().change_password(
                 id=self.user_id,
                 new_password='New password',
                 old_password='Old password'
@@ -446,7 +446,7 @@ class TestUpdatePasswordUser(TestUserBaseTestCase):
     def test_update_password_user_invalid_with_status_code_503(self, mock_request_http):
         mock_request_http.return_value = True, 503
         with self.assertRaises(ServiceUnavailableError) as context:
-            User().update_password(
+            User().change_password(
                 id=self.user_id,
                 new_password='New password',
                 old_password='Old password'
@@ -457,7 +457,7 @@ class TestUpdatePasswordUser(TestUserBaseTestCase):
     def test_update_password_user_invalid_with_status_code_4xx(self, mock_request_http):
         mock_request_http.return_value = True, 412
         with self.assertRaises(ClientError) as context:
-            User().update_password(
+            User().change_password(
                 id=self.user_id,
                 new_password='New password',
                 old_password='Old password'
@@ -468,7 +468,7 @@ class TestUpdatePasswordUser(TestUserBaseTestCase):
     def test_update_password_user_invalid_with_status_code_5xx(self, mock_request_http):
         mock_request_http.return_value = True, 512
         with self.assertRaises(ServerError) as context:
-            User().update_password(
+            User().change_password(
                 id=self.user_id,
                 new_password='New password',
                 old_password='Old password'
