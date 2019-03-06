@@ -344,6 +344,7 @@ class TestGetLine(TestAnalyticBaseTestCase):
         data = Analytic().get_line(
             start_date='2018-11-01 20:00',
             end_date='2019-11-02 20:00',
+            type='video_startup_time'
         )
         self.assertEqual(data[1], 200)
 
@@ -354,6 +355,7 @@ class TestGetLine(TestAnalyticBaseTestCase):
             Analytic().get_line(
                 start_date='2018-11-01 20:00',
                 end_date='2019-11-02 20:00',
+                type='video_startup_time'
             )
         self.assertTrue(context.exception.__class__.__name__, 'BadRequestError')
 
@@ -364,6 +366,7 @@ class TestGetLine(TestAnalyticBaseTestCase):
             Analytic().get_line(
                 start_date='2018-11-01 20:00',
                 end_date='2019-11-02 20:00',
+                type='video_startup_time'
             )
         self.assertTrue(context.exception.__class__.__name__, 'UnauthorizedError')
 
@@ -374,6 +377,7 @@ class TestGetLine(TestAnalyticBaseTestCase):
             Analytic().get_line(
                 start_date='2018-11-01 20:00',
                 end_date='2019-11-02 20:00',
+                type='video_startup_time'
             )
         self.assertTrue(context.exception.__class__.__name__, 'NotFoundError')
 
@@ -384,6 +388,7 @@ class TestGetLine(TestAnalyticBaseTestCase):
             Analytic().get_line(
                 start_date='2018-11-01 20:00',
                 end_date='2019-11-02 20:00',
+                type='video_startup_time'
             )
         self.assertTrue(context.exception.__class__.__name__, 'UnprocessableError')
 
@@ -394,6 +399,7 @@ class TestGetLine(TestAnalyticBaseTestCase):
             Analytic().get_line(
                 start_date='2018-11-01 20:00',
                 end_date='2019-11-02 20:00',
+                type='video_startup_time'
             )
         self.assertTrue(context.exception.__class__.__name__, 'InternalServerError')
 
@@ -404,6 +410,7 @@ class TestGetLine(TestAnalyticBaseTestCase):
             Analytic().get_line(
                 start_date='2018-11-01 20:00',
                 end_date='2019-11-02 20:00',
+                type='video_startup_time'
             )
         self.assertTrue(context.exception.__class__.__name__, 'ServiceUnavailableError')
 
@@ -414,6 +421,7 @@ class TestGetLine(TestAnalyticBaseTestCase):
             Analytic().get_line(
                 start_date='2018-11-01 20:00',
                 end_date='2019-11-02 20:00',
+                type='video_startup_time'
             )
         self.assertTrue(context.exception.__class__.__name__, 'ClientError')
 
@@ -424,6 +432,7 @@ class TestGetLine(TestAnalyticBaseTestCase):
             Analytic().get_line(
                 start_date='2018-11-01 20:00',
                 end_date='2019-11-02 20:00',
+                type='video_startup_time'
             )
         self.assertTrue(context.exception.__class__.__name__, 'ServerError')
 
@@ -433,6 +442,7 @@ class TestGetLine(TestAnalyticBaseTestCase):
         with self.assertRaises(TypeError) as context:
             Analytic().get_line(
                 end_date='2019-11-02 20:00',
+                type='video_startup_time'
             )
         self.assertTrue(context.exception.__class__.__name__, 'TypeError')
 
@@ -442,5 +452,16 @@ class TestGetLine(TestAnalyticBaseTestCase):
         with self.assertRaises(TypeError) as context:
             Analytic().get_line(
                 start_date='2019-11-02 20:00',
+                type='video_startup_time'
+            )
+        self.assertTrue(context.exception.__class__.__name__, 'TypeError')
+
+    @mock.patch('uiza.Connection._request_http')
+    def test_get_line_invalid_with_not_type(self, mock_request_http):
+        mock_request_http.return_value = True, 200
+        with self.assertRaises(TypeError) as context:
+            Analytic().get_line(
+                start_date='2019-11-02 20:00',
+                end_date='2019-11-02 20:00'
             )
         self.assertTrue(context.exception.__class__.__name__, 'TypeError')

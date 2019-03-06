@@ -86,7 +86,8 @@ For example:
 ```python
 res, status_code = Analytic().get_line(
     start_date='2018-11-01 20:00',
-    end_date='2019-11-02 20:00'
+    end_date='2019-11-02 20:00',
+    type='video_startup_time'
 )
 
 print("status_code", status_code)
@@ -96,6 +97,7 @@ print("status_code", status_code)
 
 - **start_date** (*str*) - Start date (UTC+0) with format: YYYY-MM-DD.
 - **end_date** (*str*) - End date (UTC+0) with format: YYYY-MM-DD.
+- **type** (*str*) - Value accept: [ playback_failure_percentage, video_startup_time, aggregate_startup_time, exits_before_video_start, rebuffer_percentage, rebuffer_frequency, playback_failure_score, rebuffer_count, rebuffer_duration, upscale_percentage, downscale_percentage, max_upscale_percentage, max_downscale_percentage ]
 
 #### Return type
 
