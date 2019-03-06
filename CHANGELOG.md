@@ -33,3 +33,16 @@
 
 ### Documentation
 - N/A
+
+
+## 1.1.0
+
+### Changed
+- In analytic service:
+    - Add param `type` to function `get_line`.
+- In user service:
+    - Change value of field `isAdmin`: Set this account isAdmin or not (1 = Yes, 0 = No)
+    - Instead function `update_password` to `change_password`.
+
+### Documentation
+- N/A
