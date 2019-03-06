@@ -16,9 +16,9 @@ class User(UizaBase):
             api_sub_url=settings.uiza_api.user.sub_url
         )
 
-    def update_password(self, id, old_password, new_password):
+    def change_password(self, id, old_password, new_password):
         """
-        Update password allows Admin or User update their current password.
+        Change password allows Admin or User update their current password.
         :param id: identifier of user need reset password
         :param old_password: current password
         :param new_password: new password (from a to Z, 6 to 25 characters)

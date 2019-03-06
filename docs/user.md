@@ -13,7 +13,7 @@ We can use a `User` to:
 - **update()**
 - **list()**
 - **delete()**
-- **update_password()**
+- **change_password()**
 - **logout()**
 
 ### Create user
@@ -120,7 +120,7 @@ print("status_code", status_code)
 - **fullname** (*str*) - Full name of user.
 - **dob** (*str*) - Date of birth (MM/DD/YYYY).
 - **gender** (*int*) - Gender ( 0 = Male, 1 = Female).
-- **isAdmin** (*int*) - Set this account isAdmin or not (0 = Yes, 1 = No).
+- **isAdmin** (*int*) - Set this account isAdmin or not (1 = Yes, 0 = No).
 
 #### Return type
 
@@ -185,16 +185,16 @@ print("status_code", status_code)
 
 - Response data and status code
 
-### Update password
+### Change password
 
-`update_password(**data)`
+`change_password(**data)`
 
 Function to update password allows Admin or User update their current password.
 
 For example:
 
 ```python
-res, status_code = User().update_password(
+res, status_code = User().change_password(
     id="9f1cd871-9244-48a1-a233-846a3b540741",
     old_password="S57Eb{:aMZhW=)G$",
     new_password="FMpsr<4[dGPu?B#u"
