@@ -11,8 +11,7 @@ from uiza.exceptions import (
     InternalServerError,
     ServiceUnavailableError,
     ClientError,
-    ServerError,
-    ClientException
+    ServerError
 )
 
 
@@ -24,11 +23,11 @@ class TestCategoryBaseTestCase(unittest.TestCase):
         uiza.api_key = 'test api key'
         self.category_id = '37d6706e-be91-463e-b3b3-b69451dd4752'
         self.category_data_create = {
-            'name':'Folder sample python 3',
-            'type':'tag',
-            'description':'Folder description',
-            'orderNumber':1,
-            'icon':'https://exemple.com/icon.png'
+            'name': 'Folder sample python 3',
+            'type': 'tag',
+            'description': 'Folder description',
+            'orderNumber': 1,
+            'icon': 'https://exemple.com/icon.png'
         }
         self.category_data_update = dict(id=self.category_id, name='Test update')
 
@@ -588,5 +587,225 @@ class TestDeleteRelationCategory(TestCategoryBaseTestCase):
         with self.assertRaises(TypeError) as context:
             Category().delete_relation(
                 entity_id='eb578480-6311-4534-b00e-7c7ffbce8283',
+            )
+        self.assertTrue(context.exception.__class__.__name__, 'TypeError')
+
+
+class TestCreateRelationCategoryEntity(TestCategoryBaseTestCase):
+
+    @mock.patch('uiza.Connection._request_http')
+    def test_create_relation_entity_category_valid(self, mock_request_http):
+        mock_request_http.return_value = True, 200
+        data = Category().create_relation_entity(
+            metadata_id='eb578480-6311-4534-b00e-7c7ffbce8283',
+            entity_ids=['29f7b6ba-e2a7-4d4b-8026-30828d0a1bb0']
+        )
+        self.assertEqual(data[1], 200)
+
+    @mock.patch('uiza.Connection._request_http')
+    def test_create_relation_entity_category_invalid_with_status_code_400(self, mock_request_http):
+        mock_request_http.return_value = True, 400
+        with self.assertRaises(BadRequestError) as context:
+            Category().create_relation_entity(
+                metadata_id='eb578480-6311-4534-b00e-7c7ffbce8283',
+                entity_ids=['29f7b6ba-e2a7-4d4b-8026-30828d0a1bb0']
+            )
+        self.assertTrue(context.exception.__class__.__name__, 'BadRequestError')
+
+    @mock.patch('uiza.Connection._request_http')
+    def test_create_relation_entity_category_invalid_with_status_code_401(self, mock_request_http):
+        mock_request_http.return_value = True, 401
+        with self.assertRaises(UnauthorizedError) as context:
+            Category().create_relation_entity(
+                metadata_id='eb578480-6311-4534-b00e-7c7ffbce8283',
+                entity_ids=['29f7b6ba-e2a7-4d4b-8026-30828d0a1bb0']
+            )
+        self.assertTrue(context.exception.__class__.__name__, 'UnauthorizedError')
+
+    @mock.patch('uiza.Connection._request_http')
+    def test_create_relation_entity_category_invalid_with_status_code_404(self, mock_request_http):
+        mock_request_http.return_value = True, 404
+        with self.assertRaises(NotFoundError) as context:
+            Category().create_relation_entity(
+                metadata_id='eb578480-6311-4534-b00e-7c7ffbce8283',
+                entity_ids=['29f7b6ba-e2a7-4d4b-8026-30828d0a1bb0']
+            )
+        self.assertTrue(context.exception.__class__.__name__, 'NotFoundError')
+
+    @mock.patch('uiza.Connection._request_http')
+    def test_create_relation_entity_category_invalid_with_status_code_422(self, mock_request_http):
+        mock_request_http.return_value = True, 422
+        with self.assertRaises(UnprocessableError) as context:
+            Category().create_relation_entity(
+                metadata_id='eb578480-6311-4534-b00e-7c7ffbce8283',
+                entity_ids=['29f7b6ba-e2a7-4d4b-8026-30828d0a1bb0']
+            )
+        self.assertTrue(context.exception.__class__.__name__, 'UnprocessableError')
+
+    @mock.patch('uiza.Connection._request_http')
+    def test_create_relation_entity_category_invalid_with_status_code_500(self, mock_request_http):
+        mock_request_http.return_value = True, 500
+        with self.assertRaises(InternalServerError) as context:
+            Category().create_relation_entity(
+                metadata_id='eb578480-6311-4534-b00e-7c7ffbce8283',
+                entity_ids=['29f7b6ba-e2a7-4d4b-8026-30828d0a1bb0']
+            )
+        self.assertTrue(context.exception.__class__.__name__, 'InternalServerError')
+
+    @mock.patch('uiza.Connection._request_http')
+    def test_create_relation_entity_category_invalid_with_status_code_503(self, mock_request_http):
+        mock_request_http.return_value = True, 503
+        with self.assertRaises(ServiceUnavailableError) as context:
+            Category().create_relation_entity(
+                metadata_id='eb578480-6311-4534-b00e-7c7ffbce8283',
+                entity_ids=['29f7b6ba-e2a7-4d4b-8026-30828d0a1bb0']
+            )
+        self.assertTrue(context.exception.__class__.__name__, 'ServiceUnavailableError')
+
+    @mock.patch('uiza.Connection._request_http')
+    def test_create_relation_entity_category_invalid_with_status_code_4xx(self, mock_request_http):
+        mock_request_http.return_value = True, 412
+        with self.assertRaises(ClientError) as context:
+            Category().create_relation_entity(
+                metadata_id='eb578480-6311-4534-b00e-7c7ffbce8283',
+                entity_ids=['29f7b6ba-e2a7-4d4b-8026-30828d0a1bb0']
+            )
+        self.assertTrue(context.exception.__class__.__name__, 'ClientError')
+
+    @mock.patch('uiza.Connection._request_http')
+    def test_create_relation_entity_category_invalid_with_status_code_5xx(self, mock_request_http):
+        mock_request_http.return_value = True, 512
+        with self.assertRaises(ServerError) as context:
+            Category().create_relation_entity(
+                metadata_id='eb578480-6311-4534-b00e-7c7ffbce8283',
+                entity_ids=['29f7b6ba-e2a7-4d4b-8026-30828d0a1bb0']
+            )
+        self.assertTrue(context.exception.__class__.__name__, 'ServerError')
+
+    @mock.patch('uiza.Connection._request_http')
+    def test_create_relation_entity_category_invalid_not_entity_ids(self, mock_request_http):
+        mock_request_http.return_value = True, 200
+        with self.assertRaises(TypeError) as context:
+            Category().create_relation_entity(
+                metadata_id='29f7b6ba-e2a7-4d4b-8026-30828d0a1bb0'
+            )
+        self.assertTrue(context.exception.__class__.__name__, 'TypeError')
+
+    @mock.patch('uiza.Connection._request_http')
+    def test_create_relation_entity_category_invalid_not_metadata_id(self, mock_request_http):
+        mock_request_http.return_value = True, 200
+        with self.assertRaises(TypeError) as context:
+            Category().create_relation_entity(
+                entity_ids=['eb578480-6311-4534-b00e-7c7ffbce8283', ]
+            )
+        self.assertTrue(context.exception.__class__.__name__, 'TypeError')
+
+
+class TestDeleteRelationCategoryEntity(TestCategoryBaseTestCase):
+
+    @mock.patch('uiza.Connection._request_http')
+    def test_delete_relation_category_entity_valid(self, mock_request_http):
+        mock_request_http.return_value = True, 200
+        data = Category().delete_relation_entity(
+            metadata_id='eb578480-6311-4534-b00e-7c7ffbce8283',
+            entity_ids=['29f7b6ba-e2a7-4d4b-8026-30828d0a1bb0']
+        )
+        self.assertEqual(data[1], 200)
+
+    @mock.patch('uiza.Connection._request_http')
+    def test_delete_relation_category_entity_invalid_with_status_code_400(self, mock_request_http):
+        mock_request_http.return_value = True, 400
+        with self.assertRaises(BadRequestError) as context:
+            Category().delete_relation_entity(
+                metadata_id='eb578480-6311-4534-b00e-7c7ffbce8283',
+                entity_ids=['29f7b6ba-e2a7-4d4b-8026-30828d0a1bb0']
+            )
+        self.assertTrue(context.exception.__class__.__name__, 'BadRequestError')
+
+    @mock.patch('uiza.Connection._request_http')
+    def test_delete_relation_category_entity_invalid_with_status_code_401(self, mock_request_http):
+        mock_request_http.return_value = True, 401
+        with self.assertRaises(UnauthorizedError) as context:
+            Category().delete_relation_entity(
+                metadata_id='eb578480-6311-4534-b00e-7c7ffbce8283',
+                entity_ids=['29f7b6ba-e2a7-4d4b-8026-30828d0a1bb0']
+            )
+        self.assertTrue(context.exception.__class__.__name__, 'UnauthorizedError')
+
+    @mock.patch('uiza.Connection._request_http')
+    def test_delete_relation_category_entity_invalid_with_status_code_404(self, mock_request_http):
+        mock_request_http.return_value = True, 404
+        with self.assertRaises(NotFoundError) as context:
+            Category().delete_relation_entity(
+                metadata_id='eb578480-6311-4534-b00e-7c7ffbce8283',
+                entity_ids=['29f7b6ba-e2a7-4d4b-8026-30828d0a1bb0']
+            )
+        self.assertTrue(context.exception.__class__.__name__, 'NotFoundError')
+
+    @mock.patch('uiza.Connection._request_http')
+    def test_delete_relation_category_entity_invalid_with_status_code_422(self, mock_request_http):
+        mock_request_http.return_value = True, 422
+        with self.assertRaises(UnprocessableError) as context:
+            Category().delete_relation_entity(
+                metadata_id='eb578480-6311-4534-b00e-7c7ffbce8283',
+                entity_ids=['29f7b6ba-e2a7-4d4b-8026-30828d0a1bb0']
+            )
+        self.assertTrue(context.exception.__class__.__name__, 'UnprocessableError')
+
+    @mock.patch('uiza.Connection._request_http')
+    def test_delete_relation_category_entity_invalid_with_status_code_500(self, mock_request_http):
+        mock_request_http.return_value = True, 500
+        with self.assertRaises(InternalServerError) as context:
+            Category().delete_relation_entity(
+                metadata_id='eb578480-6311-4534-b00e-7c7ffbce8283',
+                entity_ids=['29f7b6ba-e2a7-4d4b-8026-30828d0a1bb0']
+            )
+        self.assertTrue(context.exception.__class__.__name__, 'InternalServerError')
+
+    @mock.patch('uiza.Connection._request_http')
+    def test_delete_relation_category_entity_invalid_with_status_code_503(self, mock_request_http):
+        mock_request_http.return_value = True, 503
+        with self.assertRaises(ServiceUnavailableError) as context:
+            Category().delete_relation_entity(
+                metadata_id='eb578480-6311-4534-b00e-7c7ffbce8283',
+                entity_ids=['29f7b6ba-e2a7-4d4b-8026-30828d0a1bb0']
+            )
+        self.assertTrue(context.exception.__class__.__name__, 'ServiceUnavailableError')
+
+    @mock.patch('uiza.Connection._request_http')
+    def test_delete_relation_category_entity_invalid_with_status_code_4xx(self, mock_request_http):
+        mock_request_http.return_value = True, 412
+        with self.assertRaises(ClientError) as context:
+            Category().delete_relation_entity(
+                metadata_id='eb578480-6311-4534-b00e-7c7ffbce8283',
+                entity_ids=['29f7b6ba-e2a7-4d4b-8026-30828d0a1bb0']
+            )
+        self.assertTrue(context.exception.__class__.__name__, 'ClientError')
+
+    @mock.patch('uiza.Connection._request_http')
+    def test_delete_relation_category_entity_invalid_with_status_code_5xx(self, mock_request_http):
+        mock_request_http.return_value = True, 512
+        with self.assertRaises(ServerError) as context:
+            Category().delete_relation_entity(
+                metadata_id='eb578480-6311-4534-b00e-7c7ffbce8283',
+                entity_ids=['29f7b6ba-e2a7-4d4b-8026-30828d0a1bb0']
+            )
+        self.assertTrue(context.exception.__class__.__name__, 'ServerError')
+
+    @mock.patch('uiza.Connection._request_http')
+    def test_delete_relation_category_entity_invalid_not_entity_ids(self, mock_request_http):
+        mock_request_http.return_value = True, 200
+        with self.assertRaises(TypeError) as context:
+            Category().delete_relation_entity(
+                metadata_id='29f7b6ba-e2a7-4d4b-8026-30828d0a1bb0'
+            )
+        self.assertTrue(context.exception.__class__.__name__, 'TypeError')
+
+    @mock.patch('uiza.Connection._request_http')
+    def test_delete_relation_category_entity_invalid_not_metadata_id(self, mock_request_http):
+        mock_request_http.return_value = True, 200
+        with self.assertRaises(TypeError) as context:
+            Category().delete_relation_entity(
+                entity_ids=['eb578480-6311-4534-b00e-7c7ffbce8283', ]
             )
         self.assertTrue(context.exception.__class__.__name__, 'TypeError')

@@ -262,7 +262,7 @@ uiza.app_id = "<your-app-id>"
 
 res, status_code = Entity().get_status_publish(id='33a86c18-f502-41a4-9c4c-d4e14efca238')
 
-print("status_code", status_code)
+print("res: ", res)
 ```
 
 #### Parameters
@@ -294,7 +294,7 @@ uiza.app_id = "<your-app-id>"
 
 res, status_code = Entity().get_aws_upload_key()
 
-print("status_code", status_code)
+print("res: ", res)
 ```
 
 #### Parameters
@@ -326,7 +326,7 @@ uiza.app_id = "<your-app-id>"
 
 res, status_code = Entity().generate_iframe(entityId='b3368ee3-8eba-4ad5-8882-e51aef15cf1c', api='https://example.com/video')
 
-print("status_code", status_code)
+print("res: ", res)
 ```
 
 #### Parameters
@@ -359,7 +359,7 @@ uiza.app_id = "<your-app-id>"
 
 res, status_code = Entity().get_media_tracking(progress='0')
 
-print("status_code", status_code)
+print("res: ", res)
 ```
 
 #### Parameters
@@ -392,7 +392,7 @@ uiza.app_id = "<your-app-id>"
 
 res, status_code = Entity().get_media_upload_detail(id='b3368ee3-8eba-4ad5-8882-e51aef15cf1c')
 
-print("status_code", status_code)
+print("res: ", res)
 ```
 
 #### Parameters
