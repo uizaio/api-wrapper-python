@@ -8,11 +8,11 @@ You can manage user with APIs user. Uiza have 2 levels of user:
 
 We can use a `User` to:
 
-- **create()**
+- **login()**
 - **retrieve()**
 - **update()**
-- **list()**
-- **delete()**
+- **check_token()**
+- **referral()**
 - **change_password()**
 - **logout()**
 
