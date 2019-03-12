@@ -3,9 +3,10 @@ try:
 except ImportError:
     from urllib import urlencode
 
+import uiza
+
 
 class UizaBase(object):
-
     data_validated = None
     connection = None
 
@@ -13,11 +14,12 @@ class UizaBase(object):
         """
         Create data
         :param data: data body will be created
-        :return: tuple of data created and status code
         """
-        result = self.connection.post(data=data)
+        data_body = dict(appId=uiza.app_id)
+        data_body.update(data)
+        result = self.connection.post(data=data_body)
         try:
-            query = self.url_encode(params={'id': result[0].id})
+            query = self.url_encode(params={'id': result[0].id, 'appId': uiza.app_id})
             result = self.connection.get(query=query)
         except Exception:
             pass
@@ -28,26 +30,28 @@ class UizaBase(object):
         """
         Update data
         :param kwargs: data body will be updated
-        :return: tuple of data updated and status code
         """
-        result = self.connection.put(data=kwargs)
+        data_body = dict(appId=uiza.app_id)
+        if kwargs:
+            data_body.update(kwargs)
+        result = self.connection.put(data=data_body)
         try:
-            query = self.url_encode(params={'id': result[0].id})
+            query = self.url_encode(params={'id': result[0].id, 'appId': uiza.app_id})
             result = self.connection.get(query=query)
         except Exception:
             pass
 
         return result
 
-    def list(self, **params):
+    def list(self, **kwargs):
         """
         List data
-        :param params: params
-        :return: tuple of data exist and status code
+        :param kwargs: params
         """
-        query = ''
-        if params:
-            query = self.url_encode(params=params)
+        params = dict(appId=uiza.app_id)
+        if kwargs:
+            params.update(kwargs)
+        query = self.url_encode(params=params)
         result = self.connection.get(query=query)
 
         return result
@@ -56,9 +60,8 @@ class UizaBase(object):
         """
         Get detail
         :param id: id of object
-        :return: tuple of data and status code
         """
-        query = self.url_encode(params={'id': id})
+        query = self.url_encode(params={'id': id, 'appId': uiza.app_id})
         result = self.connection.get(query=query)
 
         return result
@@ -66,9 +69,10 @@ class UizaBase(object):
     def delete(self, id):
         """ata
         Delete data
-        :return: tuple of id removed and status code
+        :param id: id of object
+        :param appId: appId
         """
-        result = self.connection.delete(dict(id=id))
+        result = self.connection.delete(dict(id=id, appId=uiza.app_id))
 
         return result
 

@@ -16,14 +16,14 @@ class Entity(UizaBase):
             api_sub_url=settings.uiza_api.entity.sub_url
         )
 
-    def search(self, keyword):
+    def generate_iframe(self, entityId, api):
         """
-        Search entity base on keyword entered
-        :param keyword: keyword for search entity
-        :return: tuple of list detail entity and status code
+        Generate iframe entity base on keyword entered
+        :param entityId: id of entity
+        :param api: api iframe
         """
-        self.connection.url = '{}/search'.format(self.connection.url)
-        params = dict(keyword=keyword)
+        self.connection.url = '{}/iframe'.format(self.connection.url)
+        params = dict(entityId=entityId, api=api, appId=uiza.app_id)
         query = self.url_encode(params=params)
         data = self.connection.get(query=query)
 
@@ -33,10 +33,9 @@ class Entity(UizaBase):
         """
         Publish entity to CDN, use for streaming
         :param id: identifier of entity
-        :return: tuple of response and status code
         """
         self.connection.url = '{}/publish'.format(self.connection.url)
-        data = self.connection.post(data={'id': id})
+        data = self.connection.post(data={'id': id, 'appId': uiza.app_id})
 
         return data
 
@@ -44,10 +43,34 @@ class Entity(UizaBase):
         """
         Get status publish entity
         :param id: identifier of entity
-        :return: tuple of status publish entity and status code
         """
         self.connection.url = '{}/publish/status'.format(self.connection.url)
-        query = self.url_encode(params={'id': id})
+        query = self.url_encode(params={'id': id, 'appId': uiza.app_id})
+        data = self.connection.get(query=query)
+
+        return data
+
+    def get_media_tracking(self, **kwargs):
+        """
+        Get media tracking
+        :param progress: progress of entity. This is optional
+        """
+        self.connection.url = '{}/tracking'.format(self.connection.url)
+        params = dict(appId=uiza.app_id)
+        if kwargs:
+            params.update(kwargs)
+        query = self.url_encode(params=params)
+        data = self.connection.get(query=query)
+
+        return data
+
+    def get_media_upload_detail(self, id):
+        """
+        Get media upload detail
+        :param id: identifier of entity
+        """
+        self.connection.url = '{}/tracking'.format(self.connection.url)
+        query = self.url_encode(params={'id': id, 'appId': uiza.app_id})
         data = self.connection.get(query=query)
 
         return data
@@ -55,7 +78,7 @@ class Entity(UizaBase):
     def get_aws_upload_key(self):
         """
         Return the bucket temporary upload storage & key for upload
-        :return:
+        :param appId: appId
         """
         aws_sub_url = 'admin/app/config/aws'
         self.connection.url = set_url(
@@ -64,7 +87,7 @@ class Entity(UizaBase):
             api_version=settings.uiza_api.entity.version,
             api_sub_url=aws_sub_url
         )
-
-        data = self.connection.get()
+        query = self.url_encode(params={'appId': uiza.app_id})
+        data = self.connection.get(query=query)
 
         return data

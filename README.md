@@ -51,8 +51,8 @@ The first, needing create Uiza connection using `workspace_api_domain` and `api_
 ```python
 import uiza
 
-uiza.workspace_api_domain = <your-workspace-api-domain.uiza.co>
 uiza.api_key = <your-api-key>
+uiza.app_id = <your-app-id>
 
 ``` 
 
@@ -67,7 +67,7 @@ uiza.workspace_api_domain = "<your-workspace-api-domain.uiza.co>"
 uiza.api_key = "<your-api-key>"
 
 try:
-    entity_data, _ = Entity().search()
+    entity_data, _ = Entity().list()
 except ServerException as e:
     raise e
 except Exception as e:
