@@ -25,11 +25,6 @@ API_CONFIG = {
             "version": "v4",
             "sub_url": "live/entity"
         },
-        "callback": {
-            "type": "api/public",
-            "version": "v4",
-            "sub_url": "media/entity/callback"
-        },
         "analytic": {
             "type": "api/public",
             "version": "v4",

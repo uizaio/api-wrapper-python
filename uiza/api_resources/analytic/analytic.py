@@ -23,7 +23,7 @@ class Analytic(UizaBase):
         :param params:
         :return: Raise error when get method list
         """
-        raise ClientException('Callback list method not found')
+        raise ClientException('Analytic list method not found')
 
     def create(self, **data):
         """
@@ -31,7 +31,7 @@ class Analytic(UizaBase):
         :param data:
         :return: Raise error when get method create
         """
-        raise ClientException('Callback create method not found')
+        raise ClientException('Analytic create method not found')
 
     def update(self, **kwargs):
         """
@@ -39,7 +39,7 @@ class Analytic(UizaBase):
         :param kwargs:
         :return: Raise error when get method update
         """
-        raise ClientException('Callback update method not found')
+        raise ClientException('Analytic update method not found')
 
     def retrieve(self, id):
         """
@@ -47,14 +47,14 @@ class Analytic(UizaBase):
         :param id:
         :return: Raise error when get method retrieve
         """
-        raise ClientException('Callback retrieve method not found')
+        raise ClientException('Analytic retrieve method not found')
 
     def delete(self, id):
         """
         Override method delete of Uizabase
         :return: Raise error when get method delete
         """
-        raise ClientException('Callback delete method not found')
+        raise ClientException('Analytic delete method not found')
 
     def get_total_line(self, start_date, end_date, metric):
         """

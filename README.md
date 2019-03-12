@@ -83,7 +83,6 @@ Next steps, reading the [Client Library Documentation]() to see other available 
 - [Category](https://github.com/uizaio/api-wrapper-python/blob/master/docs/category.md)
 - [Storage](https://github.com/uizaio/api-wrapper-python/blob/master/docs/storage.md)
 - [Live Streaming](https://github.com/uizaio/api-wrapper-python/blob/master/docs/callback.md)
-- [Callback](https://github.com/uizaio/api-wrapper-python/blob/master/docs/category.md)
 - [User](https://github.com/uizaio/api-wrapper-python/blob/master/docs/user.md)
 - [Analytic](https://github.com/uizaio/api-wrapper-python/blob/master/docs/analytic.md)
 
