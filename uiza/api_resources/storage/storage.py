@@ -47,9 +47,11 @@ class Storage(UizaBase):
         :param data: data body will be created
         :return: tuple of data created and status code
         """
-        result = self.connection.post(data=data)
+        data_body = dict(appId=uiza.app_id)
+        data_body.update(data)
+        result = self.connection.post(data=data_body)
         try:
-            query = self.url_encode(params={'id': result[0].id})
+            query = self.url_encode(params={'id': result[0].id, 'appId': uiza.app_id},)
             result = self.connection.get(query=query)
         except Exception:
             pass
@@ -61,6 +63,6 @@ class Storage(UizaBase):
         Remove storage
         :return: tuple of id removed and status code
         """
-        result = self.connection.delete(dict(id=id))
+        result = self.connection.delete(dict(id=id, appId=uiza.app_id))
 
         return result

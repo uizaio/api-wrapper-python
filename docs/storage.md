@@ -18,19 +18,23 @@ Function to add storage.
 For example:
 
 ```python
+
+import uiza
 from uiza.api_resources.storage import Storage
 
+uiza.api_key = "<your-api-key>"
+uiza.app_id = "<your-app-id>"
+
 storage_data = {
-        "name":"FTP Uiza Test",
-        "description":"FTP of Uiza, use for transcode",
-        "storageType":"ftp",
-        "host":"ftp-example.uiza.io"
-    }
+    "name":"FTP Uiza Test",
+    "description":"FTP of Uiza, use for transcode",
+    "storageType":"ftp",
+    "host":"ftp-example.uiza.io"
+}
 
 res, status_code = Storage().add(**storage_data)
 
-print("id: ", res.id)
-print("status_code", status_code)
+print("res: ", res)
 ```
 
 #### Parameters
@@ -60,12 +64,15 @@ Function to get detail of category.
 For example:
 
 ```python
-storage_id = '33a86c18-f502-41a4-9c4c-d4e14efca238'
+import uiza
+from uiza.api_resources.storage import Storage
 
-res, status_code = Storage().retrieve(storage_id)
+uiza.api_key = "<your-api-key>"
+uiza.app_id = "<your-app-id>"
 
-print("id: ", res.id)
-print("status_code", status_code)
+res, status_code = Storage().retrieve(id='33a86c18-f502-41a4-9c4c-d4e14efca238')
+
+print("res: ", res)
 ```
 
 #### Parameters
@@ -89,10 +96,15 @@ Function to update storage's information.
 For example:
 
 ```python
+import uiza
+from uiza.api_resources.storage import Storage
+
+uiza.api_key = "<your-api-key>"
+uiza.app_id = "<your-app-id>"
+
 res, status_code = Storage().update(id='33a86c18-f502-41a4-9c4c-d4e14efca238', name='Update title')
 
-print("id: ", res.id)
-print("status_code", status_code)
+print("res: ", res)
 ```
 
 #### Parameters
@@ -101,7 +113,7 @@ print("status_code", status_code)
 - **name** (*str*) - Name of storage.
 - **host** (*str*) - Host name of the server or IP address.
 - **port** (*int*) - Used port for FTP server. Normally will be 21.
-- **storageType** (*str*) - Storage can be FTP or AWS S3. Allowed values: [S3, FTP].
+- **storageType** (*str*) - Storage can be FTP or AWS S3. Allowed values: ["s3", "ftp", "s3-uiza", "s3-compatible"].
 - **awsAccessKey** (*str*) - AWS Access key ID with storageType is S3.
 - **awsSecretKey** (*str*) - AWS Secret key ID with storageType is S3.
 - **prefix** (*str*) - Prefix for objects store in AWS S3 with storageType is S3.
@@ -126,10 +138,15 @@ Function to remove storage.
 For example:
 
 ```python
-res, status_code = Storage().remove('ddf09dd0-b7a8-4f29-92df-14dafb97b2aa')
+import uiza
+from uiza.api_resources.storage import Storage
 
-print("id: ", res.id)
-print("status_code", status_code)
+uiza.api_key = "<your-api-key>"
+uiza.app_id = "<your-app-id>"
+
+res, status_code = Storage().remove(id='ddf09dd0-b7a8-4f29-92df-14dafb97b2aa')
+
+print("res: ", res)
 ```
 
 #### Parameters

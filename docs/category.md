@@ -11,8 +11,6 @@ We can use a `Category` to:
 - **delete()**
 - **create_relation()**
 - **delete_relation()**
-- **create_relation_entity()**
-- **delete_relation_entity()**
 
 ### Create category
 
@@ -252,80 +250,6 @@ print("res: ", res)
 
 - **entityId** (*str*) - Identifier of entity.
 - **metadataIds** (*array*) - Identifier of category.
-
-#### Return type
-
-- Tuple
-
-#### Return
-
-- Response data and status code
-
-### Create category relation entity
-
-`create_relation_entity(**data)`
-
-Function to add relation for entity and category.
-
-For example:
-
-```python
-import uiza
-from uiza.api_resources.category import Category
-
-uiza.api_key = "<your-api-key>"
-uiza.app_id = "<your-app-id>"
-
-res, status_code = Category().create_relation_entity(
-    metadata_id="16ab25d3-fd0f-4568-8aa0-0339bbfd674f",
-    entity_ids=["095778fa-7e42-45cc-8a0e-6118e540b61d","e00586b9-032a-46a3-af71-d275f01b03cf"]
-)
-
-print("res: ", res)
-```
-
-#### Parameters
-
-- **entity_ids** (*array*) - Identifier of entity.
-- **metadata_id** (*str*) - Identifier of category.
-
-#### Return type
-
-- Tuple
-
-#### Return
-
-- Response data and status code
-
-
-
-### Delete category relation entity
-
-`delete_relation_entity(**data)`
-
-Function to delete relation for entity and category.
-
-For example:
-
-```python
-import uiza
-from uiza.api_resources.category import Category
-
-uiza.api_key = "<your-api-key>"
-uiza.app_id = "<your-app-id>"
-
-res, status_code = Category().delete_relation_entity(
-    metadata_id="16ab25d3-fd0f-4568-8aa0-0339bbfd674f",
-    entity_ids=["095778fa-7e42-45cc-8a0e-6118e540b61d","e00586b9-032a-46a3-af71-d275f01b03cf"]
-)
-
-print("res: ", res)
-```
-
-#### Parameters
-
-- **entity_ids** (*array*) - Identifier of entity.
-- **metadata_id** (*str*) - Identifier of category.
 
 #### Return type
 

@@ -16,6 +16,19 @@ class Entity(UizaBase):
             api_sub_url=settings.uiza_api.entity.sub_url
         )
 
+    def search(self, keyword):
+        """
+        Search entity base on keyword entered
+        :param keyword: keyword for search entity
+        """
+        self.connection.url = '{}/search'.format(self.connection.url)
+        params = dict(keyword=keyword, appId=uiza.app_id)
+        query = self.url_encode(params=params)
+        data = self.connection.get(query=query)
+
+        return data
+
+
     def generate_iframe(self, entityId, api):
         """
         Generate iframe entity base on keyword entered

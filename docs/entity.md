@@ -9,12 +9,10 @@ We can use a `Entity` to:
 - **list()**
 - **update()**
 - **delete()**
+- **search()**
 - **publish()**
 - **get_status_publish()**
 - **get_aws_upload_key()**
-- **generate_iframe()**
-- **get_media_tracking()**
-- **get_media_upload_detail()**
 
 ### Create entity
 
@@ -213,6 +211,38 @@ print("res: ", res)
 
 - Response data and status code
 
+### Search entity
+
+`search(keyword)`
+
+Function to search entity base on keyword entered.
+
+For example:
+
+```python
+import uiza
+from uiza.api_resources.entity import Entity
+
+uiza.api_key = "<your-api-key>"
+uiza.app_id = "<your-app-id>"
+
+res, status_code = Entity().search(keyword="Title")
+
+print("res: ", res)
+```
+
+#### Parameters
+
+- **keyword** (*str*) - Identifier of entity.
+
+#### Return type
+
+- Tuple
+
+#### Return
+
+- Response data and status code
+
 ### Publish entity to CDN
 
 `publish(id)`
@@ -308,102 +338,3 @@ print("res: ", res)
 #### Return
 
 - Response data and status code
-
-### Generate Iframe
-
-`generate_iframe(entityId, api)`
-
-Function to generate iframe.
-
-For example:
-
-```python
-import uiza
-from uiza.api_resources.entity import Entity
-
-uiza.api_key = "<your-api-key>"
-uiza.app_id = "<your-app-id>"
-
-res, status_code = Entity().generate_iframe(entityId='b3368ee3-8eba-4ad5-8882-e51aef15cf1c', api='https://example.com/video')
-
-print("res: ", res)
-```
-
-#### Parameters
-
-- **entityId** (*str*) - Identifier of entity.
-- **api** (*str*) - Api on iframe.
-
-#### Return type
-
-- Tuple
-
-#### Return
-
-- Response data and status code
-
-### Get media tracking
-
-`get_media_tracking(progress: Optional[str])`
-
-Function to get media tracking.
-
-For example:
-
-```python
-import uiza
-from uiza.api_resources.entity import Entity
-
-uiza.api_key = "<your-api-key>"
-uiza.app_id = "<your-app-id>"
-
-res, status_code = Entity().get_media_tracking(progress='0')
-
-print("res: ", res)
-```
-
-#### Parameters
-
-- **progress** (*str*) - progress of entity.
-
-#### Return type
-
-- Tuple
-
-#### Return
-
-- Response data and status code
-
-
-### Get media tracking
-
-`get_media_tracking(progress: Optional[str])`
-
-Function to get media upload detail.
-
-For example:
-
-```python
-import uiza
-from uiza.api_resources.entity import Entity
-
-uiza.api_key = "<your-api-key>"
-uiza.app_id = "<your-app-id>"
-
-res, status_code = Entity().get_media_upload_detail(id='b3368ee3-8eba-4ad5-8882-e51aef15cf1c')
-
-print("res: ", res)
-```
-
-#### Parameters
-
-- **id** (*str*) - Identifier of entity.
-
-#### Return type
-
-- Tuple
-
-#### Return
-
-- Response data and status code
-

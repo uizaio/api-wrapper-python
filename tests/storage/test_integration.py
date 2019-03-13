@@ -22,6 +22,7 @@ class TestStorageBaseTestCase(unittest.TestCase):
         super(TestStorageBaseTestCase, self).__init__(*args, **kwargs)
         uiza.workspace_api_domain = 'test domain'
         uiza.api_key = 'test api key'
+        uiza.app_id = 'test app id'
         self.storage_id = '37d6706e-be91-463e-b3b3-b69451dd4752'
         self.storage_data_create = {
             'name': 'FTP Uiza test 4',

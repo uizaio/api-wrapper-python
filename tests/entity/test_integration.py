@@ -801,3 +801,75 @@ class TestGetAWSUploadKeyEntity(TestEntityBaseTestCase):
         with self.assertRaises(ServerError) as context:
             Entity().get_aws_upload_key()
         self.assertTrue(context.exception.__class__.__name__, 'ServerError')
+
+
+class TestSearchEntity(TestEntityBaseTestCase):
+
+    @mock.patch('uiza.Connection._request_http')
+    def test_search_entity_valid(self, mock_request_http):
+        mock_request_http.return_value = True, 200
+        data = Entity().search(keyword='Test keyword')
+        self.assertEqual(data[1], 200)
+
+    @mock.patch('uiza.Connection._request_http')
+    def test_search_entity_invalid_with_status_code_400(self, mock_request_http):
+        mock_request_http.return_value = True, 400
+        with self.assertRaises(BadRequestError) as context:
+            Entity().search(keyword='Test keyword')
+        self.assertTrue(context.exception.__class__.__name__, 'BadRequestError')
+
+    @mock.patch('uiza.Connection._request_http')
+    def test_search_entity_invalid_with_status_code_401(self, mock_request_http):
+        mock_request_http.return_value = True, 401
+        with self.assertRaises(UnauthorizedError) as context:
+            Entity().search(keyword='Test keyword')
+        self.assertTrue(context.exception.__class__.__name__, 'UnauthorizedError')
+
+    @mock.patch('uiza.Connection._request_http')
+    def test_search_entity_invalid_with_status_code_404(self, mock_request_http):
+        mock_request_http.return_value = True, 404
+        with self.assertRaises(NotFoundError) as context:
+            Entity().search(keyword='Test keyword')
+        self.assertTrue(context.exception.__class__.__name__, 'NotFoundError')
+
+    @mock.patch('uiza.Connection._request_http')
+    def test_search_entity_invalid_with_status_code_422(self, mock_request_http):
+        mock_request_http.return_value = True, 422
+        with self.assertRaises(UnprocessableError) as context:
+            Entity().search(keyword='Test keyword')
+        self.assertTrue(context.exception.__class__.__name__, 'UnprocessableError')
+
+    @mock.patch('uiza.Connection._request_http')
+    def test_search_entity_invalid_with_status_code_500(self, mock_request_http):
+        mock_request_http.return_value = True, 500
+        with self.assertRaises(InternalServerError) as context:
+            Entity().search(keyword='Test keyword')
+        self.assertTrue(context.exception.__class__.__name__, 'InternalServerError')
+
+    @mock.patch('uiza.Connection._request_http')
+    def test_search_entity_invalid_with_status_code_503(self, mock_request_http):
+        mock_request_http.return_value = True, 503
+        with self.assertRaises(ServiceUnavailableError) as context:
+            Entity().search(keyword='Test keyword')
+        self.assertTrue(context.exception.__class__.__name__, 'ServiceUnavailableError')
+
+    @mock.patch('uiza.Connection._request_http')
+    def test_search_entity_invalid_with_status_code_4xx(self, mock_request_http):
+        mock_request_http.return_value = True, 412
+        with self.assertRaises(ClientError) as context:
+            Entity().search(keyword='Test keyword')
+        self.assertTrue(context.exception.__class__.__name__, 'ClientError')
+
+    @mock.patch('uiza.Connection._request_http')
+    def test_search_entity_invalid_with_status_code_5xx(self, mock_request_http):
+        mock_request_http.return_value = True, 512
+        with self.assertRaises(ServerError) as context:
+            Entity().search(keyword='Test keyword')
+        self.assertTrue(context.exception.__class__.__name__, 'ServerError')
+
+    @mock.patch('uiza.Connection._request_http')
+    def test_search_entity_invalid_with_not_keyword(self, mock_request_http):
+        mock_request_http.return_value = True, 200
+        with self.assertRaises(TypeError) as context:
+            Entity().search()
+        self.assertTrue(context.exception.__class__.__name__, 'TypeError')
