@@ -11,8 +11,8 @@ from uiza.exceptions import (
     InternalServerError,
     ServiceUnavailableError,
     ClientError,
-    ServerError,
-    ClientException)
+    ServerError
+)
 
 
 class TestUserBaseTestCase(unittest.TestCase):
@@ -21,6 +21,7 @@ class TestUserBaseTestCase(unittest.TestCase):
         super(TestUserBaseTestCase, self).__init__(*args, **kwargs)
         uiza.workspace_api_domain = 'test domain'
         uiza.api_key = 'test api key'
+        uiza.app_id = 'test app id'
         self.user_id = '37d6706e-be91-463e-b3b3-b69451dd4752'
         self.user_data_create = {
             "id": "fc1e299b-be9f-40d7-9413-1850e6feb1df",

@@ -21,7 +21,6 @@ class Live(UizaBase):
         """
         Override method list of Uizabase
         :param params:
-        :return: Raise error when get method list
         """
         raise ClientException('Livestreaming list method not found')
 
@@ -29,7 +28,6 @@ class Live(UizaBase):
         """
         Override method delete of Uizabase
         :param id:
-        :return: Raise error when get method delete
         """
         raise ClientException('Livestreaming delete method not found')
 
@@ -37,10 +35,9 @@ class Live(UizaBase):
         """
         Start a live event
         :param id: identifier of event.
-        :return: tuple of id event and status code
         """
         self.connection.url = '{}/feed'.format(self.connection.url)
-        result = self.connection.post(dict(id=id))
+        result = self.connection.post(dict(id=id, appId=uiza.app_id))
 
         return result
 
@@ -48,32 +45,33 @@ class Live(UizaBase):
         """
         Stop a live event
         :param id: identifier of event.
-        :return: tuple of id event and status code
         """
         self.connection.url = '{}/feed'.format(self.connection.url)
-        result = self.connection.put(dict(id=id))
+        result = self.connection.put(dict(id=id, appId=uiza.app_id))
 
         return result
 
-    def get_view(self,  id):
+    def get_view(self, id):
         """
         Get a live view status
         :param id: event id has been created
-        :return: tuple of response and status code
         """
         self.connection.url = '{}/tracking/current-view'.format(self.connection.url)
-        query = self.url_encode(params={'id': id})
+        query = self.url_encode(params={'id': id, 'appId': uiza.app_id})
         result = self.connection.get(query=query)
 
         return result
 
-    def list_recorded(self):
+    def list_recorded(self, id=None):
         """
         List of recorded file after streamed
-        :return: tuple of response and status code
         """
         self.connection.url = '{}/dvr'.format(self.connection.url)
-        result = self.connection.get()
+        params = dict(appId=uiza.app_id)
+        if id:
+            params.update(dict(id=id))
+        query = self.url_encode(params=params)
+        result = self.connection.get(query=query)
 
         return result
 
@@ -81,10 +79,9 @@ class Live(UizaBase):
         """
         Convert recorded file into VOD entity
         :param id: identifier of record (get from list record)
-        :return: tuple of response and status code
         """
         self.connection.url = '{}/dvr/convert-to-vod'.format(self.connection.url)
-        result = self.connection.post(dict(id=id))
+        result = self.connection.post(dict(id=id, appId=uiza.app_id))
 
         return result
 
@@ -92,9 +89,8 @@ class Live(UizaBase):
         """
         Delete a recorded file
         :param id: identifier of record (get from list record)
-        :return: tuple of id record has been deleted and status code
         """
         self.connection.url = '{}/dvr'.format(self.connection.url)
-        result = self.connection.delete(dict(id=id))
+        result = self.connection.delete(dict(id=id, appId=uiza.app_id))
 
         return result

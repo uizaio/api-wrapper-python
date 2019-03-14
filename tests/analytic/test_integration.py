@@ -22,6 +22,7 @@ class TestAnalyticBaseTestCase(unittest.TestCase):
         super(TestAnalyticBaseTestCase, self).__init__(*args, **kwargs)
         uiza.workspace_api_domain = 'test domain'
         uiza.api_key = 'test api key'
+        uiza.app_id = 'test app id'
 
 
 class TestCreateAnalytic(TestAnalyticBaseTestCase):
