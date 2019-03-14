@@ -56,59 +56,59 @@ class Analytic(UizaBase):
         """
         raise ClientException('Analytic delete method not found')
 
-    def get_total_line(self, start_date, end_date, metric):
-        """
-        Get total line
-        :param start_date: start date
-        :param end_date: end date
-        :param metric: get metric from https://docs.uiza.io/#analytic-metrics
-        :return:
-        """
-        params = dict(
-            start_date=start_date,
-            end_date=end_date,
-            metric=metric
-        )
-        self.connection.url = '{}/total-line-v2'.format(self.connection.url)
-        query = self.url_encode(params=params)
-        result = self.connection.get(query=query)
-
-        return result
-
-    def get_type(self, start_date, end_date, type_filter):
-        """
-        Get data base on 4 type of filter: country, device, title, player
-        :param start_date: start date
-        :param end_date: end date
-        :param type_filter: filter are country, device, title, player
-        :return:
-        """
-        params = dict(
-            start_date=start_date,
-            end_date=end_date,
-            type_filter=type_filter
-        )
-        self.connection.url = '{}/type'.format(self.connection.url)
-        query = self.url_encode(params=params)
-        result = self.connection.get(query=query)
-
-        return result
-
-    def get_line(self, start_date, end_date, type):
-        """
-        Get data grouped by hour
-        :param start_date: start date
-        :param end_date: end date
-        :param type: type
-        :return:
-        """
-        params = dict(
-            start_date=start_date,
-            end_date=end_date,
-            type=type
-        )
-        self.connection.url = '{}/line'.format(self.connection.url)
-        query = self.url_encode(params=params)
-        result = self.connection.get(query=query)
-
-        return result
+    # def get_total_line(self, start_date, end_date, metric):
+    #     """
+    #     Get total line
+    #     :param start_date: start date
+    #     :param end_date: end date
+    #     :param metric: get metric from https://docs.uiza.io/#analytic-metrics
+    #     :return:
+    #     """
+    #     params = dict(
+    #         start_date=start_date,
+    #         end_date=end_date,
+    #         metric=metric
+    #     )
+    #     self.connection.url = '{}/total-line-v2'.format(self.connection.url)
+    #     query = self.url_encode(params=params)
+    #     result = self.connection.get(query=query)
+    #
+    #     return result
+    #
+    # def get_type(self, start_date, end_date, type_filter):
+    #     """
+    #     Get data base on 4 type of filter: country, device, title, player
+    #     :param start_date: start date
+    #     :param end_date: end date
+    #     :param type_filter: filter are country, device, title, player
+    #     :return:
+    #     """
+    #     params = dict(
+    #         start_date=start_date,
+    #         end_date=end_date,
+    #         type_filter=type_filter
+    #     )
+    #     self.connection.url = '{}/type'.format(self.connection.url)
+    #     query = self.url_encode(params=params)
+    #     result = self.connection.get(query=query)
+    #
+    #     return result
+    #
+    # def get_line(self, start_date, end_date, type):
+    #     """
+    #     Get data grouped by hour
+    #     :param start_date: start date
+    #     :param end_date: end date
+    #     :param type: type
+    #     :return:
+    #     """
+    #     params = dict(
+    #         start_date=start_date,
+    #         end_date=end_date,
+    #         type=type
+    #     )
+    #     self.connection.url = '{}/line'.format(self.connection.url)
+    #     query = self.url_encode(params=params)
+    #     result = self.connection.get(query=query)
+    #
+    #     return result
