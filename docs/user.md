@@ -11,8 +11,8 @@ We can use a `User` to:
 - **login()**
 - **retrieve()**
 - **update()**
-- **check_token()**
-- **referral()**
+- **list()**
+- **delete()**
 - **change_password()**
 - **logout()**
 
@@ -25,7 +25,11 @@ Function to create an user account for workspace.
 For example:
 
 ```python
+import uiza
 from uiza.api_resources.user import User
+
+uiza.api_key = "<your-api-key>"
+uiza.app_id = "<your-app-id>"
 
 user_data = {
     "status": 1,
@@ -41,8 +45,7 @@ user_data = {
 
 res, status_code = User().create(**user_data)
 
-print("id: ", res.id)
-print("status_code", status_code)
+print("res: ", res)
 ```
 
 #### Parameters
@@ -74,12 +77,15 @@ Function to retrieves the details of an existing user. You need only supply the 
 For example:
 
 ```python
-user_id = '33a86c18-f502-41a4-9c4c-d4e14efca238'
+import uiza
+from uiza.api_resources.user import User
 
-res, status_code = User().retrieve(user_id)
+uiza.api_key = "<your-api-key>"
+uiza.app_id = "<your-app-id>"
 
-print("id: ", res.id)
-print("status_code", status_code)
+res, status_code = User().retrieve(id=''33a86c18-f502-41a4-9c4c-d4e14efca238'')
+
+print("res: ", res)
 ```
 
 #### Parameters
@@ -103,10 +109,15 @@ Function to updates the specified user by setting the values of the parameters p
 For example:
 
 ```python
+import uiza
+from uiza.api_resources.user import User
+
+uiza.api_key = "<your-api-key>"
+uiza.app_id = "<your-app-id>"
+
 res, status_code = User().update(id='33a86c18-f502-41a4-9c4c-d4e14efca238', status=1)
 
-print("id: ", res.id)
-print("status_code", status_code)
+print("res: ", res)
 ```
 
 #### Parameters
@@ -139,10 +150,15 @@ Function to delete an user. It cannot be undone. Also immediately cancels all to
 For example:
 
 ```python
-res, status_code = User().delete('ddf09dd0-b7a8-4f29-92df-14dafb97b2aa')
+import uiza
+from uiza.api_resources.user import User
 
-print("id: ", res.id)
-print("status_code", status_code)
+uiza.api_key = "<your-api-key>"
+uiza.app_id = "<your-app-id>"
+
+res, status_code = User().delete(id='ddf09dd0-b7a8-4f29-92df-14dafb97b2aa')
+
+print("res: ", res)
 ```
 
 #### Parameters
@@ -168,9 +184,15 @@ If you use Admin token, you will get all the user. If you use User token, you ca
 For example:
 
 ```python
+import uiza
+from uiza.api_resources.user import User
+
+uiza.api_key = "<your-api-key>"
+uiza.app_id = "<your-app-id>"
+
 res, status_code = User().list()
 
-print("status_code", status_code)
+print("res: ", res)
 ```
 
 #### Parameters
@@ -194,21 +216,24 @@ Function to update password allows Admin or User update their current password.
 For example:
 
 ```python
+import uiza
+from uiza.api_resources.user import User
+
+uiza.api_key = "<your-api-key>"
+uiza.app_id = "<your-app-id>"
+
 res, status_code = User().change_password(
-    id="9f1cd871-9244-48a1-a233-846a3b540741",
     old_password="S57Eb{:aMZhW=)G$",
     new_password="FMpsr<4[dGPu?B#u"
 )
 
-print("id", res.id)
-print("status_code", status_code)
+print("res: ", res)
 ```
 
 #### Parameters
 
 - **oldPassword** (*str*) - Current password.
 - **newPassword** (*str*) - New password (from a to Z, 6 to 25 characters).
-- **id** (*str*) - Identifier of user need reset password.
 
 #### Return type
 
@@ -227,9 +252,15 @@ Function to log out an user. After logged out, token will be removed.
 For example:
 
 ```python
+import uiza
+from uiza.api_resources.user import User
+
+uiza.api_key = "<your-api-key>"
+uiza.app_id = "<your-app-id>"
+
 res, status_code = User().logout()
 
-print("status_code", status_code)
+print("res: ", res)
 ```
 
 #### Parameters

@@ -16,28 +16,6 @@ class User(UizaBase):
             api_version=settings.uiza_api.user.version,
             api_sub_url=settings.uiza_api.user.sub_url
         )
-
-    def create(self, **data):
-        """
-        Override method create of Uizabase
-        :param data:
-        """
-        raise ClientException('User create method not found')
-
-    def list(self, **params):
-        """
-        Override method list of Uizabase
-        :param params:
-        """
-        raise ClientException('User list method not found')
-
-    def delete(self, id):
-        """
-        Override method delete of Uizabase
-        :param id: if of user
-        """
-        raise ClientException('User delete method not found')
-
     def login(self, email, password):
         """
         Login user function

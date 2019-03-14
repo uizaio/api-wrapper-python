@@ -66,8 +66,7 @@ uiza.app_id = "<your-app-id>"
 
 res, status_code = Callback().retrieve(id='33a86c18-f502-41a4-9c4c-d4e14efca238'')
 
-print("id: ", res.id)
-print("status_code", status_code)
+print("res: ", res)
 ```
 
 #### Parameters
@@ -99,8 +98,7 @@ uiza.app_id = "<your-app-id>"
 
 res, status_code = Callback().update(id='33a86c18-f502-41a4-9c4c-d4e14efca238', method='POST')
 
-print("id: ", res.id)
-print("status_code", status_code)
+print("res: ", res)
 ```
 
 #### Parameters
@@ -136,8 +134,7 @@ uiza.app_id = "<your-app-id>"
 
 res, status_code = Callback().delete(id='ddf09dd0-b7a8-4f29-92df-14dafb97b2aa')
 
-print("id: ", res.id)
-print("status_code", status_code)
+print("res: ", res)
 ```
 
 #### Parameters
