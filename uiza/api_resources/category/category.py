@@ -50,6 +50,6 @@ class Category(UizaBase):
             entityId=entity_id,
             metadataIds=metadata_ids
         )
-        result = self.connection.post(data_body)
+        result = self.connection.delete(data_body)
 
         return result
