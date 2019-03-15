@@ -68,8 +68,7 @@ class Live(UizaBase):
         """
         self.connection.url = '{}/dvr'.format(self.connection.url)
         params = dict(appId=uiza.app_id)
-        if id:
-            params.update(dict(id=id))
+        params.update(dict(id=id)) if id else params
         query = self.url_encode(params=params)
         result = self.connection.get(query=query)
 

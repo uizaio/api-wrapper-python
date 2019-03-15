@@ -152,7 +152,7 @@ from uiza.api_resources.live import Live
 uiza.api_key = "<your-api-key>"
 uiza.app_id = "<your-app-id>"
 
-res, status_code = Live().start_feed('ddf09dd0-b7a8-4f29-92df-14dafb97b2aa')
+res, status_code = Live().start_feed(id='ddf09dd0-b7a8-4f29-92df-14dafb97b2aa')
 
 print("res: ", res)
 ```

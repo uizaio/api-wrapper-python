@@ -43,16 +43,13 @@ virtualenv <your-env>
 
 ## Usage
 
-The library needs to be configured with your account's `workspace_api_domain` and `authorization` (API key).
-See details [here](https://docs.uiza.io/#authentication).
-
-The first, needing create Uiza connection using `workspace_api_domain` and `api_key`:
+The first, needing create Uiza connection using `app_id` and `api_key`:
 
 ```python
 import uiza
 
-uiza.api_key = <your-api-key>
-uiza.app_id = <your-app-id>
+uiza.api_key = "<your-api-key>"
+uiza.app_id = "<your-app-id>"
 
 ``` 
 
@@ -67,7 +64,7 @@ uiza.workspace_api_domain = "<your-workspace-api-domain.uiza.co>"
 uiza.api_key = "<your-api-key>"
 
 try:
-    entity_data, _ = Entity().list()
+    entity_data, _ = Entity().search(keyword='Sample')
 except ServerException as e:
     raise e
 except Exception as e:
@@ -82,9 +79,8 @@ Next steps, reading the [Client Library Documentation]() to see other available 
 - [Entity](https://github.com/uizaio/api-wrapper-python/blob/master/docs/entity.md)
 - [Category](https://github.com/uizaio/api-wrapper-python/blob/master/docs/category.md)
 - [Storage](https://github.com/uizaio/api-wrapper-python/blob/master/docs/storage.md)
-- [Live Streaming](https://github.com/uizaio/api-wrapper-python/blob/master/docs/callback.md)
-- [User](https://github.com/uizaio/api-wrapper-python/blob/master/docs/user.md)
-- [Analytic](https://github.com/uizaio/api-wrapper-python/blob/master/docs/analytic.md)
+- [Live Streaming](https://github.com/uizaio/api-wrapper-python/blob/master/docs/live.md)
+- [Callback](https://github.com/uizaio/api-wrapper-python/blob/master/docs/callback.md)
 
 ## Unittest
 

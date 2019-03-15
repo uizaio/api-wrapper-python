@@ -21,7 +21,6 @@ class Storage(UizaBase):
         """
         Override method list of Uizabase
         :param params:
-        :return: Raise error when get method list
         """
         raise ClientException('Storage list method not found')
 
@@ -29,7 +28,6 @@ class Storage(UizaBase):
         """
         Override method create of Uizabase
         :param params:
-        :return: Raise error when get method list
         """
         raise ClientException('Storage create method not found')
 
@@ -37,7 +35,6 @@ class Storage(UizaBase):
         """
         Override method create of Uizabase
         :param params:
-        :return: Raise error when get method list
         """
         raise ClientException('Storage delete method not found')
 
@@ -45,7 +42,6 @@ class Storage(UizaBase):
         """
         Add storage
         :param data: data body will be created
-        :return: tuple of data created and status code
         """
         data_body = dict(appId=uiza.app_id)
         data_body.update(data)
@@ -61,7 +57,7 @@ class Storage(UizaBase):
     def remove(self, id):
         """
         Remove storage
-        :return: tuple of id removed and status code
+        :param id: id of storage
         """
         result = self.connection.delete(dict(id=id, appId=uiza.app_id))
 
