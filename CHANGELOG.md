@@ -46,3 +46,13 @@
 
 ### Documentation
 - N/A
+
+
+## 1.1.1
+
+### Fixed
+- In category service:
+    - Fix delete relation category
+
+### Documentation
+- N/A
