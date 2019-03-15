@@ -18,18 +18,20 @@ Function to create a callback to your server when an entity is completed for upl
 For example:
 
 ```python
+import uiza
+from uiza.api_resources.category import Callback
 
-from uiza.api_resources.callback import Callback
+uiza.api_key = "<your-api-key>"
+uiza.app_id = "<your-app-id>"
 
 callback_data = {
-        "url":"https://callback-url-python.uiza.co",
-        "method":"GET"
-    }
+    "url":"https://callback-url-python.uiza.co",
+    "method":"GET"
+}
 
 res, status_code = Callback().create(**callback_data)
 
-print("id: ", res.id)
-print("status_code", status_code)
+print("res: ", res)
 ```
 
 #### Parameters
@@ -56,12 +58,15 @@ Function to retrieves the details of an existing callback.
 For example:
 
 ```python
-callback_id = '33a86c18-f502-41a4-9c4c-d4e14efca238'
+import uiza
+from uiza.api_resources.category import Callback
 
-res, status_code = Callback().retrieve(callback_id)
+uiza.api_key = "<your-api-key>"
+uiza.app_id = "<your-app-id>"
 
-print("id: ", res.id)
-print("status_code", status_code)
+res, status_code = Callback().retrieve(id='33a86c18-f502-41a4-9c4c-d4e14efca238'')
+
+print("res: ", res)
 ```
 
 #### Parameters
@@ -85,10 +90,15 @@ Function to update callback's information.
 For example:
 
 ```python
+import uiza
+from uiza.api_resources.category import Callback
+
+uiza.api_key = "<your-api-key>"
+uiza.app_id = "<your-app-id>"
+
 res, status_code = Callback().update(id='33a86c18-f502-41a4-9c4c-d4e14efca238', method='POST')
 
-print("id: ", res.id)
-print("status_code", status_code)
+print("res: ", res)
 ```
 
 #### Parameters
@@ -116,10 +126,15 @@ Function to delete an existing callback.
 For example:
 
 ```python
-res, status_code = Callback().delete('ddf09dd0-b7a8-4f29-92df-14dafb97b2aa')
+import uiza
+from uiza.api_resources.category import Callback
 
-print("id: ", res.id)
-print("status_code", status_code)
+uiza.api_key = "<your-api-key>"
+uiza.app_id = "<your-app-id>"
+
+res, status_code = Callback().delete(id='ddf09dd0-b7a8-4f29-92df-14dafb97b2aa')
+
+print("res: ", res)
 ```
 
 #### Parameters

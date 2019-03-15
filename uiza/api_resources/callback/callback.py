@@ -21,6 +21,5 @@ class Callback(UizaBase):
         """
         Override method list of Uizabase
         :param params:
-        :return: Raise error when get method list
         """
         raise ClientException('Callback list method not found')

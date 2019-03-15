@@ -22,17 +22,20 @@ For example:
 
 ```python
 
+import uiza
 from uiza.api_resources.category import Category
 
+uiza.api_key = "<your-api-key>"
+uiza.app_id = "<your-app-id>"
+
 category_data = {
-        "name": "Test name 1",
-        "type": "folder",
-    }
+    "name": "Test name 1",
+    "type": "folder",
+}
 
 res, status_code = Category().create(**category_data)
 
-print("id: ", res.id)
-print("status_code", status_code)
+print("res: ", res)
 ```
 
 #### Parameters
@@ -60,11 +63,15 @@ Function to get detail of category.
 For example:
 
 ```python
-category_id = '33a86c18-f502-41a4-9c4c-d4e14efca238'
+import uiza
+from uiza.api_resources.category import Category
 
-res, status_code = Category().retrieve(category_id)
+uiza.api_key = "<your-api-key>"
+uiza.app_id = "<your-app-id>"
 
-print("status_code", status_code)
+res, status_code = Category().retrieve(id='33a86c18-f502-41a4-9c4c-d4e14efca238')
+
+print("res: ", res)
 ```
 
 #### Parameters
@@ -88,9 +95,15 @@ Function to get list of categories including all detail.
 For example:
 
 ```python
+import uiza
+from uiza.api_resources.category import Category
+
+uiza.api_key = "<your-api-key>"
+uiza.app_id = "<your-app-id>"
+
 res, status_code = Category().list()
 
-print("status_code", status_code)
+print("res: ", res)
 ```
 
 #### Parameters
@@ -114,10 +127,15 @@ Function to update category's information.
 For example:
 
 ```python
+import uiza
+from uiza.api_resources.category import Category
+
+uiza.api_key = "<your-api-key>"
+uiza.app_id = "<your-app-id>"
+
 res, status_code = Category().update(id='33a86c18-f502-41a4-9c4c-d4e14efca238', name='Update title')
 
-print("id: ", res.id)
-print("status_code", status_code)
+print("res: ", res)
 ```
 
 #### Parameters
@@ -146,10 +164,15 @@ Function to delete category.
 For example:
 
 ```python
-res, status_code = Category().delete('ddf09dd0-b7a8-4f29-92df-14dafb97b2aa')
+import uiza
+from uiza.api_resources.category import Category
 
-print("id: ", res.id)
-print("status_code", status_code)
+uiza.api_key = "<your-api-key>"
+uiza.app_id = "<your-app-id>"
+
+res, status_code = Category().delete(id='ddf09dd0-b7a8-4f29-92df-14dafb97b2aa')
+
+print("res: ", res)
 ```
 
 #### Parameters
@@ -173,12 +196,18 @@ Function to add relation for entity and category.
 For example:
 
 ```python
+import uiza
+from uiza.api_resources.category import Category
+
+uiza.api_key = "<your-api-key>"
+uiza.app_id = "<your-app-id>"
+
 res, status_code = Category().create_relation(
     entity_id="16ab25d3-fd0f-4568-8aa0-0339bbfd674f",
     metadata_ids=["095778fa-7e42-45cc-8a0e-6118e540b61d","e00586b9-032a-46a3-af71-d275f01b03cf"]
 )
 
-print("status_code", status_code)
+print("res: ", res)
 ```
 
 #### Parameters
@@ -203,12 +232,18 @@ Function to delete relation for entity and category.
 For example:
 
 ```python
+import uiza
+from uiza.api_resources.category import Category
+
+uiza.api_key = "<your-api-key>"
+uiza.app_id = "<your-app-id>"
+
 res, status_code = Category().delete_relation(
     entity_id="16ab25d3-fd0f-4568-8aa0-0339bbfd674f",
     metadata_ids=["095778fa-7e42-45cc-8a0e-6118e540b61d","e00586b9-032a-46a3-af71-d275f01b03cf"]
 )
 
-print("status_code", status_code)
+print("res: ", res)
 ```
 
 #### Parameters

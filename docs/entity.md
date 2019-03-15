@@ -23,7 +23,12 @@ Function to create entity using full URL. Direct HTTP, FTP or AWS S3 link are ac
 For example:
 
 ```python
+import uiza
 from uiza.api_resources.entity import Entity
+
+uiza.api_key = "<your-api-key>"
+uiza.app_id = "<your-app-id>"
+
 entity_data = {
         "name": "Sample Video Python1",
         "url": "https://example.com/video.mp4",
@@ -33,16 +38,8 @@ entity_data = {
 
 res, status_code = Entity().create(**entity_data)
 
-# or 
-# res, status_code = entity.create(
-#   name="Sample Video Python1",
-#   url="https://example.com/video.mp4",
-#   inputType="http",
-#   "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry'\''s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum."
-# )
 
-print("id: ", res.id)
-print("status_code", status_code)
+print("res: ", res)
 ```
 
 #### Parameters
@@ -76,12 +73,15 @@ Function to get detail of entity including all information of entity.
 For example:
 
 ```python
-entity_id = '33a86c18-f502-41a4-9c4c-d4e14efca238'
+import uiza
+from uiza.api_resources.entity import Entity
 
-res, status_code = Entity().retrieve(entity_id)
+uiza.api_key = "<your-api-key>"
+uiza.app_id = "<your-app-id>"
 
-print("id: ", res.id)
-print("status_code", status_code)
+res, status_code = Entity().retrieve(id='33a86c18-f502-41a4-9c4c-d4e14efca238')
+
+print("res: ", res)
 ```
 
 #### Parameters
@@ -105,10 +105,15 @@ Function to get list of entities including all detail.
 For example:
 
 ```python
+import uiza
+from uiza.api_resources.entity import Entity
+
+uiza.api_key = "<your-api-key>"
+uiza.app_id = "<your-app-id>"
+
 res, status_code = Entity().list(name='Title')
 
-print("id: ", res.id)
-print("status_code", status_code)
+print("res: ", res)
 ```
 
 #### Parameters
@@ -145,10 +150,15 @@ Function to update entity's information.
 For example:
 
 ```python
+import uiza
+from uiza.api_resources.entity import Entity
+
+uiza.api_key = "<your-api-key>"
+uiza.app_id = "<your-app-id>"
+
 res, status_code = Entity().update(id='33a86c18-f502-41a4-9c4c-d4e14efca238', name='Update title')
 
-print("id: ", res.id)
-print("status_code", status_code)
+print("res: ", res)
 ```
 
 #### Parameters
@@ -178,10 +188,15 @@ Function to delete entity.
 For example:
 
 ```python
-res, status_code = Entity().delete('ddf09dd0-b7a8-4f29-92df-14dafb97b2aa')
+import uiza
+from uiza.api_resources.entity import Entity
 
-print("id: ", res.id)
-print("status_code", status_code)
+uiza.api_key = "<your-api-key>"
+uiza.app_id = "<your-app-id>"
+
+res, status_code = Entity().delete(id='ddf09dd0-b7a8-4f29-92df-14dafb97b2aa')
+
+print("res: ", res)
 ```
 
 #### Parameters
@@ -198,17 +213,22 @@ print("status_code", status_code)
 
 ### Search entity
 
-`search(**keyword)`
+`search(keyword)`
 
 Function to search entity base on keyword entered.
 
 For example:
 
 ```python
+import uiza
+from uiza.api_resources.entity import Entity
+
+uiza.api_key = "<your-api-key>"
+uiza.app_id = "<your-app-id>"
+
 res, status_code = Entity().search(keyword="Title")
 
-print("id: ", res.id)
-print("status_code", status_code)
+print("res: ", res)
 ```
 
 #### Parameters
@@ -232,10 +252,15 @@ Function to publish entity to CDN, use for streaming.
 For example:
 
 ```python
-res, status_code = Entity().publish('ddf09dd0-b7a8-4f29-92df-14dafb97b2aa')
+import uiza
+from uiza.api_resources.entity import Entity
 
-print("id: ", res.id)
-print("status_code", status_code)
+uiza.api_key = "<your-api-key>"
+uiza.app_id = "<your-app-id>"
+
+res, status_code = Entity().publish(id='ddf09dd0-b7a8-4f29-92df-14dafb97b2aa')
+
+print("res: ", res)
 ```
 
 #### Parameters
@@ -259,9 +284,15 @@ Function to get status publish.
 For example:
 
 ```python
-res, status_code = Entity().get_status_publish('33a86c18-f502-41a4-9c4c-d4e14efca238')
+import uiza
+from uiza.api_resources.entity import Entity
 
-print("status_code", status_code)
+uiza.api_key = "<your-api-key>"
+uiza.app_id = "<your-app-id>"
+
+res, status_code = Entity().get_status_publish(id='33a86c18-f502-41a4-9c4c-d4e14efca238')
+
+print("res: ", res)
 ```
 
 #### Parameters
@@ -285,9 +316,15 @@ Function to get AWS upload key.
 For example:
 
 ```python
+import uiza
+from uiza.api_resources.entity import Entity
+
+uiza.api_key = "<your-api-key>"
+uiza.app_id = "<your-app-id>"
+
 res, status_code = Entity().get_aws_upload_key()
 
-print("status_code", status_code)
+print("res: ", res)
 ```
 
 #### Parameters

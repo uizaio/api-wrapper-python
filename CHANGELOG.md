@@ -46,3 +46,15 @@
 
 ### Documentation
 - N/A
+
+
+## 1.2.0
+
+### Changed
+- Update API v4 for services: Entity, Category, Live, Storage, Callback
+- Remove API services: User, Analytic
+
+### Documentation
+- N/A
+
+

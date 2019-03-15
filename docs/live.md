@@ -26,24 +26,26 @@ Function to create a live streaming and manage the live streaming input (output)
 For example:
 
 ```python
-
+import uiza
 from uiza.api_resources.live import Live
 
+uiza.api_key = "<your-api-key>"
+uiza.app_id = "<your-app-id>"
+
 live_data = {
-        "name":"test event python 1",
-        "mode":"push",
-        "encode":1,
-        "dvr":1,
-        "linkStream":[
-            "https://playlist.m3u8"
-        ],
-        "resourceMode":"single"
-    }
+    "name":"test event python 1",
+    "mode":"push",
+    "encode":1,
+    "dvr":1,
+    "linkStream":[
+        "https://playlist.m3u8"
+    ],
+    "resourceMode":"single"
+}
 
 res, status_code = Live().create(**live_data)
 
-print("id: ", res.id)
-print("status_code", status_code)
+print("res: ", res)
 ```
 
 #### Parameters
@@ -75,12 +77,15 @@ Function to get detail of an existing event. You need only provide the unique id
 For example:
 
 ```python
-live_id = '33a86c18-f502-41a4-9c4c-d4e14efca238'
+import uiza
+from uiza.api_resources.live import Live
 
-res, status_code = Live().retrieve(live_id)
+uiza.api_key = "<your-api-key>"
+uiza.app_id = "<your-app-id>"
 
-print("id: ", res.id)
-print("status_code", status_code)
+res, status_code = Live().retrieve(id='33a86c18-f502-41a4-9c4c-d4e14efca238')
+
+print("res: ", res)
 ```
 
 #### Parameters
@@ -104,10 +109,15 @@ Function to update the specific Live event by edit values of parameter.
 For example:
 
 ```python
+import uiza
+from uiza.api_resources.live import Live
+
+uiza.api_key = "<your-api-key>"
+uiza.app_id = "<your-app-id>"
+
 res, status_code = Live().update(id='33a86c18-f502-41a4-9c4c-d4e14efca238', name='Update title')
 
-print("id: ", res.id)
-print("status_code", status_code)
+print("res: ", res)
 ```
 
 #### Parameters
@@ -136,10 +146,15 @@ Function to start a live event that has been create success. The Live channel mi
 For example:
 
 ```python
-res, status_code = Live().start_feed('ddf09dd0-b7a8-4f29-92df-14dafb97b2aa')
+import uiza
+from uiza.api_resources.live import Live
 
-print("id: ", res.id)
-print("status_code", status_code)
+uiza.api_key = "<your-api-key>"
+uiza.app_id = "<your-app-id>"
+
+res, status_code = Live().start_feed(id='ddf09dd0-b7a8-4f29-92df-14dafb97b2aa')
+
+print("res: ", res)
 ```
 
 #### Parameters
@@ -163,10 +178,15 @@ Function to stop live event.
 For example:
 
 ```python
-res, status_code = Live().stop_feed('ddf09dd0-b7a8-4f29-92df-14dafb97b2aa')
+import uiza
+from uiza.api_resources.live import Live
 
-print("id: ", res.id)
-print("status_code", status_code)
+uiza.api_key = "<your-api-key>"
+uiza.app_id = "<your-app-id>"
+
+res, status_code = Live().stop_feed(id='ddf09dd0-b7a8-4f29-92df-14dafb97b2aa')
+
+print("res: ", res)
 ```
 
 #### Parameters
@@ -190,9 +210,15 @@ Function to get a live view status . This view only show when event has been sta
 For example:
 
 ```python
-res, status_code = Live().get_view('ddf09dd0-b7a8-4f29-92df-14dafb97b2aa')
+import uiza
+from uiza.api_resources.live import Live
 
-print("status_code", status_code)
+uiza.api_key = "<your-api-key>"
+uiza.app_id = "<your-app-id>"
+
+res, status_code = Live().get_view(id='ddf09dd0-b7a8-4f29-92df-14dafb97b2aa')
+
+print("res: ", res)
 ```
 
 #### Parameters
@@ -216,9 +242,15 @@ Function to retrieves list of recorded file after streamed (only available when 
 For example:
 
 ```python
+import uiza
+from uiza.api_resources.live import Live
+
+uiza.api_key = "<your-api-key>"
+uiza.app_id = "<your-app-id>"
+
 res, status_code = Live().list_recorded()
 
-print("status_code", status_code)
+print("res: ", res)
 ```
 
 #### Parameters
@@ -242,9 +274,15 @@ Function to delete a recorded file.
 For example:
 
 ```python
-res, status_code = Live().delete_recorded('ddf09dd0-b7a8-4f29-92df-14dafb97b2aa')
+import uiza
+from uiza.api_resources.live import Live
 
-print("status_code", status_code)
+uiza.api_key = "<your-api-key>"
+uiza.app_id = "<your-app-id>"
+
+res, status_code = Live().delete_recorded(id='ddf09dd0-b7a8-4f29-92df-14dafb97b2aa')
+
+print("res: ", res)
 ```
 
 #### Parameters
@@ -268,9 +306,15 @@ Function to delete a recorded file.
 For example:
 
 ```python
-res, status_code = Live().convert_into_vod('ddf09dd0-b7a8-4f29-92df-14dafb97b2aa')
+import uiza
+from uiza.api_resources.live import Live
 
-print("status_code", status_code)
+uiza.api_key = "<your-api-key>"
+uiza.app_id = "<your-app-id>"
+
+res, status_code = Live().convert_into_vod(id='ddf09dd0-b7a8-4f29-92df-14dafb97b2aa')
+
+print("res: ", res)
 ```
 
 #### Parameters
