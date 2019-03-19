@@ -1,5 +1,10 @@
 API_CONFIG = {
     "uiza_api": {
+        "user": {
+            "type": "api/public",
+            "version": "v4",
+            "sub_url": "admin/user"
+        },
         "entity": {
             "type": "api/public",
             "version": "v4",
