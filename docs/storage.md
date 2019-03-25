@@ -18,7 +18,13 @@ Function to add storage.
 For example:
 
 ```python
+import uiza
+
 from uiza.api_resources.storage import Storage
+from uiza.exceptions import ServerException
+
+uiza.workspace_api_domain = "your-workspace-api-domain.uiza.co"
+uiza.authorization = "your-authorization"
 
 storage_data = {
         "name":"FTP Uiza Test",
@@ -27,10 +33,13 @@ storage_data = {
         "host":"ftp-example.uiza.io"
     }
 
-res, status_code = Storage().add(**storage_data)
-
-print("id: ", res.id)
-print("status_code", status_code)
+try:
+    res, status_code = Storage().add(**storage_data)
+    print("res ", res)
+except ServerException as e:
+    raise e
+except Exception as e:
+    raise e
 ```
 
 #### Parameters
@@ -60,12 +69,21 @@ Function to get detail of category.
 For example:
 
 ```python
-storage_id = '33a86c18-f502-41a4-9c4c-d4e14efca238'
+import uiza
 
-res, status_code = Storage().retrieve(storage_id)
+from uiza.api_resources.storage import Storage
+from uiza.exceptions import ServerException
 
-print("id: ", res.id)
-print("status_code", status_code)
+uiza.workspace_api_domain = "your-workspace-api-domain.uiza.co"
+uiza.authorization = "your-authorization"
+
+try:
+    res, status_code = Storage().retrieve(id='33a86c18-f502-41a4-9c4c-d4e14efca238')
+    print("res ", res)
+except ServerException as e:
+    raise e
+except Exception as e:
+    raise e
 ```
 
 #### Parameters
@@ -89,10 +107,21 @@ Function to update storage's information.
 For example:
 
 ```python
-res, status_code = Storage().update(id='33a86c18-f502-41a4-9c4c-d4e14efca238', name='Update title')
+import uiza
 
-print("id: ", res.id)
-print("status_code", status_code)
+from uiza.api_resources.storage import Storage
+from uiza.exceptions import ServerException
+
+uiza.workspace_api_domain = "your-workspace-api-domain.uiza.co"
+uiza.authorization = "your-authorization"
+
+try:
+    res, status_code = Storage().update(id='33a86c18-f502-41a4-9c4c-d4e14efca238', name='Update title')
+    print("res ", res)
+except ServerException as e:
+    raise e
+except Exception as e:
+    raise e
 ```
 
 #### Parameters
@@ -126,10 +155,21 @@ Function to remove storage.
 For example:
 
 ```python
-res, status_code = Storage().remove('ddf09dd0-b7a8-4f29-92df-14dafb97b2aa')
+import uiza
 
-print("id: ", res.id)
-print("status_code", status_code)
+from uiza.api_resources.storage import Storage
+from uiza.exceptions import ServerException
+
+uiza.workspace_api_domain = "your-workspace-api-domain.uiza.co"
+uiza.authorization = "your-authorization"
+
+try:
+    res, status_code = Storage().remove(id='ddf09dd0-b7a8-4f29-92df-14dafb97b2aa')
+    print("res ", res)
+except ServerException as e:
+    raise e
+except Exception as e:
+    raise e
 ```
 
 #### Parameters

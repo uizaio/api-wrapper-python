@@ -15,7 +15,7 @@ We can use a `Live Streaming` to:
 - **get_view()**
 - **list_recorded()**
 - **convert_into_vod()**
-- **delete_recorded()**
+- **delete()**
 
 ### Create live streaming
 
@@ -26,24 +26,31 @@ Function to create a live streaming and manage the live streaming input (output)
 For example:
 
 ```python
+import uiza
 
 from uiza.api_resources.live import Live
+from uiza.exceptions import ServerException
+
+uiza.workspace_api_domain = "your-workspace-api-domain.uiza.co"
+uiza.authorization = "your-authorization"
 
 live_data = {
-        "name":"test event python 1",
-        "mode":"push",
-        "encode":1,
-        "dvr":1,
-        "linkStream":[
-            "https://playlist.m3u8"
-        ],
-        "resourceMode":"single"
-    }
-
-res, status_code = Live().create(**live_data)
-
-print("id: ", res.id)
-print("status_code", status_code)
+    "name":"test event python 1",
+    "mode":"push",
+    "encode":1,
+    "dvr":1,
+    "linkStream":[
+        "https://playlist.m3u8"
+    ],
+    "resourceMode":"single"
+}
+try:
+    res, status_code = Live().create(**live_data)
+    print("res ", res)
+except ServerException as e:
+    raise e
+except Exception as e:
+    raise e
 ```
 
 #### Parameters
@@ -75,12 +82,21 @@ Function to get detail of an existing event. You need only provide the unique id
 For example:
 
 ```python
-live_id = '33a86c18-f502-41a4-9c4c-d4e14efca238'
+import uiza
 
-res, status_code = Live().retrieve(live_id)
+from uiza.api_resources.live import Live
+from uiza.exceptions import ServerException
 
-print("id: ", res.id)
-print("status_code", status_code)
+uiza.workspace_api_domain = "your-workspace-api-domain.uiza.co"
+uiza.authorization = "your-authorization"
+
+try:
+    res, status_code = Live().retrieve(id='33a86c18-f502-41a4-9c4c-d4e14efca238')
+    print("res ", res)
+except ServerException as e:
+    raise e
+except Exception as e:
+    raise e
 ```
 
 #### Parameters
@@ -104,10 +120,21 @@ Function to update the specific Live event by edit values of parameter.
 For example:
 
 ```python
-res, status_code = Live().update(id='33a86c18-f502-41a4-9c4c-d4e14efca238', name='Update title')
+import uiza
 
-print("id: ", res.id)
-print("status_code", status_code)
+from uiza.api_resources.live import Live
+from uiza.exceptions import ServerException
+
+uiza.workspace_api_domain = "your-workspace-api-domain.uiza.co"
+uiza.authorization = "your-authorization"
+
+try:
+    res, status_code = Live().update(id='33a86c18-f502-41a4-9c4c-d4e14efca238', name='Update title')
+    print("res ", res)
+except ServerException as e:
+    raise e
+except Exception as e:
+    raise e
 ```
 
 #### Parameters
@@ -136,10 +163,21 @@ Function to start a live event that has been create success. The Live channel mi
 For example:
 
 ```python
-res, status_code = Live().start_feed('ddf09dd0-b7a8-4f29-92df-14dafb97b2aa')
+import uiza
 
-print("id: ", res.id)
-print("status_code", status_code)
+from uiza.api_resources.live import Live
+from uiza.exceptions import ServerException
+
+uiza.workspace_api_domain = "your-workspace-api-domain.uiza.co"
+uiza.authorization = "your-authorization"
+
+try:
+    res, status_code = Live().start_feed(id='ddf09dd0-b7a8-4f29-92df-14dafb97b2aa')
+    print("res ", res)
+except ServerException as e:
+    raise e
+except Exception as e:
+    raise e
 ```
 
 #### Parameters
@@ -163,10 +201,21 @@ Function to stop live event.
 For example:
 
 ```python
-res, status_code = Live().stop_feed('ddf09dd0-b7a8-4f29-92df-14dafb97b2aa')
+import uiza
 
-print("id: ", res.id)
-print("status_code", status_code)
+from uiza.api_resources.live import Live
+from uiza.exceptions import ServerException
+
+uiza.workspace_api_domain = "your-workspace-api-domain.uiza.co"
+uiza.authorization = "your-authorization"
+
+try:
+    res, status_code = Live().stop_feed(id='ddf09dd0-b7a8-4f29-92df-14dafb97b2aa')
+    print("res ", res)
+except ServerException as e:
+    raise e
+except Exception as e:
+    raise e
 ```
 
 #### Parameters
@@ -190,9 +239,21 @@ Function to get a live view status . This view only show when event has been sta
 For example:
 
 ```python
-res, status_code = Live().get_view('ddf09dd0-b7a8-4f29-92df-14dafb97b2aa')
+import uiza
 
-print("status_code", status_code)
+from uiza.api_resources.live import Live
+from uiza.exceptions import ServerException
+
+uiza.workspace_api_domain = "your-workspace-api-domain.uiza.co"
+uiza.authorization = "your-authorization"
+
+try:
+    res, status_code = Live().get_view(id='ddf09dd0-b7a8-4f29-92df-14dafb97b2aa')
+    print("res ", res)
+except ServerException as e:
+    raise e
+except Exception as e:
+    raise e
 ```
 
 #### Parameters
@@ -216,9 +277,21 @@ Function to retrieves list of recorded file after streamed (only available when 
 For example:
 
 ```python
-res, status_code = Live().list_recorded()
+import uiza
 
-print("status_code", status_code)
+from uiza.api_resources.live import Live
+from uiza.exceptions import ServerException
+
+uiza.workspace_api_domain = "your-workspace-api-domain.uiza.co"
+uiza.authorization = "your-authorization"
+
+try:
+    res, status_code = Live().list_recorded()
+    print("res ", res)
+except ServerException as e:
+    raise e
+except Exception as e:
+    raise e
 ```
 
 #### Parameters
@@ -242,9 +315,21 @@ Function to delete a recorded file.
 For example:
 
 ```python
-res, status_code = Live().delete_recorded('ddf09dd0-b7a8-4f29-92df-14dafb97b2aa')
+import uiza
 
-print("status_code", status_code)
+from uiza.api_resources.live import Live
+from uiza.exceptions import ServerException
+
+uiza.workspace_api_domain = "your-workspace-api-domain.uiza.co"
+uiza.authorization = "your-authorization"
+
+try:
+    res, status_code = Live().delete(id='ddf09dd0-b7a8-4f29-92df-14dafb97b2aa')
+    print("res ", res)
+except ServerException as e:
+    raise e
+except Exception as e:
+    raise e
 ```
 
 #### Parameters
@@ -268,9 +353,21 @@ Function to delete a recorded file.
 For example:
 
 ```python
-res, status_code = Live().convert_into_vod('ddf09dd0-b7a8-4f29-92df-14dafb97b2aa')
+import uiza
 
-print("status_code", status_code)
+from uiza.api_resources.live import Live
+from uiza.exceptions import ServerException
+
+uiza.workspace_api_domain = "your-workspace-api-domain.uiza.co"
+uiza.authorization = "your-authorization"
+
+try:
+    res, status_code = Live().convert_into_vod(id='ddf09dd0-b7a8-4f29-92df-14dafb97b2aa')
+    print("res ", res)
+except ServerException as e:
+    raise e
+except Exception as e:
+    raise e
 ```
 
 #### Parameters

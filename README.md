@@ -46,13 +46,13 @@ virtualenv <your-env>
 The library needs to be configured with your account's `workspace_api_domain` and `authorization` (API key).
 See details [here](https://docs.uiza.io/#authentication).
 
-The first, needing create Uiza connection using `workspace_api_domain` and `api_key`:
+The first, needing create Uiza connection using `workspace_api_domain` and `authorization`:
 
 ```python
 import uiza
 
-uiza.workspace_api_domain = <your-workspace-api-domain.uiza.co>
-uiza.api_key = <your-api-key>
+uiza.workspace_api_domain = 'your-workspace-api-domain.uiza.co'
+uiza.authorization = 'your-api-key'
 
 ``` 
 
@@ -63,11 +63,11 @@ import uiza
 from uiza.api_resources.entity import Entity
 from uiza.exceptions import ServerException
 
-uiza.workspace_api_domain = "<your-workspace-api-domain.uiza.co>"
-uiza.api_key = "<your-api-key>"
+uiza.workspace_api_domain = "your-workspace-api-domain.uiza.co"
+uiza.authorization = "your-authorization"
 
 try:
-    entity_data, _ = Entity().search()
+    entity_data, _ = Entity().search(keyword='Sample')
 except ServerException as e:
     raise e
 except Exception as e:
