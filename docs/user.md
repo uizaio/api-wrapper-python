@@ -25,13 +25,18 @@ For example:
 ```python
 import uiza
 from uiza.api_resources.user import User
+from uiza.exceptions import ServerException
 
-uiza.api_key = "<your-api-key>"
-uiza.app_id = "<your-app-id>"
+uiza.authorization = "your-authorization"
+uiza.app_id = "your-app-id"
 
-res, status_code = User().retrieve(id='33a86c18-f502-41a4-9c4c-d4e14efca238')
-
-print("res: ", res)
+try:
+    res, status_code = User().retrieve(id='33a86c18-f502-41a4-9c4c-d4e14efca238')
+    print("res: ", res)
+except ServerException as e:
+    raise e
+except Exception as e:
+    raise e
 ```
 
 #### Parameters
@@ -57,13 +62,18 @@ For example:
 ```python
 import uiza
 from uiza.api_resources.user import User
+from uiza.exceptions import ServerException
 
-uiza.api_key = "<your-api-key>"
-uiza.app_id = "<your-app-id>"
+uiza.authorization = "your-authorization"
+uiza.app_id = "your-app-id"
 
-res, status_code = User().update(id='33a86c18-f502-41a4-9c4c-d4e14efca238', status=1)
-
-print("res: ", res)
+try:
+    res, status_code = User().update(id='33a86c18-f502-41a4-9c4c-d4e14efca238', status=1)
+    print("res: ", res)
+except ServerException as e:
+    raise e
+except Exception as e:
+    raise e
 ```
 
 #### Parameters
@@ -100,13 +110,18 @@ For example:
 ```python
 import uiza
 from uiza.api_resources.user import User
+from uiza.exceptions import ServerException
 
-uiza.api_key = "<your-api-key>"
-uiza.app_id = "<your-app-id>"
+uiza.authorization = "your-authorization"
+uiza.app_id = "your-app-id"
 
-res, status_code = User().list()
-
-print("res: ", res)
+try:
+    res, status_code = User().list()
+    print("res: ", res)
+except ServerException as e:
+    raise e
+except Exception as e:
+    raise e
 ```
 
 #### Parameters
@@ -132,17 +147,22 @@ For example:
 ```python
 import uiza
 from uiza.api_resources.user import User
+from uiza.exceptions import ServerException
 
-uiza.api_key = "<your-api-key>"
-uiza.app_id = "<your-app-id>"
+uiza.authorization = "your-authorization"
+uiza.app_id = "your-app-id"
 
-res, status_code = User().change_password(
-    user_id="9f1cd871-9244-48a1-a233-846a3b540741",
-    old_password="S57Eb{:aMZhW=)G$",
-    new_password="FMpsr<4[dGPu?B#u"
-)
-
-print("res: ", res)
+try:
+    res, status_code = User().change_password(
+        user_id="9f1cd871-9244-48a1-a233-846a3b540741",
+        old_password="S57Eb{:aMZhW=)G$",
+        new_password="FMpsr<4[dGPu?B#u"
+    )
+    print("res: ", res)
+except ServerException as e:
+    raise e
+except Exception as e:
+    raise e
 ```
 
 #### Parameters
@@ -170,13 +190,18 @@ For example:
 ```python
 import uiza
 from uiza.api_resources.user import User
+from uiza.exceptions import ServerException
 
-uiza.api_key = "<your-api-key>"
-uiza.app_id = "<your-app-id>"
+uiza.authorization = "your-authorization"
+uiza.app_id = "your-app-id"
 
-res, status_code = User().logout()
-
-print("res: ", res)
+try:
+    res, status_code = User().logout()
+    print("res: ", res)
+except ServerException as e:
+    raise e
+except Exception as e:
+    raise e
 ```
 
 #### Parameters

@@ -20,18 +20,24 @@ For example:
 ```python
 import uiza
 from uiza.api_resources.category import Callback
+from uiza.exceptions import ServerException
 
-uiza.api_key = "<your-api-key>"
-uiza.app_id = "<your-app-id>"
+uiza.authorization = "your-authorization"
+uiza.app_id = "your-app-id"
 
 callback_data = {
     "url":"https://callback-url-python.uiza.co",
     "method":"GET"
 }
 
-res, status_code = Callback().create(**callback_data)
+try:
+    res, status_code = Callback().create(**callback_data)
+    print("res: ", res)
+except ServerException as e:
+    raise e
+except Exception as e:
+    raise e
 
-print("res: ", res)
 ```
 
 #### Parameters
@@ -60,13 +66,18 @@ For example:
 ```python
 import uiza
 from uiza.api_resources.category import Callback
+from uiza.exceptions import ServerException
 
-uiza.api_key = "<your-api-key>"
-uiza.app_id = "<your-app-id>"
+uiza.authorization = "your-authorization"
+uiza.app_id = "your-app-id"
 
-res, status_code = Callback().retrieve(id='33a86c18-f502-41a4-9c4c-d4e14efca238'')
-
-print("res: ", res)
+try:
+    res, status_code = Callback().retrieve(id='33a86c18-f502-41a4-9c4c-d4e14efca238')
+    print("res: ", res)
+except ServerException as e:
+    raise e
+except Exception as e:
+    raise e
 ```
 
 #### Parameters
@@ -92,13 +103,18 @@ For example:
 ```python
 import uiza
 from uiza.api_resources.category import Callback
+from uiza.exceptions import ServerException
 
-uiza.api_key = "<your-api-key>"
-uiza.app_id = "<your-app-id>"
+uiza.authorization = "your-authorization"
+uiza.app_id = "your-app-id"
 
-res, status_code = Callback().update(id='33a86c18-f502-41a4-9c4c-d4e14efca238', method='POST')
-
-print("res: ", res)
+try:
+    res, status_code = Callback().update(id='33a86c18-f502-41a4-9c4c-d4e14efca238', method='POST')
+    print("res: ", res)
+except ServerException as e:
+    raise e
+except Exception as e:
+    raise e
 ```
 
 #### Parameters
@@ -128,13 +144,18 @@ For example:
 ```python
 import uiza
 from uiza.api_resources.category import Callback
+from uiza.exceptions import ServerException
 
-uiza.api_key = "<your-api-key>"
-uiza.app_id = "<your-app-id>"
+uiza.authorization = "your-authorization"
+uiza.app_id = "your-app-id"
 
-res, status_code = Callback().delete(id='ddf09dd0-b7a8-4f29-92df-14dafb97b2aa')
-
-print("res: ", res)
+try:
+    res, status_code = Callback().delete(id='ddf09dd0-b7a8-4f29-92df-14dafb97b2aa')
+    print("res: ", res)
+except ServerException as e:
+    raise e
+except Exception as e:
+    raise e
 ```
 
 #### Parameters

@@ -18,12 +18,12 @@ Function to add storage.
 For example:
 
 ```python
-
 import uiza
 from uiza.api_resources.storage import Storage
+from uiza.exceptions import ServerException
 
-uiza.api_key = "<your-api-key>"
-uiza.app_id = "<your-app-id>"
+uiza.authorization = "your-authorization"
+uiza.app_id = "your-app-id"
 
 storage_data = {
     "name":"FTP Uiza Test",
@@ -32,9 +32,13 @@ storage_data = {
     "host":"ftp-example.uiza.io"
 }
 
-res, status_code = Storage().add(**storage_data)
-
-print("res: ", res)
+try:
+    res, status_code = Storage().add(**storage_data)
+    print("res: ", res)
+except ServerException as e:
+    raise e
+except Exception as e:
+    raise e
 ```
 
 #### Parameters
@@ -66,13 +70,18 @@ For example:
 ```python
 import uiza
 from uiza.api_resources.storage import Storage
+from uiza.exceptions import ServerException
 
-uiza.api_key = "<your-api-key>"
-uiza.app_id = "<your-app-id>"
+uiza.authorization = "your-authorization"
+uiza.app_id = "your-app-id"
 
-res, status_code = Storage().retrieve(id='33a86c18-f502-41a4-9c4c-d4e14efca238')
-
-print("res: ", res)
+try:
+    res, status_code = Storage().retrieve(id='33a86c18-f502-41a4-9c4c-d4e14efca238')
+    print("res: ", res)
+except ServerException as e:
+    raise e
+except Exception as e:
+    raise e
 ```
 
 #### Parameters
@@ -98,13 +107,18 @@ For example:
 ```python
 import uiza
 from uiza.api_resources.storage import Storage
+from uiza.exceptions import ServerException
 
-uiza.api_key = "<your-api-key>"
-uiza.app_id = "<your-app-id>"
+uiza.authorization = "your-authorization"
+uiza.app_id = "your-app-id"
 
-res, status_code = Storage().update(id='33a86c18-f502-41a4-9c4c-d4e14efca238', name='Update title')
-
-print("res: ", res)
+try:
+    res, status_code = Storage().update(id='33a86c18-f502-41a4-9c4c-d4e14efca238', name='Update title')
+    print("res: ", res)
+except ServerException as e:
+    raise e
+except Exception as e:
+    raise e
 ```
 
 #### Parameters
@@ -140,13 +154,18 @@ For example:
 ```python
 import uiza
 from uiza.api_resources.storage import Storage
+from uiza.exceptions import ServerException
 
-uiza.api_key = "<your-api-key>"
-uiza.app_id = "<your-app-id>"
+uiza.authorization = "your-authorization"
+uiza.app_id = "your-app-id"
 
-res, status_code = Storage().remove(id='ddf09dd0-b7a8-4f29-92df-14dafb97b2aa')
-
-print("res: ", res)
+try:
+    res, status_code = Storage().remove(id='ddf09dd0-b7a8-4f29-92df-14dafb97b2aa')
+    print("res: ", res)
+except ServerException as e:
+    raise e
+except Exception as e:
+    raise e
 ```
 
 #### Parameters

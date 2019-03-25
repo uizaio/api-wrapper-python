@@ -21,7 +21,7 @@ class TestUserBaseTestCase(unittest.TestCase):
     def __init__(self, *args, **kwargs):
         super(TestUserBaseTestCase, self).__init__(*args, **kwargs)
         uiza.app_id = 'test app id'
-        uiza.api_key = 'test api key'
+        uiza.authorization = 'test api key'
         self.user_id = '37d6706e-be91-463e-b3b3-b69451dd4752'
         self.user_data_create = {
             'status': 1,

@@ -15,7 +15,7 @@ We can use a `Live Streaming` to:
 - **get_view()**
 - **list_recorded()**
 - **convert_into_vod()**
-- **delete_recorded()**
+- **delete()**
 
 ### Create live streaming
 
@@ -28,9 +28,10 @@ For example:
 ```python
 import uiza
 from uiza.api_resources.live import Live
+from uiza.exceptions import ServerException
 
-uiza.api_key = "<your-api-key>"
-uiza.app_id = "<your-app-id>"
+uiza.authorization = "your-authorization"
+uiza.app_id = "your-app-id"
 
 live_data = {
     "name":"test event python 1",
@@ -43,9 +44,13 @@ live_data = {
     "resourceMode":"single"
 }
 
-res, status_code = Live().create(**live_data)
-
-print("res: ", res)
+try:
+    res, status_code = Live().create(**live_data)
+    print("res: ", res)
+except ServerException as e:
+    raise e
+except Exception as e:
+    raise e
 ```
 
 #### Parameters
@@ -79,13 +84,18 @@ For example:
 ```python
 import uiza
 from uiza.api_resources.live import Live
+from uiza.exceptions import ServerException
 
-uiza.api_key = "<your-api-key>"
-uiza.app_id = "<your-app-id>"
+uiza.authorization = "your-authorization"
+uiza.app_id = "your-app-id"
 
-res, status_code = Live().retrieve(id='33a86c18-f502-41a4-9c4c-d4e14efca238')
-
-print("res: ", res)
+try:
+    res, status_code = Live().retrieve(id='33a86c18-f502-41a4-9c4c-d4e14efca238')
+    print("res: ", res)
+except ServerException as e:
+    raise e
+except Exception as e:
+    raise e
 ```
 
 #### Parameters
@@ -111,13 +121,18 @@ For example:
 ```python
 import uiza
 from uiza.api_resources.live import Live
+from uiza.exceptions import ServerException
 
-uiza.api_key = "<your-api-key>"
-uiza.app_id = "<your-app-id>"
+uiza.authorization = "your-authorization"
+uiza.app_id = "your-app-id"
 
-res, status_code = Live().update(id='33a86c18-f502-41a4-9c4c-d4e14efca238', name='Update title')
-
-print("res: ", res)
+try:
+    res, status_code = Live().update(id='33a86c18-f502-41a4-9c4c-d4e14efca238', name='Update title')
+    print("res: ", res)
+except ServerException as e:
+    raise e
+except Exception as e:
+    raise e
 ```
 
 #### Parameters
@@ -148,13 +163,18 @@ For example:
 ```python
 import uiza
 from uiza.api_resources.live import Live
+from uiza.exceptions import ServerException
 
-uiza.api_key = "<your-api-key>"
-uiza.app_id = "<your-app-id>"
+uiza.authorization = "your-authorization"
+uiza.app_id = "your-app-id"
 
-res, status_code = Live().start_feed(id='ddf09dd0-b7a8-4f29-92df-14dafb97b2aa')
-
-print("res: ", res)
+try:
+    res, status_code = Live().start_feed(id='ddf09dd0-b7a8-4f29-92df-14dafb97b2aa')
+    print("res: ", res)
+except ServerException as e:
+    raise e
+except Exception as e:
+    raise e
 ```
 
 #### Parameters
@@ -180,13 +200,18 @@ For example:
 ```python
 import uiza
 from uiza.api_resources.live import Live
+from uiza.exceptions import ServerException
 
-uiza.api_key = "<your-api-key>"
-uiza.app_id = "<your-app-id>"
+uiza.authorization = "your-authorization"
+uiza.app_id = "your-app-id"
 
-res, status_code = Live().stop_feed(id='ddf09dd0-b7a8-4f29-92df-14dafb97b2aa')
-
-print("res: ", res)
+try:
+    res, status_code = Live().stop_feed(id='ddf09dd0-b7a8-4f29-92df-14dafb97b2aa')
+    print("res: ", res)
+except ServerException as e:
+    raise e
+except Exception as e:
+    raise e
 ```
 
 #### Parameters
@@ -212,13 +237,18 @@ For example:
 ```python
 import uiza
 from uiza.api_resources.live import Live
+from uiza.exceptions import ServerException
 
-uiza.api_key = "<your-api-key>"
-uiza.app_id = "<your-app-id>"
+uiza.authorization = "your-authorization"
+uiza.app_id = "your-app-id"
 
-res, status_code = Live().get_view(id='ddf09dd0-b7a8-4f29-92df-14dafb97b2aa')
-
-print("res: ", res)
+try:
+    res, status_code = Live().get_view(id='ddf09dd0-b7a8-4f29-92df-14dafb97b2aa')
+    print("res: ", res)
+except ServerException as e:
+    raise e
+except Exception as e:
+    raise e
 ```
 
 #### Parameters
@@ -244,13 +274,18 @@ For example:
 ```python
 import uiza
 from uiza.api_resources.live import Live
+from uiza.exceptions import ServerException
 
-uiza.api_key = "<your-api-key>"
-uiza.app_id = "<your-app-id>"
+uiza.authorization = "your-authorization"
+uiza.app_id = "your-app-id"
 
-res, status_code = Live().list_recorded()
-
-print("res: ", res)
+try:
+    res, status_code = Live().list_recorded()
+    print("res: ", res)
+except ServerException as e:
+    raise e
+except Exception as e:
+    raise e
 ```
 
 #### Parameters
@@ -276,13 +311,18 @@ For example:
 ```python
 import uiza
 from uiza.api_resources.live import Live
+from uiza.exceptions import ServerException
 
-uiza.api_key = "<your-api-key>"
-uiza.app_id = "<your-app-id>"
+uiza.authorization = "your-authorization"
+uiza.app_id = "your-app-id"
 
-res, status_code = Live().delete_recorded(id='ddf09dd0-b7a8-4f29-92df-14dafb97b2aa')
-
-print("res: ", res)
+try:
+    res, status_code = Live().delete(id='ddf09dd0-b7a8-4f29-92df-14dafb97b2aa')
+    print("res: ", res)
+except ServerException as e:
+    raise e
+except Exception as e:
+    raise e
 ```
 
 #### Parameters
@@ -308,13 +348,18 @@ For example:
 ```python
 import uiza
 from uiza.api_resources.live import Live
+from uiza.exceptions import ServerException
 
-uiza.api_key = "<your-api-key>"
-uiza.app_id = "<your-app-id>"
+uiza.authorization = "your-authorization"
+uiza.app_id = "your-app-id"
 
-res, status_code = Live().convert_into_vod(id='ddf09dd0-b7a8-4f29-92df-14dafb97b2aa')
-
-print("res: ", res)
+try:
+    res, status_code = Live().convert_into_vod(id='ddf09dd0-b7a8-4f29-92df-14dafb97b2aa')
+    print("res: ", res)
+except ServerException as e:
+    raise e
+except Exception as e:
+    raise e
 ```
 
 #### Parameters
