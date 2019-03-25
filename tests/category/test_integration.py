@@ -21,7 +21,7 @@ class TestCategoryBaseTestCase(unittest.TestCase):
     def __init__(self, *args, **kwargs):
         super(TestCategoryBaseTestCase, self).__init__(*args, **kwargs)
         uiza.workspace_api_domain = 'test domain'
-        uiza.api_key = 'test api key'
+        uiza.authorization = 'test api key'
         self.category_id = '37d6706e-be91-463e-b3b3-b69451dd4752'
         self.category_data_create = {
             'name':'Folder sample python 3',

@@ -9,7 +9,7 @@ from uiza.exceptions import ClientException
 class Live(UizaBase):
 
     def __init__(self):
-        self.connection = Connection(workspace_api_domain=uiza.workspace_api_domain, api_key=uiza.api_key)
+        self.connection = Connection(workspace_api_domain=uiza.workspace_api_domain, api_key=uiza.authorization)
         self.connection.url = set_url(
             workspace_api_domain=self.connection.workspace_api_domain,
             api_type=settings.uiza_api.livestreaming.type,
@@ -24,14 +24,6 @@ class Live(UizaBase):
         :return: Raise error when get method list
         """
         raise ClientException('Livestreaming list method not found')
-
-    def delete(self, id):
-        """
-        Override method delete of Uizabase
-        :param id:
-        :return: Raise error when get method delete
-        """
-        raise ClientException('Livestreaming delete method not found')
 
     def start_feed(self, id):
         """
@@ -88,7 +80,7 @@ class Live(UizaBase):
 
         return result
 
-    def delete_recorded(self, id):
+    def delete(self, id):
         """
         Delete a recorded file
         :param id: identifier of record (get from list record)

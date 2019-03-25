@@ -17,16 +17,26 @@ Function to get data grouped by hour (data refresh every 5 minutes). Track video
 For example:
 
 ```python
+import uiza
 
 from uiza.api_resources.analytic import Analytic
+from uiza.exceptions import ServerException
 
-res, status_code = Analytic().get_total_line(
-    start_date='2018-11-01 20:00',
-    end_date='2019-11-02 20:00',
-    metric='rebuffer_count'
-)
+uiza.workspace_api_domain = "your-workspace-api-domain.uiza.co"
+uiza.authorization = "your-authorization"
 
-print("status_code", status_code)
+try:
+    res, status_code = Analytic().get_total_line(
+        start_date="2018-11-01 20:00",
+        end_date="2019-11-02 20:00",
+        metric="rebuffer_count"
+    )
+
+    print("res ", res)
+except ServerException as e:
+    raise e
+except Exception as e:
+    raise e
 ```
 
 #### Parameters
@@ -52,13 +62,26 @@ Function to get data base on 4 type of filter: country, device, title, player.
 For example:
 
 ```python
-res, status_code = Analytic().get_type(
-    start_date='2018-11-01 20:00',
-    end_date='2019-11-02 20:00',
-    type_filter='country'
-)
+import uiza
 
-print("status_code", status_code)
+from uiza.api_resources.analytic import Analytic
+from uiza.exceptions import ServerException
+
+uiza.workspace_api_domain = "your-workspace-api-domain.uiza.co"
+uiza.authorization = "your-authorization"
+
+try:
+    res, status_code = Analytic().get_type(
+        start_date='2018-11-01 20:00',
+        end_date='2019-11-02 20:00',
+        type_filter='country'
+    )
+
+    print("res ", res)
+except ServerException as e:
+    raise e
+except Exception as e:
+    raise e
 ```
 
 #### Parameters
@@ -84,13 +107,26 @@ Function to get data grouped by hour. Get total view in time range. This help yo
 For example:
 
 ```python
-res, status_code = Analytic().get_line(
-    start_date='2018-11-01 20:00',
-    end_date='2019-11-02 20:00',
-    type='video_startup_time'
-)
+import uiza
 
-print("status_code", status_code)
+from uiza.api_resources.analytic import Analytic
+from uiza.exceptions import ServerException
+
+uiza.workspace_api_domain = "your-workspace-api-domain.uiza.co"
+uiza.authorization = "your-authorization"
+
+try:
+    res, status_code = Analytic().get_line(
+        start_date='2018-11-01 20:00',
+        end_date='2019-11-02 20:00',
+        type='video_startup_time'
+    )
+
+    print("res ", res)
+except ServerException as e:
+    raise e
+except Exception as e:
+    raise e
 ```
 
 #### Parameters
