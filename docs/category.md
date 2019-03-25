@@ -21,21 +21,26 @@ Function to create category for entity for easier management. Category use to gr
 For example:
 
 ```python
-
 import uiza
 from uiza.api_resources.category import Category
+from uiza.exceptions import ServerException
 
-uiza.api_key = "<your-api-key>"
-uiza.app_id = "<your-app-id>"
+uiza.authorization = "your-authorization"
+uiza.app_id = "your-app-id"
 
 category_data = {
     "name": "Test name 1",
     "type": "folder",
 }
 
-res, status_code = Category().create(**category_data)
 
-print("res: ", res)
+try:
+    res, status_code = Category().create(**category_data)
+    print("res: ", res)
+except ServerException as e:
+    raise e
+except Exception as e:
+    raise e
 ```
 
 #### Parameters
@@ -65,13 +70,18 @@ For example:
 ```python
 import uiza
 from uiza.api_resources.category import Category
+from uiza.exceptions import ServerException
 
-uiza.api_key = "<your-api-key>"
-uiza.app_id = "<your-app-id>"
+uiza.authorization = "your-authorization"
+uiza.app_id = "your-app-id"
 
-res, status_code = Category().retrieve(id='33a86c18-f502-41a4-9c4c-d4e14efca238')
-
-print("res: ", res)
+try:
+    res, status_code = Category().retrieve(id='33a86c18-f502-41a4-9c4c-d4e14efca238')
+    print("res: ", res)
+except ServerException as e:
+    raise e
+except Exception as e:
+    raise e
 ```
 
 #### Parameters
@@ -97,13 +107,18 @@ For example:
 ```python
 import uiza
 from uiza.api_resources.category import Category
+from uiza.exceptions import ServerException
 
-uiza.api_key = "<your-api-key>"
-uiza.app_id = "<your-app-id>"
+uiza.authorization = "your-authorization"
+uiza.app_id = "your-app-id"
 
-res, status_code = Category().list()
-
-print("res: ", res)
+try:
+    res, status_code = Category().list()
+    print("res: ", res)
+except ServerException as e:
+    raise e
+except Exception as e:
+    raise e
 ```
 
 #### Parameters
@@ -129,13 +144,18 @@ For example:
 ```python
 import uiza
 from uiza.api_resources.category import Category
+from uiza.exceptions import ServerException
 
-uiza.api_key = "<your-api-key>"
-uiza.app_id = "<your-app-id>"
+uiza.authorization = "your-authorization"
+uiza.app_id = "your-app-id"
 
-res, status_code = Category().update(id='33a86c18-f502-41a4-9c4c-d4e14efca238', name='Update title')
-
-print("res: ", res)
+try:
+    res, status_code = Category().update(id='33a86c18-f502-41a4-9c4c-d4e14efca238', name='Update title')
+    print("res: ", res)
+except ServerException as e:
+    raise e
+except Exception as e:
+    raise e
 ```
 
 #### Parameters
@@ -166,13 +186,18 @@ For example:
 ```python
 import uiza
 from uiza.api_resources.category import Category
+from uiza.exceptions import ServerException
 
-uiza.api_key = "<your-api-key>"
-uiza.app_id = "<your-app-id>"
+uiza.authorization = "your-authorization"
+uiza.app_id = "your-app-id"
 
-res, status_code = Category().delete(id='ddf09dd0-b7a8-4f29-92df-14dafb97b2aa')
-
-print("res: ", res)
+try:
+    res, status_code = Category().delete(id='ddf09dd0-b7a8-4f29-92df-14dafb97b2aa')
+    print("res: ", res)
+except ServerException as e:
+    raise e
+except Exception as e:
+    raise e
 ```
 
 #### Parameters
@@ -189,7 +214,7 @@ print("res: ", res)
 
 ### Create category relation
 
-`create_relation(**data)`
+`create_relation(entity_id, metadata_ids)`
 
 Function to add relation for entity and category.
 
@@ -198,16 +223,21 @@ For example:
 ```python
 import uiza
 from uiza.api_resources.category import Category
+from uiza.exceptions import ServerException
 
-uiza.api_key = "<your-api-key>"
-uiza.app_id = "<your-app-id>"
+uiza.authorization = "your-authorization"
+uiza.app_id = "your-app-id"
 
-res, status_code = Category().create_relation(
-    entity_id="16ab25d3-fd0f-4568-8aa0-0339bbfd674f",
-    metadata_ids=["095778fa-7e42-45cc-8a0e-6118e540b61d","e00586b9-032a-46a3-af71-d275f01b03cf"]
-)
-
-print("res: ", res)
+try:
+    res, status_code = Category().create_relation(
+        entity_id="16ab25d3-fd0f-4568-8aa0-0339bbfd674f",
+        metadata_ids=["095778fa-7e42-45cc-8a0e-6118e540b61d","e00586b9-032a-46a3-af71-d275f01b03cf"]
+    )
+    print("res: ", res)
+except ServerException as e:
+    raise e
+except Exception as e:
+    raise e
 ```
 
 #### Parameters
@@ -225,7 +255,7 @@ print("res: ", res)
 
 ### Delete category relation
 
-`delete_relation(**data)`
+`delete_relation(entity_id, metadata_ids)`
 
 Function to delete relation for entity and category.
 
@@ -234,16 +264,21 @@ For example:
 ```python
 import uiza
 from uiza.api_resources.category import Category
+from uiza.exceptions import ServerException
 
-uiza.api_key = "<your-api-key>"
-uiza.app_id = "<your-app-id>"
+uiza.authorization = "your-authorization"
+uiza.app_id = "your-app-id"
 
-res, status_code = Category().delete_relation(
-    entity_id="16ab25d3-fd0f-4568-8aa0-0339bbfd674f",
-    metadata_ids=["095778fa-7e42-45cc-8a0e-6118e540b61d","e00586b9-032a-46a3-af71-d275f01b03cf"]
-)
-
-print("res: ", res)
+try:
+    res, status_code = Category().delete_relation(
+        entity_id="16ab25d3-fd0f-4568-8aa0-0339bbfd674f",
+        metadata_ids=["095778fa-7e42-45cc-8a0e-6118e540b61d","e00586b9-032a-46a3-af71-d275f01b03cf"]
+    )
+    print("res: ", res)
+except ServerException as e:
+    raise e
+except Exception as e:
+    raise e
 ```
 
 #### Parameters

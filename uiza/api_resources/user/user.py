@@ -9,7 +9,7 @@ from uiza.utility.utility import set_url
 class User(UizaBase):
 
     def __init__(self):
-        self.connection = Connection(workspace_api_domain=uiza.workspace_api_domain, api_key=uiza.api_key)
+        self.connection = Connection(workspace_api_domain=uiza.workspace_api_domain, api_key=uiza.authorization)
         self.connection.url = set_url(
             workspace_api_domain=self.connection.workspace_api_domain,
             api_type=settings.uiza_api.user.type,
