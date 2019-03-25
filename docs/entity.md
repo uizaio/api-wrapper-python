@@ -23,7 +23,14 @@ Function to create entity using full URL. Direct HTTP, FTP or AWS S3 link are ac
 For example:
 
 ```python
+import uiza
+
 from uiza.api_resources.entity import Entity
+from uiza.exceptions import ServerException
+
+uiza.workspace_api_domain = "your-workspace-api-domain.uiza.co"
+uiza.authorization = "your-authorization"
+
 entity_data = {
         "name": "Sample Video Python1",
         "url": "https://example.com/video.mp4",
@@ -31,18 +38,13 @@ entity_data = {
         "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry'\''s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum."
     }
 
-res, status_code = Entity().create(**entity_data)
-
-# or 
-# res, status_code = entity.create(
-#   name="Sample Video Python1",
-#   url="https://example.com/video.mp4",
-#   inputType="http",
-#   "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry'\''s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum."
-# )
-
-print("id: ", res.id)
-print("status_code", status_code)
+try:
+    res, status_code = Entity().create(**entity_data)
+    print("res ", res)
+except ServerException as e:
+    raise e
+except Exception as e:
+    raise e
 ```
 
 #### Parameters
@@ -76,12 +78,21 @@ Function to get detail of entity including all information of entity.
 For example:
 
 ```python
-entity_id = '33a86c18-f502-41a4-9c4c-d4e14efca238'
+import uiza
 
-res, status_code = Entity().retrieve(entity_id)
+from uiza.api_resources.entity import Entity
+from uiza.exceptions import ServerException
 
-print("id: ", res.id)
-print("status_code", status_code)
+uiza.workspace_api_domain = "your-workspace-api-domain.uiza.co"
+uiza.authorization = "your-authorization"
+
+try:
+    res, status_code = Entity().retrieve(id='33a86c18-f502-41a4-9c4c-d4e14efca238')
+    print("res ", res)
+except ServerException as e:
+    raise e
+except Exception as e:
+    raise e
 ```
 
 #### Parameters
@@ -105,10 +116,21 @@ Function to get list of entities including all detail.
 For example:
 
 ```python
-res, status_code = Entity().list(name='Title')
+import uiza
 
-print("id: ", res.id)
-print("status_code", status_code)
+from uiza.api_resources.entity import Entity
+from uiza.exceptions import ServerException
+
+uiza.workspace_api_domain = "your-workspace-api-domain.uiza.co"
+uiza.authorization = "your-authorization"
+
+try:
+    res, status_code = Entity().list(name='Title')
+    print("res ", res)
+except ServerException as e:
+    raise e
+except Exception as e:
+    raise e
 ```
 
 #### Parameters
@@ -145,10 +167,21 @@ Function to update entity's information.
 For example:
 
 ```python
-res, status_code = Entity().update(id='33a86c18-f502-41a4-9c4c-d4e14efca238', name='Update title')
+import uiza
 
-print("id: ", res.id)
-print("status_code", status_code)
+from uiza.api_resources.entity import Entity
+from uiza.exceptions import ServerException
+
+uiza.workspace_api_domain = "your-workspace-api-domain.uiza.co"
+uiza.authorization = "your-authorization"
+
+try:
+    res, status_code = Entity().update(id='33a86c18-f502-41a4-9c4c-d4e14efca238', name='Update title')
+    print("res ", res)
+except ServerException as e:
+    raise e
+except Exception as e:
+    raise e
 ```
 
 #### Parameters
@@ -178,10 +211,21 @@ Function to delete entity.
 For example:
 
 ```python
-res, status_code = Entity().delete('ddf09dd0-b7a8-4f29-92df-14dafb97b2aa')
+import uiza
 
-print("id: ", res.id)
-print("status_code", status_code)
+from uiza.api_resources.entity import Entity
+from uiza.exceptions import ServerException
+
+uiza.workspace_api_domain = "your-workspace-api-domain.uiza.co"
+uiza.authorization = "your-authorization"
+
+try:
+    res, status_code = Entity().delete(id='ddf09dd0-b7a8-4f29-92df-14dafb97b2aa')
+    print("res ", res)
+except ServerException as e:
+    raise e
+except Exception as e:
+    raise e
 ```
 
 #### Parameters
@@ -205,10 +249,21 @@ Function to search entity base on keyword entered.
 For example:
 
 ```python
-res, status_code = Entity().search(keyword="Title")
+import uiza
 
-print("id: ", res.id)
-print("status_code", status_code)
+from uiza.api_resources.entity import Entity
+from uiza.exceptions import ServerException
+
+uiza.workspace_api_domain = "your-workspace-api-domain.uiza.co"
+uiza.authorization = "your-authorization"
+
+try:
+    res, status_code = Entity().search(keyword="Title")
+    print("res ", res)
+except ServerException as e:
+    raise e
+except Exception as e:
+    raise e
 ```
 
 #### Parameters
@@ -232,10 +287,21 @@ Function to publish entity to CDN, use for streaming.
 For example:
 
 ```python
-res, status_code = Entity().publish('ddf09dd0-b7a8-4f29-92df-14dafb97b2aa')
+import uiza
 
-print("id: ", res.id)
-print("status_code", status_code)
+from uiza.api_resources.entity import Entity
+from uiza.exceptions import ServerException
+
+uiza.workspace_api_domain = "your-workspace-api-domain.uiza.co"
+uiza.authorization = "your-authorization"
+
+try:
+    res, status_code = Entity().publish(id='ddf09dd0-b7a8-4f29-92df-14dafb97b2aa')
+    print("res ", res)
+except ServerException as e:
+    raise e
+except Exception as e:
+    raise e
 ```
 
 #### Parameters
@@ -259,9 +325,21 @@ Function to get status publish.
 For example:
 
 ```python
-res, status_code = Entity().get_status_publish('33a86c18-f502-41a4-9c4c-d4e14efca238')
+import uiza
 
-print("status_code", status_code)
+from uiza.api_resources.entity import Entity
+from uiza.exceptions import ServerException
+
+uiza.workspace_api_domain = "your-workspace-api-domain.uiza.co"
+uiza.authorization = "your-authorization"
+
+try:
+    res, status_code = Entity().get_status_publish(id='33a86c18-f502-41a4-9c4c-d4e14efca238')
+    print("res ", res)
+except ServerException as e:
+    raise e
+except Exception as e:
+    raise e
 ```
 
 #### Parameters
@@ -285,9 +363,21 @@ Function to get AWS upload key.
 For example:
 
 ```python
-res, status_code = Entity().get_aws_upload_key()
+import uiza
 
-print("status_code", status_code)
+from uiza.api_resources.entity import Entity
+from uiza.exceptions import ServerException
+
+uiza.workspace_api_domain = "your-workspace-api-domain.uiza.co"
+uiza.authorization = "your-authorization"
+
+try:
+    res, status_code = Entity().get_aws_upload_key()
+    print("res ", res)
+except ServerException as e:
+    raise e
+except Exception as e:
+    raise e
 ```
 
 #### Parameters

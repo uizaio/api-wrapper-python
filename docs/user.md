@@ -25,7 +25,13 @@ Function to create an user account for workspace.
 For example:
 
 ```python
+import uiza
+
 from uiza.api_resources.user import User
+from uiza.exceptions import ServerException
+
+uiza.workspace_api_domain = "your-workspace-api-domain.uiza.co"
+uiza.authorization = "your-authorization"
 
 user_data = {
     "status": 1,
@@ -39,10 +45,13 @@ user_data = {
     "isAdmin": 1
 }
 
-res, status_code = User().create(**user_data)
-
-print("id: ", res.id)
-print("status_code", status_code)
+try:
+    res, status_code = User().create(**user_data)
+    print("res ", res)
+except ServerException as e:
+    raise e
+except Exception as e:
+    raise e
 ```
 
 #### Parameters
@@ -74,12 +83,21 @@ Function to retrieves the details of an existing user. You need only supply the 
 For example:
 
 ```python
-user_id = '33a86c18-f502-41a4-9c4c-d4e14efca238'
+import uiza
 
-res, status_code = User().retrieve(user_id)
+from uiza.api_resources.user import User
+from uiza.exceptions import ServerException
 
-print("id: ", res.id)
-print("status_code", status_code)
+uiza.workspace_api_domain = "your-workspace-api-domain.uiza.co"
+uiza.authorization = "your-authorization"
+
+try:
+    res, status_code = User().retrieve(id='33a86c18-f502-41a4-9c4c-d4e14efca238')
+    print("res ", res)
+except ServerException as e:
+    raise e
+except Exception as e:
+    raise e
 ```
 
 #### Parameters
@@ -103,10 +121,21 @@ Function to updates the specified user by setting the values of the parameters p
 For example:
 
 ```python
-res, status_code = User().update(id='33a86c18-f502-41a4-9c4c-d4e14efca238', status=1)
+import uiza
 
-print("id: ", res.id)
-print("status_code", status_code)
+from uiza.api_resources.user import User
+from uiza.exceptions import ServerException
+
+uiza.workspace_api_domain = "your-workspace-api-domain.uiza.co"
+uiza.authorization = "your-authorization"
+
+try:
+    res, status_code = User().update(id='33a86c18-f502-41a4-9c4c-d4e14efca238', status=1)
+    print("res ", res)
+except ServerException as e:
+    raise e
+except Exception as e:
+    raise e
 ```
 
 #### Parameters
@@ -139,10 +168,21 @@ Function to delete an user. It cannot be undone. Also immediately cancels all to
 For example:
 
 ```python
-res, status_code = User().delete('ddf09dd0-b7a8-4f29-92df-14dafb97b2aa')
+import uiza
 
-print("id: ", res.id)
-print("status_code", status_code)
+from uiza.api_resources.user import User
+from uiza.exceptions import ServerException
+
+uiza.workspace_api_domain = "your-workspace-api-domain.uiza.co"
+uiza.authorization = "your-authorization"
+
+try:
+    res, status_code = User().delete(id='ddf09dd0-b7a8-4f29-92df-14dafb97b2aa')
+    print("res ", res)
+except ServerException as e:
+    raise e
+except Exception as e:
+    raise e
 ```
 
 #### Parameters
@@ -168,9 +208,21 @@ If you use Admin token, you will get all the user. If you use User token, you ca
 For example:
 
 ```python
-res, status_code = User().list()
+import uiza
 
-print("status_code", status_code)
+from uiza.api_resources.user import User
+from uiza.exceptions import ServerException
+
+uiza.workspace_api_domain = "your-workspace-api-domain.uiza.co"
+uiza.authorization = "your-authorization"
+
+try:
+    res, status_code = User().list()
+    print("res ", res)
+except ServerException as e:
+    raise e
+except Exception as e:
+    raise e
 ```
 
 #### Parameters
@@ -194,14 +246,25 @@ Function to update password allows Admin or User update their current password.
 For example:
 
 ```python
-res, status_code = User().change_password(
-    id="9f1cd871-9244-48a1-a233-846a3b540741",
-    old_password="S57Eb{:aMZhW=)G$",
-    new_password="FMpsr<4[dGPu?B#u"
-)
+import uiza
 
-print("id", res.id)
-print("status_code", status_code)
+from uiza.api_resources.user import User
+from uiza.exceptions import ServerException
+
+uiza.workspace_api_domain = "your-workspace-api-domain.uiza.co"
+uiza.authorization = "your-authorization"
+
+try:
+    res, status_code = User().change_password(
+        id="9f1cd871-9244-48a1-a233-846a3b540741",
+        old_password="S57Eb{:aMZhW=)G$",
+        new_password="FMpsr<4[dGPu?B#u"
+    )
+    print("res ", res)
+except ServerException as e:
+    raise e
+except Exception as e:
+    raise e
 ```
 
 #### Parameters
@@ -227,9 +290,21 @@ Function to log out an user. After logged out, token will be removed.
 For example:
 
 ```python
-res, status_code = User().logout()
+import uiza
 
-print("status_code", status_code)
+from uiza.api_resources.user import User
+from uiza.exceptions import ServerException
+
+uiza.workspace_api_domain = "your-workspace-api-domain.uiza.co"
+uiza.authorization = "your-authorization"
+
+try:
+    res, status_code = User().logout()
+    print("res ", res)
+except ServerException as e:
+    raise e
+except Exception as e:
+    raise e
 ```
 
 #### Parameters

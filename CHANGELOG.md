@@ -56,3 +56,12 @@
 
 ### Documentation
 - N/A
+
+
+## 1.1.2
+
+### Changed
+- Update docs
+
+### Documentation
+- N/A
