@@ -43,13 +43,13 @@ virtualenv <your-env>
 
 ## Usage
 
-The first, needing create Uiza connection using `app_id` and `api_key`:
+The first, needing create Uiza connection using `app_id` and `authorization`:
 
 ```python
 import uiza
 
-uiza.api_key = "<your-api-key>"
-uiza.app_id = "<your-app-id>"
+uiza.authorization = "your-authorization"
+uiza.app_id = "your-app-id"
 
 ``` 
 
@@ -60,8 +60,8 @@ import uiza
 from uiza.api_resources.entity import Entity
 from uiza.exceptions import ServerException
 
-uiza.workspace_api_domain = "<your-workspace-api-domain.uiza.co>"
-uiza.api_key = "<your-api-key>"
+uiza.authorization = "your-authorization"
+uiza.app_id = "your-app-id"
 
 try:
     entity_data, _ = Entity().search(keyword='Sample')
@@ -81,6 +81,7 @@ Next steps, reading the [Client Library Documentation]() to see other available 
 - [Storage](https://github.com/uizaio/api-wrapper-python/blob/master/docs/storage.md)
 - [Live Streaming](https://github.com/uizaio/api-wrapper-python/blob/master/docs/live.md)
 - [Callback](https://github.com/uizaio/api-wrapper-python/blob/master/docs/callback.md)
+- [User](https://github.com/uizaio/api-wrapper-python/blob/master/docs/user.md)
 
 ## Unittest
 
