@@ -11,7 +11,8 @@ from uiza.exceptions import (
     InternalServerError,
     ServiceUnavailableError,
     ClientError,
-    ServerError
+    ServerError,
+    ClientException
 )
 
 
@@ -19,8 +20,8 @@ class TestUserBaseTestCase(unittest.TestCase):
 
     def __init__(self, *args, **kwargs):
         super(TestUserBaseTestCase, self).__init__(*args, **kwargs)
-        uiza.workspace_api_domain = 'test domain'
-        uiza.api_key = 'test api key'
+        uiza.app_id = 'test app id'
+        uiza.authorization = 'test api key'
         self.user_id = '37d6706e-be91-463e-b3b3-b69451dd4752'
         self.user_data_create = {
             'status': 1,
@@ -39,66 +40,21 @@ class TestUserBaseTestCase(unittest.TestCase):
 class TestCreateUser(TestUserBaseTestCase):
 
     @mock.patch('uiza.Connection._request_http')
-    def test_create_user_valid(self, mock_request_http):
+    def test_create_storage_invalid(self, mock_request_http):
         mock_request_http.return_value = True, 200
-        data = User().create(**self.user_data_create)
-        self.assertEqual(data[1], 200)
+        with self.assertRaises(ClientException) as context:
+            User().create(**self.user_data_create)
+        self.assertTrue(context.exception.__class__.__name__, 'ClientException')
+
+
+class TestDeleteUser(TestUserBaseTestCase):
 
     @mock.patch('uiza.Connection._request_http')
-    def test_create_user_invalid_with_status_code_400(self, mock_request_http):
-        mock_request_http.return_value = True, 400
-        with self.assertRaises(BadRequestError) as context:
-            User().create(**self.user_data_create)
-        self.assertTrue(context.exception.__class__.__name__, 'BadRequestError')
-
-    @mock.patch('uiza.Connection._request_http')
-    def test_create_user_invalid_with_status_code_401(self, mock_request_http):
-        mock_request_http.return_value = True, 401
-        with self.assertRaises(UnauthorizedError) as context:
-            User().create(**self.user_data_create)
-        self.assertTrue(context.exception.__class__.__name__, 'UnauthorizedError')
-
-    @mock.patch('uiza.Connection._request_http')
-    def test_create_user_invalid_with_status_code_404(self, mock_request_http):
-        mock_request_http.return_value = True, 404
-        with self.assertRaises(NotFoundError) as context:
-            User().create(**self.user_data_create)
-        self.assertTrue(context.exception.__class__.__name__, 'NotFoundError')
-
-    @mock.patch('uiza.Connection._request_http')
-    def test_create_user_invalid_with_status_code_422(self, mock_request_http):
-        mock_request_http.return_value = True, 422
-        with self.assertRaises(UnprocessableError) as context:
-            User().create(**self.user_data_create)
-        self.assertTrue(context.exception.__class__.__name__, 'UnprocessableError')
-
-    @mock.patch('uiza.Connection._request_http')
-    def test_create_user_invalid_with_status_code_500(self, mock_request_http):
-        mock_request_http.return_value = True, 500
-        with self.assertRaises(InternalServerError) as context:
-            User().create(**self.user_data_create)
-        self.assertTrue(context.exception.__class__.__name__, 'InternalServerError')
-
-    @mock.patch('uiza.Connection._request_http')
-    def test_create_user_invalid_with_status_code_503(self, mock_request_http):
-        mock_request_http.return_value = True, 503
-        with self.assertRaises(ServiceUnavailableError) as context:
-            User().create(**self.user_data_create)
-        self.assertTrue(context.exception.__class__.__name__, 'ServiceUnavailableError')
-
-    @mock.patch('uiza.Connection._request_http')
-    def test_create_user_invalid_with_status_code_4xx(self, mock_request_http):
-        mock_request_http.return_value = True, 412
-        with self.assertRaises(ClientError) as context:
-            User().create(**self.user_data_create)
-        self.assertTrue(context.exception.__class__.__name__, 'ClientError')
-
-    @mock.patch('uiza.Connection._request_http')
-    def test_create_user_invalid_with_status_code_5xx(self, mock_request_http):
-        mock_request_http.return_value = True, 512
-        with self.assertRaises(ServerError) as context:
-            User().create(**self.user_data_create)
-        self.assertTrue(context.exception.__class__.__name__, 'ServerError')
+    def test_delete_storage_invalid(self, mock_request_http):
+        mock_request_http.return_value = True, 200
+        with self.assertRaises(ClientException) as context:
+            User().delete(id=self.user_id)
+        self.assertTrue(context.exception.__class__.__name__, 'ClientException')
 
 
 class TestListUser(TestUserBaseTestCase):
@@ -303,85 +259,13 @@ class TestUpdateUser(TestUserBaseTestCase):
         self.assertTrue(context.exception.__class__.__name__, 'ServerError')
 
 
-class TestDeleteUser(TestUserBaseTestCase):
-
-    @mock.patch('uiza.Connection._request_http')
-    def test_delete_user_valid(self, mock_request_http):
-        mock_request_http.return_value = True, 200
-        data = User().delete(id=self.user_id)
-        self.assertEqual(data[1], 200)
-
-    @mock.patch('uiza.Connection._request_http')
-    def test_delete_user_invalid_with_status_code_400(self, mock_request_http):
-        mock_request_http.return_value = True, 400
-        with self.assertRaises(BadRequestError) as context:
-            User().delete(id=self.user_id)
-        self.assertTrue(context.exception.__class__.__name__, 'BadRequestError')
-
-    @mock.patch('uiza.Connection._request_http')
-    def test_delete_user_invalid_with_status_code_401(self, mock_request_http):
-        mock_request_http.return_value = True, 401
-        with self.assertRaises(UnauthorizedError) as context:
-            User().delete(id=self.user_id)
-        self.assertTrue(context.exception.__class__.__name__, 'UnauthorizedError')
-
-    @mock.patch('uiza.Connection._request_http')
-    def test_delete_user_invalid_with_status_code_404(self, mock_request_http):
-        mock_request_http.return_value = True, 404
-        with self.assertRaises(NotFoundError) as context:
-            User().delete(id=self.user_id)
-        self.assertTrue(context.exception.__class__.__name__, 'NotFoundError')
-
-    @mock.patch('uiza.Connection._request_http')
-    def test_delete_user_invalid_with_status_code_422(self, mock_request_http):
-        mock_request_http.return_value = True, 422
-        with self.assertRaises(UnprocessableError) as context:
-            User().delete(id=self.user_id)
-        self.assertTrue(context.exception.__class__.__name__, 'UnprocessableError')
-
-    @mock.patch('uiza.Connection._request_http')
-    def test_delete_user_invalid_with_status_code_500(self, mock_request_http):
-        mock_request_http.return_value = True, 500
-        with self.assertRaises(InternalServerError) as context:
-            User().delete(id=self.user_id)
-        self.assertTrue(context.exception.__class__.__name__, 'InternalServerError')
-
-    @mock.patch('uiza.Connection._request_http')
-    def test_delete_user_invalid_with_status_code_503(self, mock_request_http):
-        mock_request_http.return_value = True, 503
-        with self.assertRaises(ServiceUnavailableError) as context:
-            User().delete(id=self.user_id)
-        self.assertTrue(context.exception.__class__.__name__, 'ServiceUnavailableError')
-
-    @mock.patch('uiza.Connection._request_http')
-    def test_delete_user_invalid_with_status_code_4xx(self, mock_request_http):
-        mock_request_http.return_value = True, 412
-        with self.assertRaises(ClientError) as context:
-            User().delete(id=self.user_id)
-        self.assertTrue(context.exception.__class__.__name__, 'ClientError')
-
-    @mock.patch('uiza.Connection._request_http')
-    def test_delete_user_invalid_with_status_code_5xx(self, mock_request_http):
-        mock_request_http.return_value = True, 512
-        with self.assertRaises(ServerError) as context:
-            User().delete(id=self.user_id)
-        self.assertTrue(context.exception.__class__.__name__, 'ServerError')
-
-    @mock.patch('uiza.Connection._request_http')
-    def test_delete_user_invalid(self, mock_request_http):
-        mock_request_http.return_value = True, 200
-        with self.assertRaises(TypeError) as context:
-            User().delete()
-        self.assertTrue(context.exception.__class__.__name__, 'TypeError')
-
-
 class TestUpdatePasswordUser(TestUserBaseTestCase):
 
     @mock.patch('uiza.Connection._request_http')
     def test_update_password_user_valid(self, mock_request_http):
         mock_request_http.return_value = True, 200
         data = User().change_password(
-            id = self.user_id,
+            user_id=self.user_id,
             new_password='New password',
             old_password='Old password'
         )
@@ -392,7 +276,7 @@ class TestUpdatePasswordUser(TestUserBaseTestCase):
         mock_request_http.return_value = True, 400
         with self.assertRaises(BadRequestError) as context:
             User().change_password(
-                id=self.user_id,
+                user_id=self.user_id,
                 new_password='New password',
                 old_password='Old password'
             )
@@ -403,7 +287,7 @@ class TestUpdatePasswordUser(TestUserBaseTestCase):
         mock_request_http.return_value = True, 401
         with self.assertRaises(UnauthorizedError) as context:
             User().change_password(
-                id=self.user_id,
+                user_id=self.user_id,
                 new_password='New password',
                 old_password='Old password'
             )
@@ -414,7 +298,7 @@ class TestUpdatePasswordUser(TestUserBaseTestCase):
         mock_request_http.return_value = True, 404
         with self.assertRaises(NotFoundError) as context:
             User().change_password(
-                id=self.user_id,
+                user_id=self.user_id,
                 new_password='New password',
                 old_password='Old password'
             )
@@ -425,7 +309,7 @@ class TestUpdatePasswordUser(TestUserBaseTestCase):
         mock_request_http.return_value = True, 422
         with self.assertRaises(UnprocessableError) as context:
             User().change_password(
-                id=self.user_id,
+                user_id=self.user_id,
                 new_password='New password',
                 old_password='Old password'
             )
@@ -436,7 +320,7 @@ class TestUpdatePasswordUser(TestUserBaseTestCase):
         mock_request_http.return_value = True, 500
         with self.assertRaises(InternalServerError) as context:
             User().change_password(
-                id=self.user_id,
+                user_id=self.user_id,
                 new_password='New password',
                 old_password='Old password'
             )
@@ -447,7 +331,7 @@ class TestUpdatePasswordUser(TestUserBaseTestCase):
         mock_request_http.return_value = True, 503
         with self.assertRaises(ServiceUnavailableError) as context:
             User().change_password(
-                id=self.user_id,
+                user_id=self.user_id,
                 new_password='New password',
                 old_password='Old password'
             )
@@ -458,7 +342,7 @@ class TestUpdatePasswordUser(TestUserBaseTestCase):
         mock_request_http.return_value = True, 412
         with self.assertRaises(ClientError) as context:
             User().change_password(
-                id=self.user_id,
+                user_id=self.user_id,
                 new_password='New password',
                 old_password='Old password'
             )
@@ -469,7 +353,7 @@ class TestUpdatePasswordUser(TestUserBaseTestCase):
         mock_request_http.return_value = True, 512
         with self.assertRaises(ServerError) as context:
             User().change_password(
-                id=self.user_id,
+                user_id=self.user_id,
                 new_password='New password',
                 old_password='Old password'
             )

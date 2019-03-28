@@ -21,7 +21,8 @@ class TestCallbackBaseTestCase(unittest.TestCase):
     def __init__(self, *args, **kwargs):
         super(TestCallbackBaseTestCase, self).__init__(*args, **kwargs)
         uiza.workspace_api_domain = 'test domain'
-        uiza.api_key = 'test api key'
+        uiza.authorization = 'test api key'
+        uiza.app_id = 'test app id'
         self.callback_id = '37d6706e-be91-463e-b3b3-b69451dd4752'
         self.callback_data_create = {
             "url": "https://callback-url-python.uiza.co",

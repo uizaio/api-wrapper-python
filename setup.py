@@ -5,7 +5,7 @@ with open('README.md', 'r') as fh:
 
 setup(
     name='uiza',
-    version='1.1.0',
+    version='1.2.0',
     author='Uiza',
     author_email='developer@uiza.io',
     description='Uiza SDK tool',

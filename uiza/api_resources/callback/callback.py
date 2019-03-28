@@ -9,7 +9,7 @@ from uiza.exceptions import ClientException
 class Callback(UizaBase):
 
     def __init__(self):
-        self.connection = Connection(workspace_api_domain=uiza.workspace_api_domain, api_key=uiza.api_key)
+        self.connection = Connection(workspace_api_domain=uiza.workspace_api_domain, api_key=uiza.authorization)
         self.connection.url = set_url(
             workspace_api_domain=self.connection.workspace_api_domain,
             api_type=settings.uiza_api.callback.type,
@@ -21,6 +21,5 @@ class Callback(UizaBase):
         """
         Override method list of Uizabase
         :param params:
-        :return: Raise error when get method list
         """
         raise ClientException('Callback list method not found')

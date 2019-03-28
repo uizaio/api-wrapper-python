@@ -6,7 +6,7 @@ The Uiza API is organized around RESTful standard. Our API has predictable, reso
 
 ## Documentation
 
-See the [.Uiza API docs](https://docs.uiza.io/).
+See the [.Uiza API docs v4](https://docs.uiza.io/v4).
 
 ## Installation
 
@@ -43,16 +43,13 @@ virtualenv <your-env>
 
 ## Usage
 
-The library needs to be configured with your account's `workspace_api_domain` and `authorization` (API key).
-See details [here](https://docs.uiza.io/#authentication).
-
-The first, needing create Uiza connection using `workspace_api_domain` and `api_key`:
+The first, needing create Uiza connection using `app_id` and `authorization`:
 
 ```python
 import uiza
 
-uiza.workspace_api_domain = <your-workspace-api-domain.uiza.co>
-uiza.api_key = <your-api-key>
+uiza.authorization = "your-authorization"
+uiza.app_id = "your-app-id"
 
 ``` 
 
@@ -63,11 +60,11 @@ import uiza
 from uiza.api_resources.entity import Entity
 from uiza.exceptions import ServerException
 
-uiza.workspace_api_domain = "<your-workspace-api-domain.uiza.co>"
-uiza.api_key = "<your-api-key>"
+uiza.authorization = "your-authorization"
+uiza.app_id = "your-app-id"
 
 try:
-    entity_data, _ = Entity().search()
+    entity_data, _ = Entity().search(keyword='Sample')
 except ServerException as e:
     raise e
 except Exception as e:
@@ -82,10 +79,9 @@ Next steps, reading the [Client Library Documentation]() to see other available 
 - [Entity](https://github.com/uizaio/api-wrapper-python/blob/master/docs/entity.md)
 - [Category](https://github.com/uizaio/api-wrapper-python/blob/master/docs/category.md)
 - [Storage](https://github.com/uizaio/api-wrapper-python/blob/master/docs/storage.md)
-- [Live Streaming](https://github.com/uizaio/api-wrapper-python/blob/master/docs/callback.md)
-- [Callback](https://github.com/uizaio/api-wrapper-python/blob/master/docs/category.md)
+- [Live Streaming](https://github.com/uizaio/api-wrapper-python/blob/master/docs/live.md)
+- [Callback](https://github.com/uizaio/api-wrapper-python/blob/master/docs/callback.md)
 - [User](https://github.com/uizaio/api-wrapper-python/blob/master/docs/user.md)
-- [Analytic](https://github.com/uizaio/api-wrapper-python/blob/master/docs/analytic.md)
 
 ## Unittest
 

@@ -19,8 +19,8 @@ class TestEntityBaseTestCase(unittest.TestCase):
 
     def __init__(self, *args, **kwargs):
         super(TestEntityBaseTestCase, self).__init__(*args, **kwargs)
-        uiza.workspace_api_domain = 'test domain'
-        uiza.api_key = 'test api key'
+        uiza.authorization = 'test api key'
+        uiza.app_id = 'test app id'
         self.entity_id = '37d6706e-be91-463e-b3b3-b69451dd4752'
         self.entity_data_create = {
             "name": "Sample Video Python",
@@ -250,69 +250,69 @@ class TestUpdateEntity(TestEntityBaseTestCase):
 class TestDeleteEntity(TestEntityBaseTestCase):
 
     @mock.patch('uiza.Connection._request_http')
-    def test_list_entity_valid(self, mock_request_http):
+    def test_delete_entity_valid(self, mock_request_http):
         mock_request_http.return_value = True, 200
         data = Entity().delete(id=self.entity_id)
         self.assertEqual(data[1], 200)
 
     @mock.patch('uiza.Connection._request_http')
-    def test_list_entity_invalid_with_status_code_400(self, mock_request_http):
+    def test_delete_entity_invalid_with_status_code_400(self, mock_request_http):
         mock_request_http.return_value = True, 400
         with self.assertRaises(BadRequestError) as context:
             Entity().delete(id=self.entity_id)
         self.assertTrue(context.exception.__class__.__name__, 'BadRequestError')
 
     @mock.patch('uiza.Connection._request_http')
-    def test_list_entity_invalid_with_status_code_401(self, mock_request_http):
+    def test_delete_entity_invalid_with_status_code_401(self, mock_request_http):
         mock_request_http.return_value = True, 401
         with self.assertRaises(UnauthorizedError) as context:
             Entity().delete(id=self.entity_id)
         self.assertTrue(context.exception.__class__.__name__, 'UnauthorizedError')
 
     @mock.patch('uiza.Connection._request_http')
-    def test_list_entity_invalid_with_status_code_404(self, mock_request_http):
+    def test_delete_entity_invalid_with_status_code_404(self, mock_request_http):
         mock_request_http.return_value = True, 404
         with self.assertRaises(NotFoundError) as context:
             Entity().delete(id=self.entity_id)
         self.assertTrue(context.exception.__class__.__name__, 'NotFoundError')
 
     @mock.patch('uiza.Connection._request_http')
-    def test_list_entity_invalid_with_status_code_422(self, mock_request_http):
+    def test_delete_entity_invalid_with_status_code_422(self, mock_request_http):
         mock_request_http.return_value = True, 422
         with self.assertRaises(UnprocessableError) as context:
             Entity().delete(id=self.entity_id)
         self.assertTrue(context.exception.__class__.__name__, 'UnprocessableError')
 
     @mock.patch('uiza.Connection._request_http')
-    def test_list_entity_invalid_with_status_code_500(self, mock_request_http):
+    def test_delete_entity_invalid_with_status_code_500(self, mock_request_http):
         mock_request_http.return_value = True, 500
         with self.assertRaises(InternalServerError) as context:
             Entity().delete(id=self.entity_id)
         self.assertTrue(context.exception.__class__.__name__, 'InternalServerError')
 
     @mock.patch('uiza.Connection._request_http')
-    def test_list_entity_invalid_with_status_code_503(self, mock_request_http):
+    def test_delete_entity_invalid_with_status_code_503(self, mock_request_http):
         mock_request_http.return_value = True, 503
         with self.assertRaises(ServiceUnavailableError) as context:
             Entity().delete(id=self.entity_id)
         self.assertTrue(context.exception.__class__.__name__, 'ServiceUnavailableError')
 
     @mock.patch('uiza.Connection._request_http')
-    def test_list_entity_invalid_with_status_code_4xx(self, mock_request_http):
+    def test_delete_entity_invalid_with_status_code_4xx(self, mock_request_http):
         mock_request_http.return_value = True, 412
         with self.assertRaises(ClientError) as context:
             Entity().delete(id=self.entity_id)
         self.assertTrue(context.exception.__class__.__name__, 'ClientError')
 
     @mock.patch('uiza.Connection._request_http')
-    def test_list_entity_invalid_with_status_code_5xx(self, mock_request_http):
+    def test_delete_entity_invalid_with_status_code_5xx(self, mock_request_http):
         mock_request_http.return_value = True, 512
         with self.assertRaises(ServerError) as context:
             Entity().delete(id=self.entity_id)
         self.assertTrue(context.exception.__class__.__name__, 'ServerError')
 
     @mock.patch('uiza.Connection._request_http')
-    def test_list_entity_invalid_with_not_id(self, mock_request_http):
+    def test_delete_entity_invalid_with_not_id(self, mock_request_http):
         mock_request_http.return_value = True, 200
         with self.assertRaises(TypeError) as context:
             Entity().delete()
@@ -384,75 +384,212 @@ class TestListEntity(TestEntityBaseTestCase):
         self.assertTrue(context.exception.__class__.__name__, 'ServerError')
 
 
-class TestSearchEntity(TestEntityBaseTestCase):
+class TestGetMediaTrackingEntity(TestEntityBaseTestCase):
 
     @mock.patch('uiza.Connection._request_http')
-    def test_search_entity_valid(self, mock_request_http):
+    def test_get_media_tracking_entity_valid(self, mock_request_http):
         mock_request_http.return_value = True, 200
-        data = Entity().search(keyword='Test keyword')
+        data = Entity().get_media_tracking(progress=0)
         self.assertEqual(data[1], 200)
 
     @mock.patch('uiza.Connection._request_http')
-    def test_search_entity_invalid_with_status_code_400(self, mock_request_http):
+    def test_get_media_tracking_entity_invalid_with_status_code_400(self, mock_request_http):
         mock_request_http.return_value = True, 400
         with self.assertRaises(BadRequestError) as context:
-            Entity().search(keyword='Test keyword')
+            Entity().get_media_tracking(progress=0)
         self.assertTrue(context.exception.__class__.__name__, 'BadRequestError')
 
     @mock.patch('uiza.Connection._request_http')
-    def test_search_entity_invalid_with_status_code_401(self, mock_request_http):
+    def test_get_media_tracking_entity_invalid_with_status_code_401(self, mock_request_http):
         mock_request_http.return_value = True, 401
         with self.assertRaises(UnauthorizedError) as context:
-            Entity().search(keyword='Test keyword')
+            Entity().get_media_tracking(progress=0)
         self.assertTrue(context.exception.__class__.__name__, 'UnauthorizedError')
 
     @mock.patch('uiza.Connection._request_http')
-    def test_search_entity_invalid_with_status_code_404(self, mock_request_http):
+    def test_get_media_tracking_entity_invalid_with_status_code_404(self, mock_request_http):
         mock_request_http.return_value = True, 404
         with self.assertRaises(NotFoundError) as context:
-            Entity().search(keyword='Test keyword')
+            Entity().get_media_tracking(progress=0)
         self.assertTrue(context.exception.__class__.__name__, 'NotFoundError')
 
     @mock.patch('uiza.Connection._request_http')
-    def test_search_entity_invalid_with_status_code_422(self, mock_request_http):
+    def test_get_media_tracking_entity_invalid_with_status_code_422(self, mock_request_http):
         mock_request_http.return_value = True, 422
         with self.assertRaises(UnprocessableError) as context:
-            Entity().search(keyword='Test keyword')
+            Entity().get_media_tracking(progress=0)
         self.assertTrue(context.exception.__class__.__name__, 'UnprocessableError')
 
     @mock.patch('uiza.Connection._request_http')
-    def test_search_entity_invalid_with_status_code_500(self, mock_request_http):
+    def test_get_media_tracking_entity_invalid_with_status_code_500(self, mock_request_http):
         mock_request_http.return_value = True, 500
         with self.assertRaises(InternalServerError) as context:
-            Entity().search(keyword='Test keyword')
+            Entity().get_media_tracking(progress=0)
         self.assertTrue(context.exception.__class__.__name__, 'InternalServerError')
 
     @mock.patch('uiza.Connection._request_http')
-    def test_search_entity_invalid_with_status_code_503(self, mock_request_http):
+    def test_get_media_tracking_entity_invalid_with_status_code_503(self, mock_request_http):
         mock_request_http.return_value = True, 503
         with self.assertRaises(ServiceUnavailableError) as context:
-            Entity().search(keyword='Test keyword')
+            Entity().get_media_tracking(progress=0)
         self.assertTrue(context.exception.__class__.__name__, 'ServiceUnavailableError')
 
     @mock.patch('uiza.Connection._request_http')
-    def test_search_entity_invalid_with_status_code_4xx(self, mock_request_http):
+    def test_get_media_tracking_entity_invalid_with_status_code_4xx(self, mock_request_http):
         mock_request_http.return_value = True, 412
         with self.assertRaises(ClientError) as context:
-            Entity().search(keyword='Test keyword')
+            Entity().get_media_tracking(progress=0)
         self.assertTrue(context.exception.__class__.__name__, 'ClientError')
 
     @mock.patch('uiza.Connection._request_http')
-    def test_search_entity_invalid_with_status_code_5xx(self, mock_request_http):
+    def test_get_media_tracking_entity_invalid_with_status_code_5xx(self, mock_request_http):
         mock_request_http.return_value = True, 512
         with self.assertRaises(ServerError) as context:
-            Entity().search(keyword='Test keyword')
+            Entity().get_media_tracking(progress=0)
+        self.assertTrue(context.exception.__class__.__name__, 'ServerError')
+
+
+class TestGetMediaUploadDetailEntity(TestEntityBaseTestCase):
+
+    @mock.patch('uiza.Connection._request_http')
+    def test_get_media_upload_detail_entity_valid(self, mock_request_http):
+        mock_request_http.return_value = True, 200
+        data = Entity().get_media_upload_detail(id=self.entity_id)
+        self.assertEqual(data[1], 200)
+
+    @mock.patch('uiza.Connection._request_http')
+    def test_get_media_upload_detail_entity_invalid_with_status_code_400(self, mock_request_http):
+        mock_request_http.return_value = True, 400
+        with self.assertRaises(BadRequestError) as context:
+            Entity().get_media_upload_detail(id=self.entity_id)
+        self.assertTrue(context.exception.__class__.__name__, 'BadRequestError')
+
+    @mock.patch('uiza.Connection._request_http')
+    def test_get_media_upload_detail_entity_invalid_with_status_code_401(self, mock_request_http):
+        mock_request_http.return_value = True, 401
+        with self.assertRaises(UnauthorizedError) as context:
+            Entity().get_media_upload_detail(id=self.entity_id)
+        self.assertTrue(context.exception.__class__.__name__, 'UnauthorizedError')
+
+    @mock.patch('uiza.Connection._request_http')
+    def test_get_media_upload_detail_entity_invalid_with_status_code_404(self, mock_request_http):
+        mock_request_http.return_value = True, 404
+        with self.assertRaises(NotFoundError) as context:
+            Entity().get_media_upload_detail(id=self.entity_id)
+        self.assertTrue(context.exception.__class__.__name__, 'NotFoundError')
+
+    @mock.patch('uiza.Connection._request_http')
+    def test_get_media_upload_detail_entity_invalid_with_status_code_422(self, mock_request_http):
+        mock_request_http.return_value = True, 422
+        with self.assertRaises(UnprocessableError) as context:
+            Entity().get_media_upload_detail(id=self.entity_id)
+        self.assertTrue(context.exception.__class__.__name__, 'UnprocessableError')
+
+    @mock.patch('uiza.Connection._request_http')
+    def test_get_media_upload_detail_entity_invalid_with_status_code_500(self, mock_request_http):
+        mock_request_http.return_value = True, 500
+        with self.assertRaises(InternalServerError) as context:
+            Entity().get_media_upload_detail(id=self.entity_id)
+        self.assertTrue(context.exception.__class__.__name__, 'InternalServerError')
+
+    @mock.patch('uiza.Connection._request_http')
+    def test_get_media_upload_detail_entity_invalid_with_status_code_503(self, mock_request_http):
+        mock_request_http.return_value = True, 503
+        with self.assertRaises(ServiceUnavailableError) as context:
+            Entity().get_media_upload_detail(id=self.entity_id)
+        self.assertTrue(context.exception.__class__.__name__, 'ServiceUnavailableError')
+
+    @mock.patch('uiza.Connection._request_http')
+    def test_get_media_upload_detail_entity_invalid_with_status_code_4xx(self, mock_request_http):
+        mock_request_http.return_value = True, 412
+        with self.assertRaises(ClientError) as context:
+            Entity().get_media_upload_detail(id=self.entity_id)
+        self.assertTrue(context.exception.__class__.__name__, 'ClientError')
+
+    @mock.patch('uiza.Connection._request_http')
+    def test_get_media_upload_detail_entity_invalid_with_status_code_5xx(self, mock_request_http):
+        mock_request_http.return_value = True, 512
+        with self.assertRaises(ServerError) as context:
+            Entity().get_media_upload_detail(id=self.entity_id)
+        self.assertTrue(context.exception.__class__.__name__, 'ServerError')
+
+
+class TestGenerateIframeEntity(TestEntityBaseTestCase):
+
+    @mock.patch('uiza.Connection._request_http')
+    def test_generate_iframe_entity_valid(self, mock_request_http):
+        mock_request_http.return_value = True, 200
+        data = Entity().generate_iframe(entityId=self.entity_id, api='https://example.com/video')
+        self.assertEqual(data[1], 200)
+
+    @mock.patch('uiza.Connection._request_http')
+    def test_generate_iframe_entity_invalid_with_status_code_400(self, mock_request_http):
+        mock_request_http.return_value = True, 400
+        with self.assertRaises(BadRequestError) as context:
+            Entity().generate_iframe(entityId=self.entity_id, api='https://example.com/video')
+        self.assertTrue(context.exception.__class__.__name__, 'BadRequestError')
+
+    @mock.patch('uiza.Connection._request_http')
+    def test_generate_iframe_entity_invalid_with_status_code_401(self, mock_request_http):
+        mock_request_http.return_value = True, 401
+        with self.assertRaises(UnauthorizedError) as context:
+            Entity().generate_iframe(entityId=self.entity_id, api='https://example.com/video')
+        self.assertTrue(context.exception.__class__.__name__, 'UnauthorizedError')
+
+    @mock.patch('uiza.Connection._request_http')
+    def test_generate_iframe_entity_invalid_with_status_code_404(self, mock_request_http):
+        mock_request_http.return_value = True, 404
+        with self.assertRaises(NotFoundError) as context:
+            Entity().generate_iframe(entityId=self.entity_id, api='https://example.com/video')
+        self.assertTrue(context.exception.__class__.__name__, 'NotFoundError')
+
+    @mock.patch('uiza.Connection._request_http')
+    def test_generate_iframe_entity_invalid_with_status_code_422(self, mock_request_http):
+        mock_request_http.return_value = True, 422
+        with self.assertRaises(UnprocessableError) as context:
+            Entity().generate_iframe(entityId=self.entity_id, api='https://example.com/video')
+        self.assertTrue(context.exception.__class__.__name__, 'UnprocessableError')
+
+    @mock.patch('uiza.Connection._request_http')
+    def test_generate_iframe_entity_invalid_with_status_code_500(self, mock_request_http):
+        mock_request_http.return_value = True, 500
+        with self.assertRaises(InternalServerError) as context:
+            Entity().generate_iframe(entityId=self.entity_id, api='https://example.com/video')
+        self.assertTrue(context.exception.__class__.__name__, 'InternalServerError')
+
+    @mock.patch('uiza.Connection._request_http')
+    def test_generate_iframe_entity_invalid_with_status_code_503(self, mock_request_http):
+        mock_request_http.return_value = True, 503
+        with self.assertRaises(ServiceUnavailableError) as context:
+            Entity().generate_iframe(entityId=self.entity_id, api='https://example.com/video')
+        self.assertTrue(context.exception.__class__.__name__, 'ServiceUnavailableError')
+
+    @mock.patch('uiza.Connection._request_http')
+    def test_generate_iframe_entity_invalid_with_status_code_4xx(self, mock_request_http):
+        mock_request_http.return_value = True, 412
+        with self.assertRaises(ClientError) as context:
+            Entity().generate_iframe(entityId=self.entity_id, api='https://example.com/video')
+        self.assertTrue(context.exception.__class__.__name__, 'ClientError')
+
+    @mock.patch('uiza.Connection._request_http')
+    def test_generate_iframe_entity_invalid_with_status_code_5xx(self, mock_request_http):
+        mock_request_http.return_value = True, 512
+        with self.assertRaises(ServerError) as context:
+            Entity().generate_iframe(entityId=self.entity_id, api='https://example.com/video')
         self.assertTrue(context.exception.__class__.__name__, 'ServerError')
 
     @mock.patch('uiza.Connection._request_http')
-    def test_search_entity_invalid_with_not_keyword(self, mock_request_http):
+    def test_generate_iframe_entity_invalid_with_not_entityId(self, mock_request_http):
         mock_request_http.return_value = True, 200
         with self.assertRaises(TypeError) as context:
-            Entity().search()
+            Entity().generate_iframe(api='https://example.com/video')
+        self.assertTrue(context.exception.__class__.__name__, 'TypeError')
+
+    @mock.patch('uiza.Connection._request_http')
+    def test_generate_iframe_entity_invalid_with_not_api(self, mock_request_http):
+        mock_request_http.return_value = True, 200
+        with self.assertRaises(TypeError) as context:
+            Entity().generate_iframe(entityId=self.entity_id)
         self.assertTrue(context.exception.__class__.__name__, 'TypeError')
 
 
@@ -663,3 +800,75 @@ class TestGetAWSUploadKeyEntity(TestEntityBaseTestCase):
         with self.assertRaises(ServerError) as context:
             Entity().get_aws_upload_key()
         self.assertTrue(context.exception.__class__.__name__, 'ServerError')
+
+
+class TestSearchEntity(TestEntityBaseTestCase):
+
+    @mock.patch('uiza.Connection._request_http')
+    def test_search_entity_valid(self, mock_request_http):
+        mock_request_http.return_value = True, 200
+        data = Entity().search(keyword='Test keyword')
+        self.assertEqual(data[1], 200)
+
+    @mock.patch('uiza.Connection._request_http')
+    def test_search_entity_invalid_with_status_code_400(self, mock_request_http):
+        mock_request_http.return_value = True, 400
+        with self.assertRaises(BadRequestError) as context:
+            Entity().search(keyword='Test keyword')
+        self.assertTrue(context.exception.__class__.__name__, 'BadRequestError')
+
+    @mock.patch('uiza.Connection._request_http')
+    def test_search_entity_invalid_with_status_code_401(self, mock_request_http):
+        mock_request_http.return_value = True, 401
+        with self.assertRaises(UnauthorizedError) as context:
+            Entity().search(keyword='Test keyword')
+        self.assertTrue(context.exception.__class__.__name__, 'UnauthorizedError')
+
+    @mock.patch('uiza.Connection._request_http')
+    def test_search_entity_invalid_with_status_code_404(self, mock_request_http):
+        mock_request_http.return_value = True, 404
+        with self.assertRaises(NotFoundError) as context:
+            Entity().search(keyword='Test keyword')
+        self.assertTrue(context.exception.__class__.__name__, 'NotFoundError')
+
+    @mock.patch('uiza.Connection._request_http')
+    def test_search_entity_invalid_with_status_code_422(self, mock_request_http):
+        mock_request_http.return_value = True, 422
+        with self.assertRaises(UnprocessableError) as context:
+            Entity().search(keyword='Test keyword')
+        self.assertTrue(context.exception.__class__.__name__, 'UnprocessableError')
+
+    @mock.patch('uiza.Connection._request_http')
+    def test_search_entity_invalid_with_status_code_500(self, mock_request_http):
+        mock_request_http.return_value = True, 500
+        with self.assertRaises(InternalServerError) as context:
+            Entity().search(keyword='Test keyword')
+        self.assertTrue(context.exception.__class__.__name__, 'InternalServerError')
+
+    @mock.patch('uiza.Connection._request_http')
+    def test_search_entity_invalid_with_status_code_503(self, mock_request_http):
+        mock_request_http.return_value = True, 503
+        with self.assertRaises(ServiceUnavailableError) as context:
+            Entity().search(keyword='Test keyword')
+        self.assertTrue(context.exception.__class__.__name__, 'ServiceUnavailableError')
+
+    @mock.patch('uiza.Connection._request_http')
+    def test_search_entity_invalid_with_status_code_4xx(self, mock_request_http):
+        mock_request_http.return_value = True, 412
+        with self.assertRaises(ClientError) as context:
+            Entity().search(keyword='Test keyword')
+        self.assertTrue(context.exception.__class__.__name__, 'ClientError')
+
+    @mock.patch('uiza.Connection._request_http')
+    def test_search_entity_invalid_with_status_code_5xx(self, mock_request_http):
+        mock_request_http.return_value = True, 512
+        with self.assertRaises(ServerError) as context:
+            Entity().search(keyword='Test keyword')
+        self.assertTrue(context.exception.__class__.__name__, 'ServerError')
+
+    @mock.patch('uiza.Connection._request_http')
+    def test_search_entity_invalid_with_not_keyword(self, mock_request_http):
+        mock_request_http.return_value = True, 200
+        with self.assertRaises(TypeError) as context:
+            Entity().search()
+        self.assertTrue(context.exception.__class__.__name__, 'TypeError')
