@@ -6,7 +6,7 @@ The Uiza API is organized around RESTful standard. Our API has predictable, reso
 
 ## Documentation
 
-See the [.Uiza API docs](https://docs.uiza.io/).
+See the [.Uiza API docs v4](https://docs.uiza.io/v4).
 
 ## Installation
 
