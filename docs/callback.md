@@ -19,7 +19,7 @@ For example:
 
 ```python
 import uiza
-from uiza.api_resources.category import Callback
+from uiza.api_resources.callback import Callback
 from uiza.exceptions import ServerException
 
 uiza.authorization = "your-authorization"
@@ -65,7 +65,7 @@ For example:
 
 ```python
 import uiza
-from uiza.api_resources.category import Callback
+from uiza.api_resources.callback import Callback
 from uiza.exceptions import ServerException
 
 uiza.authorization = "your-authorization"
@@ -102,7 +102,7 @@ For example:
 
 ```python
 import uiza
-from uiza.api_resources.category import Callback
+from uiza.api_resources.callback import Callback
 from uiza.exceptions import ServerException
 
 uiza.authorization = "your-authorization"
@@ -143,7 +143,7 @@ For example:
 
 ```python
 import uiza
-from uiza.api_resources.category import Callback
+from uiza.api_resources.callback import Callback
 from uiza.exceptions import ServerException
 
 uiza.authorization = "your-authorization"
