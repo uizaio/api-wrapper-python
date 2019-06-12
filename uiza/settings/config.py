@@ -23,7 +23,8 @@ API_CONFIG = {
         "livestreaming": {
             "type": "api/public",
             "version": "v4",
-            "sub_url": "live/entity"
+            "live_url": "live",
+            "sub_url": "live/entity",
         },
         "callback": {
             "type": "api/public",

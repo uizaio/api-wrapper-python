@@ -24,6 +24,17 @@ class Live(UizaBase):
         """
         raise ClientException('Livestreaming list method not found')
 
+    def get_regions(self):
+        self.connection.url = set_url(
+            workspace_api_domain=self.connection.workspace_api_domain,
+            api_type=settings.uiza_api.livestreaming.type,
+            api_version=settings.uiza_api.livestreaming.version,
+            api_sub_url=settings.uiza_api.livestreaming.live_url
+        ) + "/region"
+        result = self.connection.get()
+
+        return result
+
     def start_feed(self, id):
         """
         Start a live event
